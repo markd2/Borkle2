@@ -6,6 +6,7 @@ class Bubble : Codable {
 
     var ID: Identifier
     var text: String = ""
+    var tags: [String] = []
 
     static let defaultFontName = "Helvetica"
     static let defaultFontSize: CGFloat = 12.0

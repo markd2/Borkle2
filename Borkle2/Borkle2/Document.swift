@@ -24,7 +24,6 @@ class Document: NSDocument {
     let assetFilenameTemplate = "asset-%d.%s"    // e.g. asset-5.jpg
     let textIndexFilename = "textindex.txt"
 
-
     override init() {
         super.init()
     }
@@ -52,9 +51,9 @@ class Document: NSDocument {
         }
 
         if fileWrappers[bubbleFilename] == nil {
-            let encoder = YAMLEncoder()
-            
             /*
+             let encoder = YAMLEncoder()
+
             if let bubbleString = try? encoder.encode(bubbleSoup.bubbles) {
                 let bubbleFileWrapper = FileWrapper(regularFileWithString: bubbleString)
                 bubbleFileWrapper.preferredFilename = legacyBubbleFilename
@@ -81,8 +80,7 @@ class Document: NSDocument {
 
     override func read(from fileWrapper: FileWrapper, 
                        ofType typeName: String) throws {
-        /*
-        guard let undoManager else {
+        guard let _ = undoManager else {
             fatalError("We kind of need an undo manager")
         }
 
@@ -99,44 +97,14 @@ class Document: NSDocument {
 
         let fileWrappers = fileWrapper.fileWrappers!
 
-        if let bubbleFileWrapper = fileWrappers[legacyBubbleFilename] {
-            let bubbleData = bubbleFileWrapper.regularFileContents!
-            let decoder = YAMLDecoder()
-            do {
-                let bubbles = try decoder.decode([Bubble].self, from: bubbleData)
-                bubbleSoup.bubbles = bubbles
-                defaultPlayfield = Playfield(soup: bubbleSoup, undoManager: undoManager)
-                defaultPlayfield.migrateFrom(bubbles: bubbles)
-
-                secondPlayfield = Playfield(soup: bubbleSoup, undoManager: undoManager)
-                secondPlayfield.migrateSomeFrom(bubbles: bubbles)
-            } catch {
-                Swift.print("SNORGLE loading got \(error)")
-            }
-        }
-
-        if let barrierFileWrapper = fileWrappers[barrierFilename] {
-            let barrierData = barrierFileWrapper.regularFileContents!
-            let decoder = YAMLDecoder()
-            let barriers = try! decoder.decode([Barrier].self, from: barrierData)
-            self.barriers = barriers
-        }
-        
-        if let imageFileWrapper = fileWrappers[imageFilename] {
-            let imageData = imageFileWrapper.regularFileContents!
-            let image = NSImage(data: imageData)
-            self.image = image
-        }
-
         if let metadataFileWrapper = fileWrappers[metadataFilename] {
             let metadataData = metadataFileWrapper.regularFileContents!
-            let decoder = JSONDecoder()
-            let metadata = try! decoder.decode([String:String].self, from: metadataData)
+            let decoder = YAMLDecoder()
+            let metadata = try! decoder.decode([String:[String:String]].self, from: metadataData)
             self.metadataDict = metadata
         }
-        
+        Swift.print("YEEHAW \(metadataDict)")
         documentFileWrapper = fileWrapper
-         */
     }
 
 

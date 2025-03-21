@@ -11,6 +11,8 @@ class Document: NSDocument {
             documentFileWrapper?.remove(filename: metadataFilename)
         }
     }
+    
+    var bubbles: [Bubble] = []
 
     enum FileWrapperError: Error {
         case badFileWrapper
@@ -114,7 +116,26 @@ class Document: NSDocument {
         // If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
         throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
+}
 
+extension Document {
+    @IBAction func bubbleBootstreap(_ sender: NSButton) {
+        Swift.print("GREEBLE")
+        var maxIndex = 1
+        
+        for bubble in bubbles {
+            maxIndex = max(bubble.ID, maxIndex)
+        }
 
+        var index = maxIndex + 1
+        for _ in 0 ..< 5 {
+            let bubble = Bubble(ID: index)
+            bubble.text = "This is bubble \(index)"
+            bubbles.append(bubble)
+            index += 1
+        }
+
+        updateChangeCount(.changeDone)
+    }
 }
 

@@ -53,15 +53,13 @@ class Document: NSDocument {
         }
 
         if fileWrappers[bubbleFilename] == nil {
-            /*
              let encoder = YAMLEncoder()
 
-            if let bubbleString = try? encoder.encode(bubbleSoup.bubbles) {
+            if let bubbleString = try? encoder.encode(bubbles) {
                 let bubbleFileWrapper = FileWrapper(regularFileWithString: bubbleString)
-                bubbleFileWrapper.preferredFilename = legacyBubbleFilename
+                bubbleFileWrapper.preferredFilename = bubbleFilename
                 documentFileWrapper.addFileWrapper(bubbleFileWrapper)
             }
-             */
         }
         
         if fileWrappers[metadataFilename] == nil {
@@ -77,7 +75,6 @@ class Document: NSDocument {
 
         return documentFileWrapper
     }
-
 
 
     override func read(from fileWrapper: FileWrapper, 
@@ -105,16 +102,17 @@ class Document: NSDocument {
             let metadata = try! decoder.decode([String:[String:String]].self, from: metadataData)
             self.metadataDict = metadata
         }
+
+        if let metadataFileWrapper = fileWrappers[bubbleFilename] {
+            let metadataData = metadataFileWrapper.regularFileContents!
+            let decoder = YAMLDecoder()
+            let bubbles = try! decoder.decode([Bubble].self, from: metadataData)
+            self.bubbles = bubbles
+            Swift.print("GOT \(bubbles.count) BUBBLES")
+        }
+
         Swift.print("YEEHAW \(metadataDict)")
         documentFileWrapper = fileWrapper
-    }
-
-
-    override func read(from data: Data, ofType typeName: String) throws {
-        // Insert code here to read your document from the given data of the specified type, throwing an error in case of failure.
-        // Alternatively, you could remove this method and override read(from:ofType:) instead.
-        // If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 }
 
@@ -135,6 +133,7 @@ extension Document {
             index += 1
         }
 
+        documentFileWrapper?.remove(filename: bubbleFilename)
         updateChangeCount(.changeDone)
     }
 }

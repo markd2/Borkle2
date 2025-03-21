@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7DE736E12D8DC35600E40BB1 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 7DE736E02D8DC35600E40BB1 /* Yams */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		7DE736AB2D8DBECC00E40BB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -57,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE736E12D8DC35600E40BB1 /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +114,7 @@
 			);
 			name = Borkle2;
 			packageProductDependencies = (
+				7DE736E02D8DC35600E40BB1 /* Yams */,
 			);
 			productName = Borkle2;
 			productReference = 7DE736952D8DBECB00E40BB1 /* Borkle2.app */;
@@ -165,6 +171,9 @@
 			);
 			mainGroup = 7DE7368C2D8DBECB00E40BB1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7DE736DF2D8DC35500E40BB1 /* XCRemoteSwiftPackageReference "Yams" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7DE736962D8DBECB00E40BB1 /* Products */;
 			projectDirPath = "";
@@ -460,6 +469,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7DE736DF2D8DC35500E40BB1 /* XCRemoteSwiftPackageReference "Yams" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jpsim/Yams";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7DE736E02D8DC35600E40BB1 /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DE736DF2D8DC35500E40BB1 /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7DE7368D2D8DBECB00E40BB1 /* Project object */;
 }

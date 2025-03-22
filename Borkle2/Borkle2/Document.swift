@@ -6,13 +6,24 @@ class Document: NSDocument {
     // A directory file wrapper.
     var documentFileWrapper: FileWrapper?
 
-    var metadataDict = ["frames" : ["frame-1" : "NPCs", "frame-2" : "Kobolds ate my baby!"]] {
+    var bubbles: [Bubble] = []
+
+    var metadataDict = ["frames" : ["1" : "NPCs", "2" : "Kobolds ate my baby!"]] {
         didSet {
             documentFileWrapper?.remove(filename: metadataFilename)
         }
     }
-    
-    var bubbles: [Bubble] = []
+
+    /// derived from metadata. Frames are lazy-loaded
+    var allFrameIDs: [Frame.Identifier] {
+        metadataDict["frames", default: [:]].keys.map { Int($0) ?? -1 }
+    }
+
+    /// Frames that have been loaded
+    var loadedFrames: [Frame.Identifier: Frame] = [:]
+
+    /// Dirty frame (IDs) - ones that specifically need saving.
+    var dirtyFrames: Set<Frame.Identifier> = []
 
     enum FileWrapperError: Error {
         case badFileWrapper
@@ -38,6 +49,7 @@ class Document: NSDocument {
         return NSNib.Name("Document")
     }
 
+    // SAVING
     override func fileWrapper(ofType typeName: String) throws -> FileWrapper {
         if documentFileWrapper == nil {
             let childrenByPreferredName = [String: FileWrapper]()
@@ -73,10 +85,26 @@ class Document: NSDocument {
             }
         }
 
+        if !dirtyFrames.isEmpty {
+            for frameIdentifier in dirtyFrames {
+                let encoder = YAMLEncoder()
+                let frame = loadedFrames[frameIdentifier]
+
+                if let frameData = try? encoder.encode(frame).data(using: .utf8) {
+                    let frameFileWrapper = FileWrapper(regularFileWithContents: frameData)
+                    let filename = String(format: frameFilenameTemplate, frameIdentifier)
+                    frameFileWrapper.preferredFilename = filename
+                    documentFileWrapper.addFileWrapper(frameFileWrapper)
+                }
+            }
+            dirtyFrames.removeAll()
+        }
+
         return documentFileWrapper
     }
 
 
+    // LOADING
     override func read(from fileWrapper: FileWrapper, 
                        ofType typeName: String) throws {
         guard let _ = undoManager else {
@@ -103,12 +131,25 @@ class Document: NSDocument {
             self.metadataDict = metadata
         }
 
-        if let metadataFileWrapper = fileWrappers[bubbleFilename] {
-            let metadataData = metadataFileWrapper.regularFileContents!
+        if let bubbleFileWrapper = fileWrappers[bubbleFilename] {
+            let bubbleData = bubbleFileWrapper.regularFileContents!
             let decoder = YAMLDecoder()
-            let bubbles = try! decoder.decode([Bubble].self, from: metadataData)
+            let bubbles = try! decoder.decode([Bubble].self, from: bubbleData)
             self.bubbles = bubbles
             Swift.print("GOT \(bubbles.count) BUBBLES")
+        }
+
+        // ordinarily would load lazily, but see if we get things
+        // ACTUALLY do we need to load lazily, since frames are pretty
+        // small (connections, etc)
+        for frameIdentifier in allFrameIDs {
+            let filename = String(format: frameFilenameTemplate, frameIdentifier)
+            if let frameFileWrapper = fileWrappers[filename] {
+                let frameData = frameFileWrapper.regularFileContents!
+                let decoder = YAMLDecoder()
+                let frame = try! decoder.decode(Frame.self, from: frameData)
+                loadedFrames[frameIdentifier] = frame
+            }
         }
 
         Swift.print("YEEHAW \(metadataDict)")
@@ -134,6 +175,75 @@ extension Document {
         }
 
         documentFileWrapper?.remove(filename: bubbleFilename)
+        updateChangeCount(.changeDone)
+    }
+
+    @IBAction func frame1(_ sender: NSButton) {
+        let frame = Frame(ID: 1)
+        frame.bubbleIDs = [1, 2, 5, 10]
+        frame.locations = [
+          BubbleLocation(bubbleID: 1,
+                         frame: CGRect(x: 10, y: 15, width: 120, height: 15),
+                         fillColor: RGB.white),
+          BubbleLocation(bubbleID: 2,
+                         frame: CGRect(x: 100, y: 30, width: 100, height: 20),
+                         fillColor: RGB(nscolor: NSColor.magenta)),
+          BubbleLocation(bubbleID: 5,
+                         frame: CGRect(x: 30, y: 45, width: 90, height: 15),
+                         fillColor: RGB(nscolor: NSColor.orange)),
+          BubbleLocation(bubbleID: 10,
+                         frame: CGRect(x: 200, y: 60, width: 130, height: 20),
+                         fillColor: RGB(nscolor: NSColor.yellow))
+        ]
+        frame.connections = [
+          Connection(start: 1, end: 5, label: "oop"),
+          Connection(start: 1, end: 2, label: "ack"),
+          Connection(start: 5, end: 10, label: "oopack"),
+          Connection(start: 10, end: 1, label: "ackoop")
+        ]
+        frame.barriers = [
+          Barrier(location: 100, vertical: true),
+          Barrier(location: 200, vertical: false)
+        ]
+
+        loadedFrames[1] = frame
+        dirtyFrames.insert(1)
+
+        updateChangeCount(.changeDone)
+    }
+
+    @IBAction func frame2(_ sender: NSButton) {
+        let frame = Frame(ID: 2)
+        frame.bubbleIDs = [1, 2, 13, 15, 21]
+        frame.locations = [
+          BubbleLocation(bubbleID: 1,
+                         frame: CGRect(x: 10, y: 15, width: 120, height: 15),
+                         fillColor: RGB.white),
+          BubbleLocation(bubbleID: 2,
+                         frame: CGRect(x: 100, y: 30, width: 100, height: 20),
+                         fillColor: RGB(nscolor: NSColor.magenta)),
+          BubbleLocation(bubbleID: 13,
+                         frame: CGRect(x: 30, y: 45, width: 90, height: 15),
+                         fillColor: RGB(nscolor: NSColor.orange)),
+          BubbleLocation(bubbleID: 15,
+                         frame: CGRect(x: 200, y: 60, width: 130, height: 20),
+                         fillColor: RGB(nscolor: NSColor.yellow)),
+          BubbleLocation(bubbleID: 21,
+                         frame: CGRect(x: 300, y: 120, width: 110, height: 15),
+                         fillColor: RGB(nscolor: NSColor.brown))
+        ]
+        frame.connections = [
+          Connection(start: 13, end: 1, label: ""),
+          Connection(start: 13, end: 2, label: ""),
+          Connection(start: 13, end: 15, label: ""),
+          Connection(start: 13, end: 21, label: "")
+        ]
+        frame.barriers = [
+        ]
+
+        loadedFrames[2] = frame
+        dirtyFrames.insert(2)
+
         updateChangeCount(.changeDone)
     }
 }

@@ -133,7 +133,7 @@ class Bubble : Codable {
 
     var formattingOptions: [FormattingOption] = []
 
-    init(ID: Int) {
+    init(ID: Identifier) {
         self.ID = ID
     }
 }

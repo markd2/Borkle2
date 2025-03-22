@@ -7,23 +7,13 @@ class Document: NSDocument {
     var documentFileWrapper: FileWrapper?
 
     var bubbles: [Bubble] = []
+    var frames: [Frame] = []
 
     var metadataDict = ["frames" : ["1" : "NPCs", "2" : "Kobolds ate my baby!"]] {
         didSet {
             documentFileWrapper?.remove(filename: metadataFilename)
         }
     }
-
-    /// derived from metadata. Frames are lazy-loaded
-    var allFrameIDs: [Frame.Identifier] {
-        metadataDict["frames", default: [:]].keys.map { Int($0) ?? -1 }
-    }
-
-    /// Frames that have been loaded
-    var loadedFrames: [Frame.Identifier: Frame] = [:]
-
-    /// Dirty frame (IDs) - ones that specifically need saving.
-    var dirtyFrames: Set<Frame.Identifier> = []
 
     enum FileWrapperError: Error {
         case badFileWrapper
@@ -85,21 +75,19 @@ class Document: NSDocument {
             }
         }
 
-        if !dirtyFrames.isEmpty {
-            for frameIdentifier in dirtyFrames {
-                let encoder = YAMLEncoder()
-                let frame = loadedFrames[frameIdentifier]
-
-                if let frameData = try? encoder.encode(frame).data(using: .utf8) {
-                    let frameFileWrapper = FileWrapper(regularFileWithContents: frameData)
-                    let filename = String(format: frameFilenameTemplate, frameIdentifier)
-                    frameFileWrapper.preferredFilename = filename
-                    documentFileWrapper.addFileWrapper(frameFileWrapper)
-                }
+        for frame in frames {
+            let encoder = YAMLEncoder()
+            
+            if let frameData = try? encoder.encode(frame).data(using: .utf8) {
+                let filename = String(format: frameFilenameTemplate, frame.identifier)
+                documentFileWrapper.remove(filename: bubbleFilename)
+                
+                let frameFileWrapper = FileWrapper(regularFileWithContents: frameData)
+                frameFileWrapper.preferredFilename = filename
+                documentFileWrapper.addFileWrapper(frameFileWrapper)
             }
-            dirtyFrames.removeAll()
         }
-
+    
         return documentFileWrapper
     }
 
@@ -139,16 +127,13 @@ class Document: NSDocument {
             Swift.print("GOT \(bubbles.count) BUBBLES")
         }
 
-        // ordinarily would load lazily, but see if we get things
-        // ACTUALLY do we need to load lazily, since frames are pretty
-        // small (connections, etc)
-        for frameIdentifier in allFrameIDs {
-            let filename = String(format: frameFilenameTemplate, frameIdentifier)
+        for frame in frames {
+            let filename = String(format: frameFilenameTemplate, frame.identifier)
             if let frameFileWrapper = fileWrappers[filename] {
                 let frameData = frameFileWrapper.regularFileContents!
                 let decoder = YAMLDecoder()
                 let frame = try! decoder.decode(Frame.self, from: frameData)
-                loadedFrames[frameIdentifier] = frame
+                frames.append(frame)
             }
         }
 
@@ -206,8 +191,7 @@ extension Document {
           Barrier(location: 200, vertical: false)
         ]
 
-        loadedFrames[1] = frame
-        dirtyFrames.insert(1)
+        frames.append(frame)
 
         updateChangeCount(.changeDone)
     }
@@ -241,8 +225,7 @@ extension Document {
         frame.barriers = [
         ]
 
-        loadedFrames[2] = frame
-        dirtyFrames.insert(2)
+        frames.append(frame)
 
         updateChangeCount(.changeDone)
     }

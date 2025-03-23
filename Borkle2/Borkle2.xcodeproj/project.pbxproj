@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7DACF6952D904527009C898D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DACF6882D904527009C898D /* Assets.xcassets */; };
+		7DACF6962D904527009C898D /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DACF68D2D904527009C898D /* Document.xib */; };
+		7DACF6982D904527009C898D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DACF6922D904527009C898D /* MainMenu.xib */; };
+		7DACF6992D904527009C898D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DACF6872D904527009C898D /* AppDelegate.swift */; };
+		7DACF69A2D904527009C898D /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DACF68A2D904527009C898D /* Bubble.swift */; };
+		7DACF69B2D904527009C898D /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DACF68B2D904527009C898D /* Document.swift */; };
+		7DACF69C2D904527009C898D /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DACF68E2D904527009C898D /* Frame.swift */; };
+		7DACF69D2D904527009C898D /* LibraryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DACF6902D904527009C898D /* LibraryExtensions.swift */; };
+		7DACF69E2D904527009C898D /* RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DACF6932D904527009C898D /* RGB.swift */; };
+		7DACF6A02D90453E009C898D /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DACF69F2D90453E009C898D /* FrameView.swift */; };
 		7DE736E12D8DC35600E40BB1 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 7DE736E02D8DC35600E40BB1 /* Yams */; };
 /* End PBXBuildFile section */
 
@@ -21,29 +31,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7DACF6872D904527009C898D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7DACF6882D904527009C898D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7DACF6892D904527009C898D /* Borkle2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Borkle2.entitlements; sourceTree = "<group>"; };
+		7DACF68A2D904527009C898D /* Bubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
+		7DACF68B2D904527009C898D /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		7DACF68C2D904527009C898D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		7DACF68E2D904527009C898D /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
+		7DACF68F2D904527009C898D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DACF6902D904527009C898D /* LibraryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryExtensions.swift; sourceTree = "<group>"; };
+		7DACF6912D904527009C898D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7DACF6932D904527009C898D /* RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGB.swift; sourceTree = "<group>"; };
+		7DACF69F2D90453E009C898D /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
 		7DE736952D8DBECB00E40BB1 /* Borkle2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Borkle2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE736AA2D8DBECC00E40BB1 /* Borkle2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Borkle2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		7DB9CCAB2D8DF22B000A3B43 /* Exceptions for "Borkle2" folder in "Borkle2" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 7DE736942D8DBECB00E40BB1 /* Borkle2 */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7DE736972D8DBECB00E40BB1 /* Borkle2 */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				7DB9CCAB2D8DF22B000A3B43 /* Exceptions for "Borkle2" folder in "Borkle2" target */,
-			);
-			path = Borkle2;
-			sourceTree = "<group>";
-		};
 		7DE736AD2D8DBECC00E40BB1 /* Borkle2Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Borkle2Tests;
@@ -75,10 +79,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7DACF6942D904527009C898D /* Borkle2 */ = {
+			isa = PBXGroup;
+			children = (
+				7DACF6872D904527009C898D /* AppDelegate.swift */,
+				7DACF6882D904527009C898D /* Assets.xcassets */,
+				7DACF6892D904527009C898D /* Borkle2.entitlements */,
+				7DACF68A2D904527009C898D /* Bubble.swift */,
+				7DACF68E2D904527009C898D /* Frame.swift */,
+				7DACF68B2D904527009C898D /* Document.swift */,
+				7DACF68D2D904527009C898D /* Document.xib */,
+				7DACF68F2D904527009C898D /* Info.plist */,
+				7DACF6902D904527009C898D /* LibraryExtensions.swift */,
+				7DACF6922D904527009C898D /* MainMenu.xib */,
+				7DACF6932D904527009C898D /* RGB.swift */,
+				7DACF69F2D90453E009C898D /* FrameView.swift */,
+			);
+			path = Borkle2;
+			sourceTree = "<group>";
+		};
 		7DE7368C2D8DBECB00E40BB1 = {
 			isa = PBXGroup;
 			children = (
-				7DE736972D8DBECB00E40BB1 /* Borkle2 */,
+				7DACF6942D904527009C898D /* Borkle2 */,
 				7DE736AD2D8DBECC00E40BB1 /* Borkle2Tests */,
 				7DE736B72D8DBECC00E40BB1 /* Borkle2UITests */,
 				7DE736962D8DBECB00E40BB1 /* Products */,
@@ -108,9 +131,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				7DE736972D8DBECB00E40BB1 /* Borkle2 */,
 			);
 			name = Borkle2;
 			packageProductDependencies = (
@@ -190,6 +210,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DACF6952D904527009C898D /* Assets.xcassets in Resources */,
+				7DACF6962D904527009C898D /* Document.xib in Resources */,
+				7DACF6982D904527009C898D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +230,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DACF6992D904527009C898D /* AppDelegate.swift in Sources */,
+				7DACF69A2D904527009C898D /* Bubble.swift in Sources */,
+				7DACF69B2D904527009C898D /* Document.swift in Sources */,
+				7DACF69C2D904527009C898D /* Frame.swift in Sources */,
+				7DACF69D2D904527009C898D /* LibraryExtensions.swift in Sources */,
+				7DACF6A02D90453E009C898D /* FrameView.swift in Sources */,
+				7DACF69E2D904527009C898D /* RGB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +256,25 @@
 			targetProxy = 7DE736AB2D8DBECC00E40BB1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7DACF68D2D904527009C898D /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DACF68C2D904527009C898D /* Base */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		7DACF6922D904527009C898D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DACF6912D904527009C898D /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		7DE736BE2D8DBECC00E40BB1 /* Debug */ = {

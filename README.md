@@ -2,6 +2,10 @@
 
 Re-do of Borkle, but more Zettelbørken.
 
+# Stuffs
+
+* [adr](adr) - Architectural decision records
+
 
 
 # LLMS

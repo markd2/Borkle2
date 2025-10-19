@@ -1,0 +1,37 @@
+import Foundation
+
+typealias BubbleId = Int32
+
+struct Bubble: Identifiable, Codable {
+    let id: BubbleId
+}
+
+struct BubbleTag {
+    let bubble: Bubble
+    let tag: String
+}
+
+enum BubbleChunk {
+    case title(String)
+    case text(AttributedString)
+    case image(imageName: String)
+    case taglist(tags: [BubbleTag])
+}
+
+class BubbleSoup {
+    private var bubbles: [Bubble] = []
+    private var tags: [BubbleTag] = []
+    private var chunks: [BubbleId: BubbleChunk] = [:]
+
+    func bubbleForID(_ id: BubbleId) throws -> Bubble {
+        Bubble(id: 23)
+    }
+
+    func chunks(for bubble: Bubble) throws -> [BubbleChunk] {
+        []
+    }
+
+    func tags(for bubble: Bubble) throws -> [BubbleTag] {
+        []
+    }
+}

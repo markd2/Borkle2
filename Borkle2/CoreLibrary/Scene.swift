@@ -35,7 +35,9 @@ class Scene: Codable {
     // subset of the soup's bubbles in this scene
     private var bubbles: [Bubble] = []
 
-    private var connections: [Connection] = []
+    // public so can iterate over them
+    var connections: [Connection] = []
+
     private var endpoints: [ConnectionEndpoints] = []
     private var labels: [ConnectionLabel] = []
     private var styles: [ConnectionStyle] = []
@@ -75,9 +77,13 @@ class Scene: Codable {
     }
 
     func endpoints(for connection: Connection) throws -> ConnectionEndpoints {
-        ConnectionEndpoints(connection: Connection(id: 23),
-                            source: Bubble(id: 23),
-                            destination: Bubble(id: 23))
+        let eps = endpoints.filter { $0.connection.id == connection.id }
+        return eps.first! // !!!
+    }
+
+    func geometry(for bubble: Bubble) throws -> BubbleGeometry {
+        let geometry = geometries.filter { $0.bubble.id == bubble.id }
+        return geometry.first! // !!!
     }
 
     func label(for connection: Connection) -> ConnectionLabel? {

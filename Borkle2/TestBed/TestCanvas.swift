@@ -33,13 +33,46 @@ class TestCanvas: NSView {
         scene.set(rect: r1, for: b1)
         scene.set(rect: r2, for: b2)
     }
-    
-    override func draw(_ dirtyRect: CGRect) {
+
+    func fillBackground() {
         NSColor.white.set()
         bounds.fill()
-        
+    }
+
+    func strokeBorder() {
         NSColor.black.set()
         bounds.frame()
     }
 
+    func drawConnections() throws {
+        NSColor.purple.set()
+        
+         for connection in scene.connections {
+             let endpoints = try scene.endpoints(for: connection)
+             let g1 = try scene.geometry(for: endpoints.source)
+             let g2 = try scene.geometry(for: endpoints.destination)
+             let p1 = g1.bounds.center
+             let p2 = g2.bounds.center
+
+             NSBezierPath.strokeLine(from: p1, to: p2)
+         }
+    }
+
+    func drawBubbles() throws {
+    }
+    
+    override func draw(_ dirtyRect: CGRect) {
+        fillBackground()
+
+        do {
+            try drawConnections()
+            try drawBubbles()
+        } catch {
+            print("ERROR drawing: \(error)")
+        }
+        
+        strokeBorder()
+    }
+
+    override var isFlipped: Bool { true }
 }

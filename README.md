@@ -7,6 +7,12 @@ Re-do of Borkle, but more Zettelbørken.
 * [adr](adr) - Architectural decision records
 
 
+# It Works!
+
+Testbed drawing two connected bubbles:
+
+![](assets/works-0-two-connected-bubbles.png)
+
 
 # LLMS
 

@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7D53C8532EA47B79006720FA /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53C8522EA47B79006720FA /* Bubble.swift */; };
+		7D53C8552EA68627006720FA /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53C8542EA68627006720FA /* Scene.swift */; };
+		7D53C85C2EA69905006720FA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53C85B2EA69905006720FA /* Utilities.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		7DEAAFEC2EA477AF00BF7713 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -17,6 +23,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D53C8522EA47B79006720FA /* Bubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
+		7D53C8542EA68627006720FA /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		7D53C85B2EA69905006720FA /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		7DEAAFDC2EA477AE00BF7713 /* TestBed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DEAAFEB2EA477AF00BF7713 /* Borkle2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Borkle2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -52,11 +61,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D53C8512EA47B57006720FA /* CoreLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				7D53C8522EA47B79006720FA /* Bubble.swift */,
+				7D53C8542EA68627006720FA /* Scene.swift */,
+				7D53C85B2EA69905006720FA /* Utilities.swift */,
+			);
+			path = CoreLibrary;
+			sourceTree = "<group>";
+		};
 		7DEAAFD32EA477AE00BF7713 = {
 			isa = PBXGroup;
 			children = (
 				7DEAAFDE2EA477AE00BF7713 /* TestBed */,
 				7DEAAFEE2EA477AF00BF7713 /* Borkle2Tests */,
+				7D53C8512EA47B57006720FA /* CoreLibrary */,
 				7DEAAFDD2EA477AE00BF7713 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -146,6 +166,9 @@
 			);
 			mainGroup = 7DEAAFD32EA477AE00BF7713;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7D53C8562EA68A0B006720FA /* XCRemoteSwiftPackageReference "Yams" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7DEAAFDD2EA477AE00BF7713 /* Products */;
 			projectDirPath = "";
@@ -179,6 +202,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D53C8532EA47B79006720FA /* Bubble.swift in Sources */,
+				7D53C8552EA68627006720FA /* Scene.swift in Sources */,
+				7D53C85C2EA69905006720FA /* Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +465,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7D53C8562EA68A0B006720FA /* XCRemoteSwiftPackageReference "Yams" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jpsim/Yams";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 7DEAAFD42EA477AE00BF7713 /* Project object */;
 }

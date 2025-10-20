@@ -1,3 +1,5 @@
+// Copyright 2025 Borkware.
+
 import Foundation
 
 typealias BubbleId = Int32
@@ -27,11 +29,11 @@ class BubbleSoup {
         Bubble(id: 23)
     }
 
-    func chunks(for bubble: Bubble) throws -> [BubbleChunk] {
+    func chunks(for bubble: Bubble) -> [BubbleChunk] {
         []
     }
 
-    func tags(for bubble: Bubble) throws -> [BubbleTag] {
+    func tags(for bubble: Bubble) -> [BubbleTag] {
         []
     }
 }

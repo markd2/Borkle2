@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D53C8532EA47B79006720FA /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53C8522EA47B79006720FA /* Bubble.swift */; };
+		7D53C8552EA68627006720FA /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53C8542EA68627006720FA /* Scene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		7D53C8522EA47B79006720FA /* Bubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
+		7D53C8542EA68627006720FA /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		7DEAAFDC2EA477AE00BF7713 /* TestBed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DEAAFEB2EA477AF00BF7713 /* Borkle2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Borkle2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				7D53C8522EA47B79006720FA /* Bubble.swift */,
+				7D53C8542EA68627006720FA /* Scene.swift */,
 			);
 			path = CoreLibrary;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D53C8532EA47B79006720FA /* Bubble.swift in Sources */,
+				7D53C8552EA68627006720FA /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

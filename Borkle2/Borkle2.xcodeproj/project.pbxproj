@@ -163,6 +163,9 @@
 			);
 			mainGroup = 7DEAAFD32EA477AE00BF7713;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7D53C8562EA68A0B006720FA /* XCRemoteSwiftPackageReference "Yams" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7DEAAFDD2EA477AE00BF7713 /* Products */;
 			projectDirPath = "";
@@ -458,6 +461,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7D53C8562EA68A0B006720FA /* XCRemoteSwiftPackageReference "Yams" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jpsim/Yams";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 7DEAAFD42EA477AE00BF7713 /* Project object */;
 }

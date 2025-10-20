@@ -33,7 +33,8 @@ class Scene: Codable {
     private var soup: BubbleSoup
 
     // subset of the soup's bubbles in this scene
-    private var bubbles: [Bubble] = []
+    // public so can iterate over them
+    var bubbles: [Bubble] = []
 
     // public so can iterate over them
     var connections: [Connection] = []

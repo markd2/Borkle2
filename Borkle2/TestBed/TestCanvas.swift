@@ -28,14 +28,14 @@ class TestCanvas: NSView {
         scene.add(connectionFrom: b1, to: b2)
 
         let r1 = CGRect(x: 10, y: 10, width: 200, height: 100)
-        let r2 = CGRect(x: 300, y: 45, width: 150, height: 150)
+        let r2 = CGRect(x: 250, y: 45, width: 150, height: 150)
 
         scene.set(rect: r1, for: b1)
         scene.set(rect: r2, for: b2)
     }
 
     func fillBackground() {
-        NSColor.white.set()
+        NSColor.lightGray.set()
         bounds.fill()
     }
 
@@ -58,7 +58,19 @@ class TestCanvas: NSView {
          }
     }
 
+    func draw(bubble: Bubble, geometry: BubbleGeometry) {
+        NSColor.white.set()
+        geometry.bounds.fill()
+
+        NSColor.black.set()
+        geometry.bounds.frame()
+    }
+
     func drawBubbles() throws {
+         for bubble in scene.bubbles {
+             let g = try scene.geometry(for: bubble)
+             draw(bubble: bubble, geometry: g)
+         }
     }
     
     override func draw(_ dirtyRect: CGRect) {

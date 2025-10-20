@@ -24,6 +24,10 @@ struct ConnectionStyle: Codable {
     // actual style stuff, like line dash, thickness, arrows, etc
 }
 
+struct BubbleGeometry: Codable {
+    let bubble: Bubble
+    let bounds: CGRect
+}
 
 class Scene: Codable {
     private var soup: BubbleSoup
@@ -36,6 +40,8 @@ class Scene: Codable {
     private var labels: [ConnectionLabel] = []
     private var styles: [ConnectionStyle] = []
 
+    private var geometries: [BubbleGeometry] = []
+
     private var nextID: ConnectionId = 0
 
     init(soup: BubbleSoup) {
@@ -44,6 +50,11 @@ class Scene: Codable {
 
     func add(bubble: Bubble) {
         bubbles.append(bubble)
+    }
+
+    func set(rect: CGRect, for bubble: Bubble) {
+        let bg = BubbleGeometry(bubble: bubble, bounds: rect)
+        geometries.append(bg)
     }
 
     func newConnection() -> Connection {

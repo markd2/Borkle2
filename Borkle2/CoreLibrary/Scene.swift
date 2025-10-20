@@ -26,10 +26,38 @@ struct ConnectionStyle: Codable {
 
 
 class Scene: Codable {
+    private var soup: BubbleSoup
+
+    // subset of the soup's bubbles in this scene
+    private var bubbles: [Bubble] = []
+
     private var connections: [Connection] = []
     private var endpoints: [ConnectionEndpoints] = []
     private var labels: [ConnectionLabel] = []
     private var styles: [ConnectionStyle] = []
+
+    private var nextID: ConnectionId = 0
+
+    init(soup: BubbleSoup) {
+        self.soup = soup
+    }
+
+    func add(bubble: Bubble) {
+        bubbles.append(bubble)
+    }
+
+    func newConnection() -> Connection {
+        nextID += 1
+        let connection = Connection(id: nextID)
+        connections.append(connection)
+        return connection
+    }
+
+    func add(connectionFrom thing1: Bubble, to thing2: Bubble) {
+        let connection = newConnection()
+        let ce = ConnectionEndpoints(connection: connection, source: thing1, destination: thing2)
+        endpoints.append(ce)
+    }
 
     func connectionForID(_ id: ConnectionId) throws -> Connection {
         Connection(id: 23)

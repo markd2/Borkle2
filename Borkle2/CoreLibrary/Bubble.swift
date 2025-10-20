@@ -24,6 +24,14 @@ class BubbleSoup: Codable {
     private var bubbles: [Bubble] = []
     private var tags: [BubbleTag] = []
     private var chunks: [BubbleId: BubbleChunk] = [:]
+    private var nextID: BubbleId = 0
+
+    func newBubble() -> Bubble {
+        nextID += 1
+        let bubble = Bubble(id: nextID)
+        bubbles.append(bubble)
+        return bubble
+    }
 
     func bubbleForID(_ id: BubbleId) throws -> Bubble {
         Bubble(id: 23)

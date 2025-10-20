@@ -8,19 +8,19 @@ struct Bubble: Identifiable, Codable {
     let id: BubbleId
 }
 
-struct BubbleTag {
+struct BubbleTag: Codable {
     let bubble: Bubble
     let tag: String
 }
 
-enum BubbleChunk {
+enum BubbleChunk: Codable {
     case title(String)
     case text(AttributedString)
     case image(imageName: String)
     case taglist(tags: [BubbleTag])
 }
 
-class BubbleSoup {
+class BubbleSoup: Codable {
     private var bubbles: [Bubble] = []
     private var tags: [BubbleTag] = []
     private var chunks: [BubbleId: BubbleChunk] = [:]

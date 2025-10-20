@@ -8,24 +8,24 @@ struct Connection: Identifiable, Codable {
     let id: ConnectionId
 }
 
-struct ConnectionEndpoints {
+struct ConnectionEndpoints: Codable {
     let connection:  Connection
     let source: Bubble
     let destination: Bubble
 }
 
-struct ConnectionLabel {
+struct ConnectionLabel: Codable {
     let connection: Connection
     let text: String
 }
 
-struct ConnectionStyle {
+struct ConnectionStyle: Codable {
     let connection: Connection
     // actual style stuff, like line dash, thickness, arrows, etc
 }
 
 
-class Scene {
+class Scene: Codable {
     private var connections: [Connection] = []
     private var endpoints: [ConnectionEndpoints] = []
     private var labels: [ConnectionLabel] = []

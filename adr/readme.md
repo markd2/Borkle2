@@ -5,6 +5,7 @@ I'm not planning on using anyone's template.
 
 List of decisions (reverse chronological)
 
+* 7: [Use YAMS for text archiving](7-yams-for-text-archiving.md)
 * 6: [Editing canvas is App/UIKit](6-editing-canvas-appui-kit.md)
 * 5: [Start off Stupid](5-start-off-stupid.md)
 * 4: [Use ECS(ish)](4-use-ECS.md)

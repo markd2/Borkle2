@@ -1,13 +1,8 @@
-//
-//  Document.swift
-//  Borkle2
-//
-//  Created by MarkD on 12/12/25.
-//
-
 import Cocoa
 
 class Document: NSDocument {
+
+    var soup: BubbleSoup = BubbleSoup()
 
     override init() {
         super.init()
@@ -37,6 +32,18 @@ class Document: NSDocument {
         throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
+    @IBAction func splunge(_ sender: NSControl) {
+        Swift.print("hello")
+        
+        let bubbles =
+          [
+            Bubble(ID: 0, title: "Spoon", body: "Once upon a midnight dreary etc etc etc", tags: ["#first", "#splunge"], asset: nil),
+            Bubble(ID: 1, title: "Greeble Bork", body: "blah blah blah blah blah blah blah", tags: [], asset: nil),
+            Bubble(ID: 2, title: "Hoover fnord ekky", body: "Folks who are even a tiny bit crafty know the name Singer.  Back in the day, they had a nationwide chain of 175 stores selling the machines, fabrics, patterns, and associated goodies.  They needed automation", tags: ["#singer", "#system-ten", "#exhibit"], asset: nil),
+          ]
+
+        soup.bubbles = bubbles
+    }
 
 }
 

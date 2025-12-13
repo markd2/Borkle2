@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7DE0B5702EECFC2E00BDEB94 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 7DE0B56F2EECFC2E00BDEB94 /* Yams */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		7DE0B5352EECC49B00BDEB94 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE0B5702EECFC2E00BDEB94 /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +75,7 @@
 			children = (
 				7DE0B5212EECC49A00BDEB94 /* Borkle2 */,
 				7DE0B5372EECC49B00BDEB94 /* Borkle2Tests */,
+				7DE0B56E2EECFC2E00BDEB94 /* Frameworks */,
 				7DE0B5202EECC49A00BDEB94 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +87,13 @@
 				7DE0B5342EECC49B00BDEB94 /* Borkle2Tests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7DE0B56E2EECFC2E00BDEB94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +116,7 @@
 			);
 			name = Borkle2;
 			packageProductDependencies = (
+				7DE0B56F2EECFC2E00BDEB94 /* Yams */,
 			);
 			productName = Borkle2;
 			productReference = 7DE0B51F2EECC49A00BDEB94 /* Borkle2.app */;
@@ -468,6 +482,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7DE0B56F2EECFC2E00BDEB94 /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DE0B56B2EECF58900BDEB94 /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7DE0B5172EECC49A00BDEB94 /* Project object */;
 }

@@ -1,4 +1,5 @@
 import Cocoa
+import Yams
 
 class Document: NSDocument {
 
@@ -45,5 +46,21 @@ class Document: NSDocument {
         soup.bubbles = bubbles
     }
 
+    @IBAction func saveYaml(_ sender: NSControl) {
+        Swift.print("SAVE")
+        var encoder = YAMLEncoder()
+        var options = encoder.options
+        options.indent = 2
+        options.width = -1
+        options.explicitStart = true
+        options.explicitEnd = true
+        options.sortKeys = true
+        encoder.options = options
+        let encodedYAML = try! encoder.encode(soup)
+        let data = encodedYAML.data(using: .utf8)!
+        let place = URL(fileURLWithPath: "/Users/markd/Downloads/blargh.yaml")
+        try! data.write(to: place)
+    }
+ 
 }
 

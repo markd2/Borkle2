@@ -48,7 +48,7 @@ class Document: NSDocument {
 
     @IBAction func saveYaml(_ sender: NSControl) {
         Swift.print("SAVE")
-        var encoder = YAMLEncoder()
+        let encoder = YAMLEncoder()
         var options = encoder.options
         options.indent = 2
         options.width = -1
@@ -62,5 +62,13 @@ class Document: NSDocument {
         try! data.write(to: place)
     }
  
+    @IBAction func loadYaml(_ sender: NSControl) {
+        Swift.print("LOAD")
+        let place = URL(fileURLWithPath: "/Users/markd/Downloads/blargh.yaml")
+        let data = try! Data(contentsOf: place, options: [])
+        let decoder = YAMLDecoder()
+        let decoded = try! decoder.decode(BubbleSoup.self, from: data)
+        soup = decoded
+    }
 }
 

@@ -70,5 +70,9 @@ class Document: NSDocument {
         let decoded = try! decoder.decode(BubbleSoup.self, from: data)
         soup = decoded
     }
+
+    @IBAction func verify(_ sender: NSControl) {
+        soup.verify()
+    }
 }
 

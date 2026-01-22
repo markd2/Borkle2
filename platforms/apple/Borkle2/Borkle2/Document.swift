@@ -5,6 +5,8 @@ class Document: NSDocument {
 
     var soup: BubbleSoup = BubbleSoup()
 
+    @IBOutlet var tableView: NSTableView!
+
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
@@ -44,6 +46,7 @@ class Document: NSDocument {
           ]
 
         soup.bubbles = bubbles
+        tableView.reloadData()
     }
 
     @IBAction func saveYaml(_ sender: NSControl) {
@@ -69,10 +72,43 @@ class Document: NSDocument {
         let decoder = YAMLDecoder()
         let decoded = try! decoder.decode(BubbleSoup.self, from: data)
         soup = decoded
+        tableView.reloadData()
     }
 
     @IBAction func verify(_ sender: NSControl) {
         soup.verify()
     }
+}
+
+extension Document: NSTableViewDataSource, NSTableViewDelegate {
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        soup.bubbles.count
+    }
+
+    func tableView(_ tableView: NSTableView,
+                   viewFor tableColumn: NSTableColumn?,
+                   row: Int) -> NSView? {
+        guard let column = tableColumn else {
+            Swift.print("nil column")
+            return nil
+        }
+        
+        let bubble = soup.bubbles[row]
+
+        switch column.identifier.rawValue {
+            case "bubbleColumn":
+                let cell = tableView.makeView(
+                  withIdentifier: column.identifier,
+                  owner: self
+                ) as? NSTableCellView
+                cell?.textField?.stringValue = bubble.title ?? "----"
+                return cell
+
+            default:
+                Swift.print("huh, identifier \(column.identifier)")
+                return nil
+        }
+    }
+
 }
 

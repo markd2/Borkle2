@@ -117,22 +117,23 @@ extension Document: NSTableViewDataSource, NSTableViewDelegate {
         let bubble = soup.bubbles[row]
 
         switch column.identifier.rawValue {
-            case "bubbleColumn":
-                let cell = tableView.makeView(
-                  withIdentifier: column.identifier,
-                  owner: self
-                ) as? BubbleTableViewCell
-
-                cell?.titleField?.stringValue = bubble.title ?? "----"
-                cell?.bodyField?.stringValue = bubble.body ?? "----"
+        case "bubbleColumn":
+            let cell = tableView.makeView(
+                withIdentifier: column.identifier,
+                owner: self
+            ) as? BubbleTableViewCell
+            
+            cell?.titleField?.stringValue = bubble.title ?? "----"
+            cell?.bodyField?.stringValue = bubble.body ?? "----"
             cell?.tagsField?.stringValue = bubble.tags?.joined(separator: ", ") ?? "----"
-                return cell
-
-            default:
-                Swift.print("huh, identifier \(column.identifier)")
-                return nil
+            cell?.backgroundColor = row.isMultiple(of: 2) ? Colors.bubbleListCellBackground_Even : Colors.bubbleListCellBackground_Odd
+            return cell
+            
+        default:
+            Swift.print("huh, identifier \(column.identifier)")
+            return nil
         }
     }
-
+    
 }
 

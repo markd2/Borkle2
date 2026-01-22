@@ -170,13 +170,13 @@
                                     </tableColumns>
                                     <connections>
                                         <outlet property="dataSource" destination="-2" id="3lf-EQ-vFK"/>
-                                        <outlet property="delegate" destination="-2" id="OCT-GZ-9RE"/>
+                                        <outlet property="delegate" destination="-2" id="Ipz-jZ-UfG"/>
                                     </connections>
                                 </tableView>
                             </subviews>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="i3n-EO-eY7">
-                            <rect key="frame" x="1" y="119" width="223" height="15"/>
+                            <rect key="frame" x="1" y="229" width="250" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="4hn-7M-14z">

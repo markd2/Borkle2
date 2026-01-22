@@ -16,6 +16,24 @@ class Document: NSDocument {
         return true
     }
 
+    var awokenBefore = false
+
+    /// Looks like the new 'improved' view-based tableview can trigger
+    /// awakeFromNib multiple times, one extra time for each tableview row
+    /// visible.  If you're doing one-time stuff in awakeFromNib, that's
+    /// kind of a problem. So hack around it by only running the one-time
+    /// work once.
+    var alreadyAwokenFromNib = false
+
+    override func awakeFromNib() {
+        if !alreadyAwokenFromNib {
+            let cellNib = NSNib(nibNamed: "BubbleTableViewCell", bundle: nil)
+            tableView.register(cellNib, forIdentifier: NSUserInterfaceItemIdentifier("bubbleColumn"))
+            
+            alreadyAwokenFromNib = true
+        }
+    }
+
     override var windowNibName: NSNib.Name? {
         // Returns the nib file name of the document
         // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this property and override -makeWindowControllers instead.
@@ -36,7 +54,6 @@ class Document: NSDocument {
     }
 
     @IBAction func splunge(_ sender: NSControl) {
-        Swift.print("hello")
         
         let bubbles =
           [
@@ -85,6 +102,10 @@ extension Document: NSTableViewDataSource, NSTableViewDelegate {
         soup.bubbles.count
     }
 
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        90
+    }
+    
     func tableView(_ tableView: NSTableView,
                    viewFor tableColumn: NSTableColumn?,
                    row: Int) -> NSView? {
@@ -100,7 +121,7 @@ extension Document: NSTableViewDataSource, NSTableViewDelegate {
                 let cell = tableView.makeView(
                   withIdentifier: column.identifier,
                   owner: self
-                ) as? NSTableCellView
+                ) as? BubbleTableViewCell
                 cell?.textField?.stringValue = bubble.title ?? "----"
                 return cell
 

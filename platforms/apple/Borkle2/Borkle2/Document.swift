@@ -122,7 +122,10 @@ extension Document: NSTableViewDataSource, NSTableViewDelegate {
                   withIdentifier: column.identifier,
                   owner: self
                 ) as? BubbleTableViewCell
-                cell?.textField?.stringValue = bubble.title ?? "----"
+
+                cell?.titleField?.stringValue = bubble.title ?? "----"
+                cell?.bodyField?.stringValue = bubble.body ?? "----"
+            cell?.tagsField?.stringValue = bubble.tags?.joined(separator: ", ") ?? "----"
                 return cell
 
             default:

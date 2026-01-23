@@ -5,12 +5,6 @@ class Document: NSDocument {
 
     var soup: BubbleSoup = BubbleSoup()
 
-    @IBOutlet var tableView: NSTableView!
-
-    @IBOutlet var titleField: NSTextField!
-    @IBOutlet var bodyField: NSTextField!
-    @IBOutlet var tagsField: NSTextField!
-
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
@@ -20,22 +14,11 @@ class Document: NSDocument {
         return true
     }
 
-    var awokenBefore = false
+    var windowController: DocumentWindowController!
 
-    /// Looks like the new 'improved' view-based tableview can trigger
-    /// awakeFromNib multiple times, one extra time for each tableview row
-    /// visible.  If you're doing one-time stuff in awakeFromNib, that's
-    /// kind of a problem. So hack around it by only running the one-time
-    /// work once.
-    var alreadyAwokenFromNib = false
-
-    override func awakeFromNib() {
-        if !alreadyAwokenFromNib {
-            let cellNib = NSNib(nibNamed: "BubbleTableViewCell", bundle: nil)
-            tableView.register(cellNib, forIdentifier: NSUserInterfaceItemIdentifier("bubbleColumn"))
-            
-            alreadyAwokenFromNib = true
-        }
+    override func makeWindowControllers() {
+        let windowController = DocumentWindowController(windowNibName: "Document")
+        addWindowController(windowController)
     }
 
     override var windowNibName: NSNib.Name? {
@@ -57,102 +40,5 @@ class Document: NSDocument {
         throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
-    @IBAction func splunge(_ sender: NSControl) {
-        
-        let bubbles =
-          [
-            Bubble(title: "Spoon", body: "Once upon a midnight dreary etc etc etc", tags: ["#first", "#splunge"], asset: nil),
-            Bubble(title: "Greeble Bork", body: "blah blah blah blah blah blah blah", tags: [], asset: nil),
-            Bubble(title: "Hoover fnord ekky", body: "Folks who are even a tiny bit crafty know the name Singer.  Back in the day, they had a nationwide chain of 175 stores selling the machines, fabrics, patterns, and associated goodies.  They needed automation", tags: ["#singer", "#system-ten", "#exhibit"], asset: nil),
-          ]
-
-        soup.bubbles = bubbles
-        tableView.reloadData()
-    }
-
-    @IBAction func saveYaml(_ sender: NSControl) {
-        Swift.print("SAVE")
-        let encoder = YAMLEncoder()
-        var options = encoder.options
-        options.indent = 2
-        options.width = -1
-        options.explicitStart = true
-        options.explicitEnd = true
-        options.sortKeys = true
-        encoder.options = options
-        let encodedYAML = try! encoder.encode(soup)
-        let data = encodedYAML.data(using: .utf8)!
-        let place = URL(fileURLWithPath: "/Users/markd/Downloads/blargh.yaml")
-        try! data.write(to: place)
-    }
- 
-    @IBAction func loadYaml(_ sender: NSControl) {
-        Swift.print("LOAD")
-        let place = URL(fileURLWithPath: "/Users/markd/Downloads/blargh.yaml")
-        let data = try! Data(contentsOf: place, options: [])
-        let decoder = YAMLDecoder()
-        let decoded = try! decoder.decode(BubbleSoup.self, from: data)
-        soup = decoded
-        tableView.reloadData()
-    }
-
-    @IBAction func verify(_ sender: NSControl) {
-        soup.verify()
-    }
-
-    @IBAction func addItem(_ sender: NSControl) {
-        let title = titleField.stringValue
-        let body = bodyField.stringValue
-        let tags = tagsField.stringValue.components(separatedBy: " ")
-
-        let bubble = Bubble(title: title, body: body, tags: tags, asset: nil)
-        soup.addBubble(bubble)
-
-        titleField.stringValue = ""
-        bodyField.stringValue = ""
-        tagsField.stringValue = ""
-
-        tableView.reloadData()
-    }
-}
-
-extension Document: NSTableViewDataSource, NSTableViewDelegate {
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        soup.bubbles.count
-    }
-
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        90
-    }
-    
-    func tableView(_ tableView: NSTableView,
-                   viewFor tableColumn: NSTableColumn?,
-                   row: Int) -> NSView? {
-        guard let column = tableColumn else {
-            Swift.print("nil column")
-            return nil
-        }
-        
-        let bubble = soup.bubbles[row]
-
-        switch column.identifier.rawValue {
-        case "bubbleColumn":
-            let cell = tableView.makeView(
-                withIdentifier: column.identifier,
-                owner: self
-            ) as? BubbleTableViewCell
-            
-            cell?.titleField?.stringValue = "\(row)) " + (bubble.title ?? "----")
-            cell?.bodyField?.stringValue = bubble.body ?? "----"
-            cell?.tagsField?.stringValue = bubble.tags?.joined(separator: ", ") ?? "----"
-            cell?.backgroundColor = row.isMultiple(of: 2) ? Colors.bubbleListCellBackground_Even : Colors.bubbleListCellBackground_Odd
-            return cell
-            
-        default:
-            Swift.print("huh, identifier \(column.identifier)")
-            return nil
-        }
-    }
-    
 }
 

@@ -7,6 +7,15 @@ class BubbleTableViewCell: NSTableCellView {
     @IBOutlet var bodyField: NSTextField!
     @IBOutlet var tagsField: NSTextField!
 
+    override var backgroundStyle: NSView.BackgroundStyle {
+        get {
+            .emphasized
+        }
+        set { 
+            // nom
+        }
+    }
+
     var backgroundColor: NSColor {
         get {
             if let layerbg = layer?.backgroundColor {

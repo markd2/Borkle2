@@ -61,9 +61,9 @@ class DocumentWindowController: NSWindowController {
         
         let bubbles =
           [
-            Bubble(title: "Spoon", body: "Once upon a midnight dreary etc etc etc", tags: ["#first", "#splunge"], asset: nil),
+            Bubble(title: "Spoon", body: "Once upon a midnight dreary etc etc etc", tags: ["first", "splunge"], asset: nil),
             Bubble(title: "Greeble Bork", body: "blah blah blah blah blah blah blah", tags: [], asset: nil),
-            Bubble(title: "Hoover fnord ekky", body: "Folks who are even a tiny bit crafty know the name Singer.  Back in the day, they had a nationwide chain of 175 stores selling the machines, fabrics, patterns, and associated goodies.  They needed automation", tags: ["#singer", "#system-ten", "#exhibit"], asset: nil),
+            Bubble(title: "Hoover fnord ekky", body: "Folks who are even a tiny bit crafty know the name Singer.  Back in the day, they had a nationwide chain of 175 stores selling the machines, fabrics, patterns, and associated goodies.  They needed automation", tags: ["singer", "system-ten", "exhibit"], asset: nil),
           ]
 
         soup.bubbles = bubbles

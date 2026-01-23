@@ -10,6 +10,11 @@ class DocumentWindowController: NSWindowController {
     @IBOutlet var titleField: NSTextField!
     @IBOutlet var bodyField: NSTextField!
     @IBOutlet var tagsField: NSTextField!
+
+    @IBOutlet var searchField: NSSearchField!
+
+    // use a temporary to initialize, and actually assign in awakeFromNib
+    var soupAspect: SoupAspect = SoupAspect(BubbleSoup())
    
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -32,6 +37,8 @@ class DocumentWindowController: NSWindowController {
             let cellNib = NSNib(nibNamed: "BubbleTableViewCell", bundle: nil)
             tableView.register(cellNib, forIdentifier: NSUserInterfaceItemIdentifier("bubbleColumn"))
             setupObservers()
+
+            soupAspect = SoupAspect(soup)
             
             alreadyAwokenFromNib = true
         }
@@ -61,6 +68,7 @@ class DocumentWindowController: NSWindowController {
 
         soup.bubbles = bubbles
         tableView.reloadData()
+        soupAspect = SoupAspect(soup)
     }
 
     @IBAction func saveYaml(_ sender: NSControl) {
@@ -86,7 +94,9 @@ class DocumentWindowController: NSWindowController {
         let decoder = YAMLDecoder()
         let decoded = try! decoder.decode(BubbleSoup.self, from: data)
         (document as! Document).soup = decoded
+
         tableView.reloadData()
+        soupAspect = SoupAspect(soup)
         
         Swift.print(soup)
     }
@@ -175,4 +185,22 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
     
 }
 
+extension DocumentWindowController: NSSearchFieldDelegate {
+    func searchFieldDidStartSearching(_ searchField: NSSearchField) {
+    }
 
+    func searchFieldDidEndSearching(_ searchField: NSSearchField) {
+        soupAspect.predicate = SoupAspect.identity
+    }
+
+    // Thought I would use searchFieldDidStart/EndSearching, but there's a weird timeout,
+    // so I can type a bunch of stuff, get a bunch of these callbacks, and *then* get the
+    // didStartSearching. Given how terrible the iOS SearchField class is, I'm not too sanguine
+    // on how much of the search field's specific features outside of this I'll use.
+    func controlTextDidChange(_ notification: Notification) {
+        soupAspect.predicate = { bubble in 
+            bubble.containsString(self.searchField.stringValue)
+        }
+    }
+
+}

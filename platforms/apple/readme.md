@@ -19,3 +19,7 @@ bubbles via a crude form.
 Some refaxoring, also dynamically resizes the row height as the tableview resizes..
 
 ![](assets/bubbles-2.gif)
+
+Adding a search field and a table of tags
+
+![](assets/bubbles-3.gif)

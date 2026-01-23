@@ -3,10 +3,16 @@ import Foundation
 class BubbleSoup: Codable {
     var bubbles: [Bubble] = []
 
-    func addBubble(_ bubble: Bubble) -> Int32 {
+    @discardableResult func addBubble(_ bubble: Bubble) -> Int32 {
         bubble.ID = Int32(bubbles.count)
         bubbles.append(bubble)
         return bubble.ID
+    }
+
+    func addBubbles(_ bubbles: [Bubble]) {
+        bubbles.forEach { 
+            addBubble($0)
+        }
     }
 
     func verify() {

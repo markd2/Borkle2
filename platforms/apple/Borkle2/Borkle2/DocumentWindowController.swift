@@ -121,6 +121,7 @@ class DocumentWindowController: NSWindowController {
         bodyField.stringValue = ""
         tagsField.stringValue = ""
 
+        soupAspect.refilter()
         bubbleTableView.reloadData()
         tagTableView.reloadData()
     }
@@ -208,7 +209,7 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
                 owner: self
             ) as? BubbleTableViewCell
             
-            cell?.titleField?.stringValue = "\(row)) " + (bubble.title ?? "----")
+            cell?.titleField?.stringValue = "\(bubble.ID)) " + (bubble.title ?? "----")
             cell?.bodyField?.stringValue = bubble.body ?? "----"
             cell?.tagsField?.stringValue = bubble.tags?.joined(separator: ", ") ?? "----"
             cell?.backgroundColor = row.isMultiple(of: 2) ? Colors.bubbleListCellBackground_Even : Colors.bubbleListCellBackground_Odd
@@ -217,6 +218,27 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
         default:
             Swift.print("huh, identifier \(column.identifier)")
             return nil
+        }
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        guard let tableView = notification.object as? NSTableView else {
+            Swift.print("somehow got a non-tableview in the selection did change")
+            return
+        }
+        if tableView == bubbleTableView { return }
+        
+        if tableView == tagTableView {
+            let row = tableView.selectedRow
+            if row < 0 {
+                soupAspect.predicate = SoupAspect.identity
+            } else {
+                let tag = soup.allTags[row]
+                soupAspect.predicate = { bubble in
+                    bubble.tagsContainsString(tag)
+                }
+            }
+            bubbleTableView.reloadData()
         }
     }
 }

@@ -15,3 +15,7 @@ place in the file system, shows bubbles in a table, and lets you enter new
 bubbles via a crude form.
 
 ![](assets/bubbles-1.gif)
+
+Some refaxoring, also dynamically resizes the row height as the tableview resizes..
+
+![](assets/bubbles-2.gif)

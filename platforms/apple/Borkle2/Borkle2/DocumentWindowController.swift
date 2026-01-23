@@ -6,6 +6,7 @@ import Yams
 class DocumentWindowController: NSWindowController {
 
     @IBOutlet var bubbleTableView: NSTableView!
+    @IBOutlet var tagTableView: NSTableView!
 
     @IBOutlet var titleField: NSTextField!
     @IBOutlet var bodyField: NSTextField!
@@ -122,45 +123,50 @@ class DocumentWindowController: NSWindowController {
 }
 
 extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
-    func numberOfRows(in bubbleTableView: NSTableView) -> Int {
-        soupAspect.indices.count
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        if tableView == bubbleTableView {
+            return bubbleViewCount()
+        }
+
+        return 0
     }
 
-    func heightFor(_ text: String?, width: CGFloat) -> CGFloat {
-        guard let text else { return 0 }
-
-        let textStorage = NSTextStorage.init(string: text, attributes: nil)
-        let margin: CGFloat = 5
-        let insetWidth = width - (margin * 2)
-        let size = CGSize(width: insetWidth, height: .infinity)
-        let textContainer = NSTextContainer.init(containerSize: size)
-        let layoutManager = NSLayoutManager()
-
-        layoutManager.addTextContainer(textContainer)
-        textStorage.addLayoutManager(layoutManager)
-        
-        // maybe need to add the font attribute textStorage.add
-        textContainer.lineFragmentPadding = 0.0
-        
-        _ = layoutManager.glyphRange(for: textContainer)
-        let height = layoutManager.usedRect(for: textContainer).height
-        return height
-    }
-    
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        let bubble = soup.bubbles[soupAspect.indices[row]]
-        let bodyHeight = heightFor(bubble.body, width: bubbleTableView.bounds.width)
-        let totalHeight = bodyHeight + 40
-        return totalHeight
+        if tableView == bubbleTableView {
+            return bubbleHeightOfRow(row)
+        }
+
+        return 0
     }
 
     func tableView(_ tableView: NSTableView,
                    viewFor tableColumn: NSTableColumn?,
                    row: Int) -> NSView? {
-        guard let column = tableColumn else {
+        guard tableColumn != nil else {
             Swift.print("nil column")
             return nil
         }
+
+        if tableView == bubbleTableView {
+            return bubbleViewFor(tableColumn, row)
+        }
+
+        return nil
+    }
+
+    func bubbleViewCount() -> Int {
+        soupAspect.indices.count
+    }
+
+    func bubbleHeightOfRow(_ row: Int) -> CGFloat {
+        let bubble = soup.bubbles[soupAspect.indices[row]]
+        let bodyHeight = heightFor(bubble.body, width: bubbleTableView.bounds.width)
+        let totalHeight = bodyHeight + 40
+        return totalHeight
+    }
+    
+    func bubbleViewFor(_ column: NSTableColumn?, _ row: Int) -> NSView? {
+        guard let column else { return nil }
         
         let bubble = soup.bubbles[soupAspect.indices[row]]
 
@@ -182,7 +188,6 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
             return nil
         }
     }
-    
 }
 
 extension DocumentWindowController: NSSearchFieldDelegate {
@@ -210,5 +215,27 @@ extension DocumentWindowController: NSSearchFieldDelegate {
             bubble.containsString(self.searchField.stringValue)
         }
     }
+}
 
+extension DocumentWindowController {
+    func heightFor(_ text: String?, width: CGFloat) -> CGFloat {
+        guard let text else { return 0 }
+
+        let textStorage = NSTextStorage.init(string: text, attributes: nil)
+        let margin: CGFloat = 5
+        let insetWidth = width - (margin * 2)
+        let size = CGSize(width: insetWidth, height: .infinity)
+        let textContainer = NSTextContainer.init(containerSize: size)
+        let layoutManager = NSLayoutManager()
+
+        layoutManager.addTextContainer(textContainer)
+        textStorage.addLayoutManager(layoutManager)
+        
+        // maybe need to add the font attribute textStorage.add
+        textContainer.lineFragmentPadding = 0.0
+        
+        _ = layoutManager.glyphRange(for: textContainer)
+        let height = layoutManager.usedRect(for: textContainer).height
+        return height
+    }
 }

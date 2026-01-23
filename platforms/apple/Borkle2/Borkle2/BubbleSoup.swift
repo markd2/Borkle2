@@ -9,6 +9,20 @@ class BubbleSoup: Codable {
         return bubble.ID
     }
 
+    // unhappy with this because it calculate the entire set on every
+    // call, but we don't (won't?) have a "monitor each of the bubbles for
+    // a tag change" mechanism
+    var allTags: [String] {
+        var taggage = Set<String>()
+
+        bubbles.forEach { bubble in
+            guard let tags = bubble.tags else { return }
+            taggage.formUnion(tags)
+        }
+
+        return Array(taggage)
+    }
+
     func addBubbles(_ bubbles: [Bubble]) {
         bubbles.forEach { 
             addBubble($0)

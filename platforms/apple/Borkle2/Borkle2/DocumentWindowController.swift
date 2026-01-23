@@ -68,8 +68,10 @@ class DocumentWindowController: NSWindowController {
           ]
 
         soup.bubbles = bubbles
-        bubbleTableView.reloadData()
         soupAspect = SoupAspect(soup)
+
+        bubbleTableView.reloadData()
+        tagTableView.reloadData()
     }
 
     @IBAction func saveYaml(_ sender: NSControl) {
@@ -98,6 +100,7 @@ class DocumentWindowController: NSWindowController {
 
         soupAspect = SoupAspect(soup)
         bubbleTableView.reloadData()
+        tagTableView.reloadData()
         
         Swift.print(soup)
     }
@@ -119,6 +122,7 @@ class DocumentWindowController: NSWindowController {
         tagsField.stringValue = ""
 
         bubbleTableView.reloadData()
+        tagTableView.reloadData()
     }
 }
 
@@ -128,12 +132,20 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
             return bubbleViewCount()
         }
 
+        if tableView == tagTableView {
+            return soup.allTags.count
+        }
+
         return 0
     }
 
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         if tableView == bubbleTableView {
             return bubbleHeightOfRow(row)
+        }
+
+        if tableView == tagTableView {
+            return 20
         }
 
         return 0
@@ -151,6 +163,10 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
             return bubbleViewFor(tableColumn, row)
         }
 
+        if tableView == tagTableView {
+            return tagViewFor(tableColumn, row)
+        }
+
         return nil
     }
 
@@ -163,6 +179,21 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
         let bodyHeight = heightFor(bubble.body, width: bubbleTableView.bounds.width)
         let totalHeight = bodyHeight + 40
         return totalHeight
+    }
+
+    func tagViewFor(_ column: NSTableColumn?, _ row: Int) -> NSView? {
+        guard let column else { return nil }
+
+        let tags = soup.allTags
+
+        let cell = tagTableView.makeView(
+          withIdentifier: column.identifier,
+          owner: self
+        ) as? NSTableCellView
+        
+        cell?.textField?.stringValue = tags[row]
+
+        return cell
     }
     
     func bubbleViewFor(_ column: NSTableColumn?, _ row: Int) -> NSView? {

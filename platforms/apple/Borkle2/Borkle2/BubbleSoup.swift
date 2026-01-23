@@ -20,7 +20,7 @@ class BubbleSoup: Codable {
             taggage.formUnion(tags)
         }
 
-        return Array(taggage)
+        return Array(taggage).sorted()
     }
 
     func addBubbles(_ bubbles: [Bubble]) {

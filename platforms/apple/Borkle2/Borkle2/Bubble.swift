@@ -12,9 +12,9 @@ class Bubble : Codable {
     var tags: [String]?
     var asset: String?   // path into bundle
 
-    init(ID: Int32, title: String?, body: String?,
+    init(title: String?, body: String?,
          tags: [String]?, asset: String?) {
-        self.ID = ID
+        self.ID = -1
         self.title = title
         self.body = body
         self.tags = tags

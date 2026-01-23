@@ -229,41 +229,38 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
         if tableView == bubbleTableView { return }
         
         if tableView == tagTableView {
-            let row = tableView.selectedRow
-            // TODO: Really not liking doing composed searches like this.
-            if row < 0 {
-                if searchField.stringValue.count > 0 {
-                    soupAspect.predicate = { bubble in
-                        bubble.containsString(self.searchField.stringValue)
-                    }
-                } else {
-                    soupAspect.predicate = SoupAspect.identity
-                }
-            } else {
-                let tag = soup.allTags[row]
-                if searchField.stringValue.count > 0 {
-                    // filtering text *and* tags.
-                    soupAspect.predicate = { bubble in
-                        bubble.tagsContainsString(tag) && bubble.containsString(self.searchField.stringValue)
-                    }
-                } else {
-                    // just filter tags
-                    soupAspect.predicate = { bubble in
-                        bubble.tagsContainsString(tag)
-                    }
-                }
-            }
+            updateAspect() 
             bubbleTableView.reloadData()
         }
     }
 }
 
 extension DocumentWindowController: NSSearchFieldDelegate {
+    func updateAspect() {
+        soupAspect.reset()
+        if searchField.stringValue.count > 0 {
+            soupAspect.addPredicate { bubble in
+                bubble.containsString(self.searchField.stringValue)
+            }
+        }
+
+        let row = tagTableView.selectedRow
+        if row >= 0 {
+            let tag = soup.allTags[row]
+            
+            soupAspect.addPredicate { bubble in
+                bubble.tagsContainsString(tag)
+            }
+        }
+
+        bubbleTableView.reloadData()
+    }
+
     func searchFieldDidStartSearching(_ searchField: NSSearchField) {
     }
 
     func searchFieldDidEndSearching(_ searchField: NSSearchField) {
-        soupAspect.predicate = SoupAspect.identity
+        updateAspect()
     }
 
     // Thought I would use searchFieldDidStart/EndSearching, but there's a weird timeout,
@@ -271,18 +268,7 @@ extension DocumentWindowController: NSSearchFieldDelegate {
     // didStartSearching. Given how terrible the iOS SearchField class is, I'm not too sanguine
     // on how much of the search field's specific features outside of this I'll use.
     func controlTextDidChange(_ notification: Notification) {
-        defer {
-            bubbleTableView.reloadData()
-        }
-
-        guard self.searchField.stringValue.count > 0 else {
-            soupAspect.predicate = SoupAspect.identity
-            return
-        }
-        // TODO: honor tag filtering too
-        soupAspect.predicate = { bubble in 
-            bubble.containsString(self.searchField.stringValue)
-        }
+        updateAspect()
     }
 }
 

@@ -9,7 +9,7 @@ class SoupAspect {
     typealias BubbleFilter = (Bubble) -> Bool
 
     let baseSoup: BubbleSoup
-    var predicate: BubbleFilter = { _ in true } {
+    private var predicates: [BubbleFilter] = [] {
         didSet {
             refilter()
         }
@@ -24,11 +24,29 @@ class SoupAspect {
         refilter()
     }
 
-    func refilter() {
-        let filteredIndicies = baseSoup.bubbles.indices.filter {
-            predicate(baseSoup.bubbles[$0])
-        }
-        indices = filteredIndicies
+    func reset() {
+        predicates = []
+        refilter() // lazy eval this when getting indices?
     }
-    
+
+    func addPredicate(_ predicate: @escaping BubbleFilter) {
+        predicates.append(predicate)
+        refilter() // lazy eval this when getting indices?
+    }
+
+    func refilter() {
+         if predicates.count == 0 {
+            // no predicates == all the things
+            indices = Array(baseSoup.bubbles.indices)
+        } else {
+            // otherwise, all must pass for the bubble to survive
+            let filteredIndicies = baseSoup.bubbles.indices.filter {
+                for predicate in predicates {
+                    if predicate(baseSoup.bubbles[$0]) == false { return false }
+                }
+                return true
+            }
+            indices = filteredIndicies
+        }
+    }
 }

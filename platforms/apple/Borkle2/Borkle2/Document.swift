@@ -7,6 +7,10 @@ class Document: NSDocument {
 
     @IBOutlet var tableView: NSTableView!
 
+    @IBOutlet var titleField: NSTextField!
+    @IBOutlet var bodyField: NSTextField!
+    @IBOutlet var tagsField: NSTextField!
+
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
@@ -57,9 +61,9 @@ class Document: NSDocument {
         
         let bubbles =
           [
-            Bubble(ID: 0, title: "Spoon", body: "Once upon a midnight dreary etc etc etc", tags: ["#first", "#splunge"], asset: nil),
-            Bubble(ID: 1, title: "Greeble Bork", body: "blah blah blah blah blah blah blah", tags: [], asset: nil),
-            Bubble(ID: 2, title: "Hoover fnord ekky", body: "Folks who are even a tiny bit crafty know the name Singer.  Back in the day, they had a nationwide chain of 175 stores selling the machines, fabrics, patterns, and associated goodies.  They needed automation", tags: ["#singer", "#system-ten", "#exhibit"], asset: nil),
+            Bubble(title: "Spoon", body: "Once upon a midnight dreary etc etc etc", tags: ["#first", "#splunge"], asset: nil),
+            Bubble(title: "Greeble Bork", body: "blah blah blah blah blah blah blah", tags: [], asset: nil),
+            Bubble(title: "Hoover fnord ekky", body: "Folks who are even a tiny bit crafty know the name Singer.  Back in the day, they had a nationwide chain of 175 stores selling the machines, fabrics, patterns, and associated goodies.  They needed automation", tags: ["#singer", "#system-ten", "#exhibit"], asset: nil),
           ]
 
         soup.bubbles = bubbles
@@ -95,6 +99,21 @@ class Document: NSDocument {
     @IBAction func verify(_ sender: NSControl) {
         soup.verify()
     }
+
+    @IBAction func addItem(_ sender: NSControl) {
+        let title = titleField.stringValue
+        let body = bodyField.stringValue
+        let tags = tagsField.stringValue.components(separatedBy: " ")
+
+        let bubble = Bubble(title: title, body: body, tags: tags, asset: nil)
+        soup.addBubble(bubble)
+
+        titleField.stringValue = ""
+        bodyField.stringValue = ""
+        tagsField.stringValue = ""
+
+        tableView.reloadData()
+    }
 }
 
 extension Document: NSTableViewDataSource, NSTableViewDelegate {
@@ -123,7 +142,7 @@ extension Document: NSTableViewDataSource, NSTableViewDelegate {
                 owner: self
             ) as? BubbleTableViewCell
             
-            cell?.titleField?.stringValue = bubble.title ?? "----"
+            cell?.titleField?.stringValue = "\(row)) " + (bubble.title ?? "----")
             cell?.bodyField?.stringValue = bubble.body ?? "----"
             cell?.tagsField?.stringValue = bubble.tags?.joined(separator: ", ") ?? "----"
             cell?.backgroundColor = row.isMultiple(of: 2) ? Colors.bubbleListCellBackground_Even : Colors.bubbleListCellBackground_Odd

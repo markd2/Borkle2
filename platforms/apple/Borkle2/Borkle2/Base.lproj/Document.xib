@@ -7,7 +7,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="Borkle2" customModuleProvider="target">
             <connections>
+                <outlet property="bodyField" destination="6HB-wW-fts" id="fDj-W5-xvq"/>
                 <outlet property="tableView" destination="6Kq-zp-tkx" id="69G-tY-QRs"/>
+                <outlet property="tagsField" destination="d6k-Qd-y3q" id="sSR-YA-6Ze"/>
+                <outlet property="titleField" destination="wqy-1n-58a" id="cUU-Ly-wOh"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -185,6 +188,17 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xDs-V8-i3o">
+                        <rect key="frame" x="17" y="230" width="59" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SDm-hY-gbe">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="addItem:" target="-2" id="5Qr-ia-s9H"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>

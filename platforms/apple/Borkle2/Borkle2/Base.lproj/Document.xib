@@ -8,8 +8,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="DocumentWindowController" customModule="Borkle2" customModuleProvider="target">
             <connections>
                 <outlet property="bodyField" destination="6HB-wW-fts" id="fDj-W5-xvq"/>
+                <outlet property="bubbleTableView" destination="6Kq-zp-tkx" id="QbM-Lx-RI7"/>
                 <outlet property="searchField" destination="0rn-js-nTf" id="syG-6O-NI4"/>
-                <outlet property="tableView" destination="6Kq-zp-tkx" id="69G-tY-QRs"/>
                 <outlet property="tagsField" destination="d6k-Qd-y3q" id="sSR-YA-6Ze"/>
                 <outlet property="titleField" destination="wqy-1n-58a" id="cUU-Ly-wOh"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
@@ -170,7 +170,7 @@
                             </subviews>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="i3n-EO-eY7">
-                            <rect key="frame" x="1" y="168" width="250" height="15"/>
+                            <rect key="frame" x="1" y="248" width="250" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="4hn-7M-14z">

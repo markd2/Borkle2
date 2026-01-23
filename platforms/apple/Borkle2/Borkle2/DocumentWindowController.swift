@@ -5,7 +5,7 @@ import Yams
 
 class DocumentWindowController: NSWindowController {
 
-    @IBOutlet var tableView: NSTableView!
+    @IBOutlet var bubbleTableView: NSTableView!
 
     @IBOutlet var titleField: NSTextField!
     @IBOutlet var bodyField: NSTextField!
@@ -35,7 +35,7 @@ class DocumentWindowController: NSWindowController {
     override func awakeFromNib() {
         if !alreadyAwokenFromNib {
             let cellNib = NSNib(nibNamed: "BubbleTableViewCell", bundle: nil)
-            tableView.register(cellNib, forIdentifier: NSUserInterfaceItemIdentifier("bubbleColumn"))
+            bubbleTableView.register(cellNib, forIdentifier: NSUserInterfaceItemIdentifier("bubbleColumn"))
             setupObservers()
 
             soupAspect = SoupAspect(soup)
@@ -54,7 +54,7 @@ class DocumentWindowController: NSWindowController {
     }
 
     @objc func windowDidResize(_ notification: Notification) {
-        tableView.reloadData()
+        bubbleTableView.reloadData()
     }
 
     @IBAction func splunge(_ sender: NSControl) {
@@ -67,7 +67,7 @@ class DocumentWindowController: NSWindowController {
           ]
 
         soup.bubbles = bubbles
-        tableView.reloadData()
+        bubbleTableView.reloadData()
         soupAspect = SoupAspect(soup)
     }
 
@@ -96,7 +96,7 @@ class DocumentWindowController: NSWindowController {
         (document as! Document).soup = decoded
 
         soupAspect = SoupAspect(soup)
-        tableView.reloadData()
+        bubbleTableView.reloadData()
         
         Swift.print(soup)
     }
@@ -117,12 +117,12 @@ class DocumentWindowController: NSWindowController {
         bodyField.stringValue = ""
         tagsField.stringValue = ""
 
-        tableView.reloadData()
+        bubbleTableView.reloadData()
     }
 }
 
 extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    func numberOfRows(in bubbleTableView: NSTableView) -> Int {
         soupAspect.indices.count
     }
 
@@ -149,7 +149,7 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         let bubble = soup.bubbles[soupAspect.indices[row]]
-        let bodyHeight = heightFor(bubble.body, width: tableView.bounds.width)
+        let bodyHeight = heightFor(bubble.body, width: bubbleTableView.bounds.width)
         let totalHeight = bodyHeight + 40
         return totalHeight
     }
@@ -166,7 +166,7 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
 
         switch column.identifier.rawValue {
         case "bubbleColumn":
-            let cell = tableView.makeView(
+            let cell = bubbleTableView.makeView(
                 withIdentifier: column.identifier,
                 owner: self
             ) as? BubbleTableViewCell
@@ -199,7 +199,7 @@ extension DocumentWindowController: NSSearchFieldDelegate {
     // on how much of the search field's specific features outside of this I'll use.
     func controlTextDidChange(_ notification: Notification) {
         defer {
-            tableView.reloadData()
+            bubbleTableView.reloadData()
         }
 
         guard self.searchField.stringValue.count > 0 else {

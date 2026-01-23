@@ -20,4 +20,20 @@ class Bubble : Codable {
         self.tags = tags
         self.asset = asset
     }
+
+    func tagsContainsString(_ string: String) -> Bool {
+        if let tags {
+            for tag in tags {
+                if tag.localizedCaseInsensitiveContains(string) { return true }
+            }
+        }
+        return false
+    }
+
+    func containsString(_ string: String) -> Bool {
+        if let title, title.localizedCaseInsensitiveContains(string) { return true }
+        if let body, body.localizedCaseInsensitiveContains(string) { return true }
+        if tagsContainsString(string) { return true }
+        return false
+    }
 }

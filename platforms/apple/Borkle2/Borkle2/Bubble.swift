@@ -24,15 +24,15 @@ class Bubble : Codable {
     func tagsContainsString(_ string: String) -> Bool {
         if let tags {
             for tag in tags {
-                if tag.contains(string) { return true }
+                if tag.localizedCaseInsensitiveContains(string) { return true }
             }
         }
         return false
     }
 
     func containsString(_ string: String) -> Bool {
-        if let title, title.contains(string) { return true }
-        if let body, body.contains(string) { return true }
+        if let title, title.localizedCaseInsensitiveContains(string) { return true }
+        if let body, body.localizedCaseInsensitiveContains(string) { return true }
         if tagsContainsString(string) { return true }
         return false
     }

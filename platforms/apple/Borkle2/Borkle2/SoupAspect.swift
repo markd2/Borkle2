@@ -29,7 +29,6 @@ class SoupAspect {
             predicate(baseSoup.bubbles[$0])
         }
         indices = filteredIndicies
-        print(indices)
     }
     
 }

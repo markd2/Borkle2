@@ -95,8 +95,8 @@ class DocumentWindowController: NSWindowController {
         let decoded = try! decoder.decode(BubbleSoup.self, from: data)
         (document as! Document).soup = decoded
 
-        tableView.reloadData()
         soupAspect = SoupAspect(soup)
+        tableView.reloadData()
         
         Swift.print(soup)
     }
@@ -123,7 +123,7 @@ class DocumentWindowController: NSWindowController {
 
 extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        soup.bubbles.count
+        soupAspect.indices.count
     }
 
     func heightFor(_ text: String?, width: CGFloat) -> CGFloat {
@@ -148,7 +148,7 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        let bubble = soup.bubbles[row]
+        let bubble = soup.bubbles[soupAspect.indices[row]]
         let bodyHeight = heightFor(bubble.body, width: tableView.bounds.width)
         let totalHeight = bodyHeight + 40
         return totalHeight
@@ -162,7 +162,7 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
             return nil
         }
         
-        let bubble = soup.bubbles[row]
+        let bubble = soup.bubbles[soupAspect.indices[row]]
 
         switch column.identifier.rawValue {
         case "bubbleColumn":
@@ -198,6 +198,14 @@ extension DocumentWindowController: NSSearchFieldDelegate {
     // didStartSearching. Given how terrible the iOS SearchField class is, I'm not too sanguine
     // on how much of the search field's specific features outside of this I'll use.
     func controlTextDidChange(_ notification: Notification) {
+        defer {
+            tableView.reloadData()
+        }
+
+        guard self.searchField.stringValue.count > 0 else {
+            soupAspect.predicate = SoupAspect.identity
+            return
+        }
         soupAspect.predicate = { bubble in 
             bubble.containsString(self.searchField.stringValue)
         }

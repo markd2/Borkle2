@@ -230,12 +230,27 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
         
         if tableView == tagTableView {
             let row = tableView.selectedRow
+            // TODO: Really not liking doing composed searches like this.
             if row < 0 {
-                soupAspect.predicate = SoupAspect.identity
+                if searchField.stringValue.count > 0 {
+                    soupAspect.predicate = { bubble in
+                        bubble.containsString(self.searchField.stringValue)
+                    }
+                } else {
+                    soupAspect.predicate = SoupAspect.identity
+                }
             } else {
                 let tag = soup.allTags[row]
-                soupAspect.predicate = { bubble in
-                    bubble.tagsContainsString(tag)
+                if searchField.stringValue.count > 0 {
+                    // filtering text *and* tags.
+                    soupAspect.predicate = { bubble in
+                        bubble.tagsContainsString(tag) && bubble.containsString(self.searchField.stringValue)
+                    }
+                } else {
+                    // just filter tags
+                    soupAspect.predicate = { bubble in
+                        bubble.tagsContainsString(tag)
+                    }
                 }
             }
             bubbleTableView.reloadData()
@@ -264,6 +279,7 @@ extension DocumentWindowController: NSSearchFieldDelegate {
             soupAspect.predicate = SoupAspect.identity
             return
         }
+        // TODO: honor tag filtering too
         soupAspect.predicate = { bubble in 
             bubble.containsString(self.searchField.stringValue)
         }

@@ -127,6 +127,14 @@ class DocumentWindowController: NSWindowController {
         bubbleTableView.reloadData()
         tagTableView.reloadData()
     }
+
+    @IBAction func scene1(_ sender: NSControl) {
+        Swift.print("scene1")
+    }
+
+    @IBAction func scene2(_ sender: NSControl) {
+        Swift.print("scene2")
+    }
 }
 
 extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {

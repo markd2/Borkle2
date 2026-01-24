@@ -15,11 +15,11 @@ class SceneWindowController: NSWindowController {
         _ = scene.addID(4)
 
         _ = scene.changeGeometry(for: 0,
-                                 to: CGRect(x: 10, y: 10, width: 100, height: 50))
+                                 to: CGRect(x: 10, y: 10, width: 120, height: 50))
         _ = scene.changeGeometry(for: 1,
-                                 to: CGRect(x: 140, y: 40, width: 80, height: 80))
+                                 to: CGRect(x: 240, y: 100, width: 90, height: 90))
         _ = scene.changeGeometry(for: 4,
-                                 to: CGRect(x: 50, y: 80, width: 75, height: 40))
+                                 to: CGRect(x: 50, y: 200, width: 100, height: 40))
 
         _ = scene.addConnection(from: 0, to: 4)
         _ = scene.addConnection(from: 4, to: 1)
@@ -57,6 +57,7 @@ class SceneWindowController: NSWindowController {
         scene = decoded
         
         sceneView.scene = scene
+        sceneView.soup = soup
     }
 
     @IBAction func load(_ sender: NSControl) {

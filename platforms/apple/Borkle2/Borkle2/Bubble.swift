@@ -7,6 +7,7 @@ class Bubble : Codable {
     // index issues.  This should match the array index in the bubble
     // soup.
     var ID: Int32
+
     var title: String?
     var body: String?
     var tags: [String]?

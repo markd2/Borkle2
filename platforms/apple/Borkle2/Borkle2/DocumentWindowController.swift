@@ -37,6 +37,8 @@ class DocumentWindowController: NSWindowController {
         if !alreadyAwokenFromNib {
             let cellNib = NSNib(nibNamed: "BubbleTableViewCell", bundle: nil)
             bubbleTableView.register(cellNib, forIdentifier: NSUserInterfaceItemIdentifier("bubbleColumn"))
+            bubbleTableView.doubleAction = #selector(bubbleTableDoubleClick(_:))
+
             setupObservers()
 
             soupAspect = SoupAspect(soup)
@@ -233,6 +235,13 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
             bubbleTableView.reloadData()
         }
     }
+
+    @objc func bubbleTableDoubleClick(_ sender: AnyObject) {
+        let row = bubbleTableView.clickedRow
+        let bubble = soup.bubbles[soupAspect.indices[row]]
+        Swift.print("double-clicked on \(soupAspect.indices[row]) - \(bubble.title ?? "----")")
+    }
+
 }
 
 extension DocumentWindowController: NSSearchFieldDelegate {

@@ -128,8 +128,16 @@ class DocumentWindowController: NSWindowController {
         tagTableView.reloadData()
     }
 
+    var scene1WindowController: SceneWindowController?
+
     @IBAction func scene1(_ sender: NSControl) {
-        Swift.print("scene1")
+        guard scene1WindowController == nil else {
+            scene1WindowController?.window?.makeKeyAndOrderFront(nil)
+            return
+        }
+        scene1WindowController = (document as! Document).openSceneWindowController()
+        scene1WindowController?.showWindow(nil)
+        scene1WindowController?.window?.makeKeyAndOrderFront(nil)
     }
 
     @IBAction func scene2(_ sender: NSControl) {

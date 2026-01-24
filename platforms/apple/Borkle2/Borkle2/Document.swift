@@ -20,6 +20,12 @@ class Document: NSDocument {
         let windowController = DocumentWindowController(windowNibName: "Document")
         addWindowController(windowController)
     }
+    
+    func openSceneWindowController() -> SceneWindowController {
+        let windowController = SceneWindowController(windowNibName: "SceneWindowController")
+        addWindowController(windowController)
+        return windowController
+    }
 
     override var windowNibName: NSNib.Name? {
         // Returns the nib file name of the document

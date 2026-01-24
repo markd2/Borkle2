@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SceneWindowController" customModule="Borkle2" customModuleProvider="target">
             <connections>
                 <outlet property="sceneView" destination="iBj-3e-5Y0" id="h7F-RV-OP8"/>
+                <outlet property="window" destination="t2A-tj-qpP" id="7XQ-pC-WiW"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>

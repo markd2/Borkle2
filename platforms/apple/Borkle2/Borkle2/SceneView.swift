@@ -29,6 +29,13 @@ class SceneView: NSView {
         for geometry in scene.geometries {
             Colors.bubbleBackground.set()
             geometry.bounds.fill()
+
+            let string = soup.bubbles[Int(geometry.bubbleID)].title! as NSString
+            let size = string.size()
+            let stringRect = geometry.bounds.sizeCenteredIn(size)
+
+            string.draw(with: stringRect,
+                        options: .usesLineFragmentOrigin)
             
             Colors.bubbleFrame.set()
             geometry.bounds.frame()

@@ -44,6 +44,7 @@ class DocumentWindowController: NSWindowController {
             soupAspect = SoupAspect(soup)
             actuallyLoadYaml()
             openScene1()
+            openScene2()
             alreadyAwokenFromNib = true
         }
     }
@@ -133,6 +134,7 @@ class DocumentWindowController: NSWindowController {
     }
 
     var scene1WindowController: SceneWindowController?
+    var scene2WindowController: SceneWindowController?
 
     func openScene1() {
         guard scene1WindowController == nil else {
@@ -152,8 +154,22 @@ class DocumentWindowController: NSWindowController {
         openScene1()
     }
 
+    func openScene2() {
+        guard scene2WindowController == nil else {
+            scene2WindowController?.window?.makeKeyAndOrderFront(nil)
+            return
+        }
+        scene2WindowController = (document as! Document).openSceneWindowController()
+
+        scene2WindowController?.soup = soup
+        scene2WindowController?.filename = "scene2"
+
+        scene2WindowController?.showWindow(nil)
+        scene2WindowController?.window?.makeKeyAndOrderFront(nil)
+    }
+
     @IBAction func scene2(_ sender: NSControl) {
-        Swift.print("scene2")
+        openScene2()
     }
 }
 

@@ -25,19 +25,34 @@ class SceneWindowController: NSWindowController {
     var scene: Scene = Scene()
 
     @IBAction func splunge(_ sender: NSControl) {
-        _ = scene.addID(0)
         _ = scene.addID(1)
+        _ = scene.addID(2)
+        _ = scene.addID(3)
         _ = scene.addID(4)
+        _ = scene.addID(5)
 
-        _ = scene.changeGeometry(for: 0,
-                                 to: CGRect(x: 10, y: 10, width: 120, height: 50))
+        let centerCenter = CGPoint(x: 275, y: 200)
+        let size = CGSize(width: 120, height: 50)
+        let centerRect = CGRect.centered(at: centerCenter, size: size)
+
+        _ = scene.changeGeometry(for: 5,
+                                 to: centerRect)
+
         _ = scene.changeGeometry(for: 1,
-                                 to: CGRect(x: 240, y: 100, width: 90, height: 90))
-        _ = scene.changeGeometry(for: 4,
-                                 to: CGRect(x: 50, y: 200, width: 100, height: 40))
+                                 to: centerRect.offsetBy(dx: -100 - size.width / 2, dy: 0))
+        _ = scene.changeGeometry(for: 2,
+                                 to: centerRect.offsetBy(dx: 150, dy: 0))
 
-        _ = scene.addConnection(from: 0, to: 4)
-        _ = scene.addConnection(from: 4, to: 1)
+        _ = scene.changeGeometry(for: 3,
+                                 to: centerRect.offsetBy(dx: 0, dy: -100))
+        _ = scene.changeGeometry(for: 4,
+                                 to: centerRect.offsetBy(dx: 0, dy: 100))
+
+        _ = scene.addConnection(from: 1, to: 5)
+        _ = scene.addConnection(from: 2, to: 5)
+        _ = scene.addConnection(from: 3, to: 5)
+        _ = scene.addConnection(from: 4, to: 5)
+        _ = scene.addConnection(from: 5, to: 5)
 
         sceneView.scene = scene
         sceneView.soup = soup

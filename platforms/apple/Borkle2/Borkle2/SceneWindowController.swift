@@ -5,6 +5,21 @@ import Yams
 
 class SceneWindowController: NSWindowController {
     @IBOutlet var sceneView: SceneView!
+    @IBOutlet var filenameLabel: NSTextField! {
+        didSet {
+            if filename != nil {
+                filenameLabel.stringValue = "(\(filename!))"
+            }
+        }
+    }
+
+    var filename: String! {
+        didSet {
+            if filenameLabel != nil {
+                filenameLabel.stringValue = "(\(filename!))"
+            }
+        }
+    }
 
     var soup: BubbleSoup!
     var scene: Scene = Scene()
@@ -45,12 +60,12 @@ class SceneWindowController: NSWindowController {
         encoder.options = options
         let encodedYAML = try! encoder.encode(scene)
         let data = encodedYAML.data(using: .utf8)!
-        let place = URL(fileURLWithPath: "/Users/markd/Downloads/scene1.yaml")
+        let place = URL(fileURLWithPath: "/Users/markd/Downloads/\(filename!).yaml")
         try! data.write(to: place)
     }
 
     func actuallyLoadYaml() {
-        let place = URL(fileURLWithPath: "/Users/markd/Downloads/scene1.yaml")
+        let place = URL(fileURLWithPath: "/Users/markd/Downloads/\(filename!).yaml")
         let data = try! Data(contentsOf: place, options: [])
         let decoder = YAMLDecoder()
         let decoded = try! decoder.decode(Scene.self, from: data)

@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SceneWindowController" customModule="Borkle2" customModuleProvider="target">
             <connections>
+                <outlet property="filenameLabel" destination="Ulc-6Q-KrI" id="eds-eb-zUi"/>
                 <outlet property="sceneView" destination="iBj-3e-5Y0" id="h7F-RV-OP8"/>
                 <outlet property="window" destination="t2A-tj-qpP" id="7XQ-pC-WiW"/>
             </connections>
@@ -64,6 +65,15 @@
                         <rect key="frame" x="363" y="4" width="70" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="(read only)" id="R47-oc-MGb">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ulc-6Q-KrI">
+                        <rect key="frame" x="367" y="302" width="66" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="(filename)" id="NUc-jG-tS0">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

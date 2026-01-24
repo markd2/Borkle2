@@ -142,6 +142,7 @@ class DocumentWindowController: NSWindowController {
         scene1WindowController = (document as! Document).openSceneWindowController()
 
         scene1WindowController?.soup = soup
+        scene1WindowController?.filename = "scene1"
 
         scene1WindowController?.showWindow(nil)
         scene1WindowController?.window?.makeKeyAndOrderFront(nil)

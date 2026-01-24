@@ -49,8 +49,18 @@ class SceneWindowController: NSWindowController {
         try! data.write(to: place)
     }
 
+    func actuallyLoadYaml() {
+        let place = URL(fileURLWithPath: "/Users/markd/Downloads/scene1.yaml")
+        let data = try! Data(contentsOf: place, options: [])
+        let decoder = YAMLDecoder()
+        let decoded = try! decoder.decode(Scene.self, from: data)
+        scene = decoded
+        
+        sceneView.scene = scene
+    }
+
     @IBAction func load(_ sender: NSControl) {
-        Swift.print("load")
+        actuallyLoadYaml()
     }
 }
 

@@ -4,6 +4,12 @@ import AppKit
 
 class SceneWindowController: NSWindowController {
     @IBOutlet var sceneView: SceneView!
+
+    var scene: Scene = Scene()
+
+    @IBAction func splunge(_ sender: NSControl) {
+        Swift.print("ook")
+    }
 }
 
 

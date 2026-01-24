@@ -16,15 +16,28 @@ class SceneView: NSView {
         true
     }
 
+    func drawConnections() {
+        NSColor.purple.set()
+        for connection in scene.connections {
+            NSBezierPath.strokeLine(from: connection.bubble1Center,
+                                    to: connection.bubble2Center)
+        }
+    }
+
+    func drawBubbles() {
+        NSColor.brown.set()
+        for geometry in scene.geometries {
+            geometry.bounds.frame()
+        }
+    }
+
     override func draw(_ dirty_dirty_Rect: NSRect) {
         NSColor.white.set()
         bounds.fill()
-
-        if let scene {
-            NSColor.brown.set()
-            for geometry in scene.geometry {
-                geometry.bounds.frame()
-            }
+        
+        if scene != nil {
+            drawConnections()
+            drawBubbles()
         }
 
         NSColor.black.set()

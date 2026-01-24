@@ -37,6 +37,8 @@ class DocumentWindowController: NSWindowController {
         if !alreadyAwokenFromNib {
             let cellNib = NSNib(nibNamed: "BubbleTableViewCell", bundle: nil)
             bubbleTableView.register(cellNib, forIdentifier: NSUserInterfaceItemIdentifier("bubbleColumn"))
+            bubbleTableView.doubleAction = #selector(bubbleTableDoubleClick(_:))
+
             setupObservers()
 
             soupAspect = SoupAspect(soup)
@@ -124,6 +126,22 @@ class DocumentWindowController: NSWindowController {
         soupAspect.refilter()
         bubbleTableView.reloadData()
         tagTableView.reloadData()
+    }
+
+    var scene1WindowController: SceneWindowController?
+
+    @IBAction func scene1(_ sender: NSControl) {
+        guard scene1WindowController == nil else {
+            scene1WindowController?.window?.makeKeyAndOrderFront(nil)
+            return
+        }
+        scene1WindowController = (document as! Document).openSceneWindowController()
+        scene1WindowController?.showWindow(nil)
+        scene1WindowController?.window?.makeKeyAndOrderFront(nil)
+    }
+
+    @IBAction func scene2(_ sender: NSControl) {
+        Swift.print("scene2")
     }
 }
 
@@ -233,6 +251,13 @@ extension DocumentWindowController: NSTableViewDataSource, NSTableViewDelegate {
             bubbleTableView.reloadData()
         }
     }
+
+    @objc func bubbleTableDoubleClick(_ sender: AnyObject) {
+        let row = bubbleTableView.clickedRow
+        let bubble = soup.bubbles[soupAspect.indices[row]]
+        Swift.print("double-clicked on \(soupAspect.indices[row]) - \(bubble.title ?? "----")")
+    }
+
 }
 
 extension DocumentWindowController: NSSearchFieldDelegate {

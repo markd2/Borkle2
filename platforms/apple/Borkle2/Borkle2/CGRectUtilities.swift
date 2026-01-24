@@ -17,4 +17,12 @@ extension CGRect {
                            height: size.height)
         return cRect
     }
+
+    /// Given a center point and a size, construct a rect.
+    static func centered(at center: CGPoint, size: CGSize) -> CGRect{
+        CGRect(x: center.x - size.width / 2,
+               y: center.y - size.height / 2,
+               width: size.width,
+               height: size.height)
+    }
 }

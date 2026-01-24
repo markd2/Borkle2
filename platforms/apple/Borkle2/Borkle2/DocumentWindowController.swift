@@ -42,7 +42,8 @@ class DocumentWindowController: NSWindowController {
             setupObservers()
 
             soupAspect = SoupAspect(soup)
-            
+            actuallyLoadYaml()
+            openScene1()
             alreadyAwokenFromNib = true
         }
     }
@@ -91,9 +92,8 @@ class DocumentWindowController: NSWindowController {
         let place = URL(fileURLWithPath: "/Users/markd/Downloads/blargh.yaml")
         try! data.write(to: place)
     }
- 
-    @IBAction func loadYaml(_ sender: NSControl) {
-        Swift.print("LOAD")
+
+    func actuallyLoadYaml() {
         let place = URL(fileURLWithPath: "/Users/markd/Downloads/blargh.yaml")
         let data = try! Data(contentsOf: place, options: [])
         let decoder = YAMLDecoder()
@@ -105,6 +105,10 @@ class DocumentWindowController: NSWindowController {
         tagTableView.reloadData()
         
         Swift.print(soup)
+    }
+ 
+    @IBAction func loadYaml(_ sender: NSControl) {
+        actuallyLoadYaml()
     }
 
     @IBAction func verify(_ sender: NSControl) {
@@ -130,7 +134,7 @@ class DocumentWindowController: NSWindowController {
 
     var scene1WindowController: SceneWindowController?
 
-    @IBAction func scene1(_ sender: NSControl) {
+    func openScene1() {
         guard scene1WindowController == nil else {
             scene1WindowController?.window?.makeKeyAndOrderFront(nil)
             return
@@ -141,6 +145,10 @@ class DocumentWindowController: NSWindowController {
 
         scene1WindowController?.showWindow(nil)
         scene1WindowController?.window?.makeKeyAndOrderFront(nil)
+    }
+
+    @IBAction func scene1(_ sender: NSControl) {
+        openScene1()
     }
 
     @IBAction func scene2(_ sender: NSControl) {

@@ -14,19 +14,24 @@ class Scene: Codable {
 
     struct BubbleGeometry: Codable {
         let bubbleID: Int32
+
+        // height is advisory, generally it'll be determined by word-wrapping the
+        // bubble contents. maybe have some knobs to control it (and maybe have
+        // scrolling bubble contents?)
         let bounds: CGRect
     }
 
     /// all the bubbles in this scene
-    var bubbleIDs: [Int32] = []
+    var bubbleIDs: Set<Int32> = []
 
     /// The geometry of the bubbles
     var geometry: [BubbleGeometry] = []
 
     /// connections (if any) between pairs of bubbles
-    var conections: [Connection] = []
+    var connections: [Connection] = []
 
     func addID(_ id: Int32) -> UndoPayload {
+        bubbleIDs.insert(id)
         return "add id" as NSString
     }
 
@@ -45,6 +50,9 @@ class Scene: Codable {
     }
 
     func changeGeometry(for id: Int32, to rect: CGRect) -> UndoPayload {
+        _ = addID(id)
+        let bg = BubbleGeometry(bubbleID: id, bounds: rect)
+        geometry.append(bg)
         return "change geometry" as NSString
     }
 

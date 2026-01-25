@@ -23,3 +23,7 @@ Some refaxoring, also dynamically resizes the row height as the tableview resize
 Adding a search field and a table of tags
 
 ![](assets/bubbles-3.gif)
+
+Adding scene viewers, and custom scenes drawing from the same pool of bubbles.
+
+![](assets/scene-1.png)

@@ -28,6 +28,11 @@ Adding scene viewers, and custom scenes drawing from the same pool of bubbles.
 
 ![](assets/scene-1.png)
 
+Added a converter from borkle 1 documents (incomplete, but good enough for now),
+and ran borkle document (modcomp notes) through it.
+
+![](assets/converter-output.png)
+
 
 
 # Gripes about Borkle-1

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D73FF222F2A89E500590330 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 7D73FF212F2A89E500590330 /* Yams */; };
 		7DE0B5702EECFC2E00BDEB94 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 7DE0B56F2EECFC2E00BDEB94 /* Yams */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D73FF222F2A89E500590330 /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +153,7 @@
 			);
 			name = borkle1conv;
 			packageProductDependencies = (
+				7D73FF212F2A89E500590330 /* Yams */,
 			);
 			productName = borkle1conv;
 			productReference = 7D73FF142F2A755800590330 /* borkle1conv */;
@@ -583,6 +586,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7D73FF212F2A89E500590330 /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DE0B56B2EECF58900BDEB94 /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
 		7DE0B56F2EECFC2E00BDEB94 /* Yams */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7DE0B56B2EECF58900BDEB94 /* XCRemoteSwiftPackageReference "Yams" */;

@@ -1,6 +1,18 @@
-// CGRectUtilities.swift: utilities for cgrect
+// CGUtilities.swift: utilities for cgrect, cgpoint, 4a-cgs, etc
 
 import Foundation
+
+extension CGFloat {
+    /// Make a new CGFloat with the given string, in the same manner as `Double(string)`
+
+    init?(_ string: String) {
+        if let double = Double(string) {
+            self.init(double)
+        } else {
+            return nil
+        }
+    }
+}
 
 extension CGRect {
     /// erase the user's cloud storage.

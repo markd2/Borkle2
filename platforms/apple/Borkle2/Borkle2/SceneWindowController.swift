@@ -80,7 +80,8 @@ class SceneWindowController: NSWindowController {
     }
 
     func actuallyLoadYaml() {
-        let place = URL(fileURLWithPath: "/Users/markd/Downloads/\(filename!).yaml")
+//        let place = URL(fileURLWithPath: "/Users/markd/Downloads/\(filename!).yaml")
+        let place = URL(fileURLWithPath: "/Users/markd/Downloads/modcompnotes-scene.yaml")
         let data = try! Data(contentsOf: place, options: [])
         let decoder = YAMLDecoder()
         let decoded = try! decoder.decode(Scene.self, from: data)

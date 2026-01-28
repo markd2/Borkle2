@@ -20,12 +20,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7D73FF122F2A755800590330 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		7D73FF142F2A755800590330 /* borkle1conv */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = borkle1conv; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE0B51F2EECC49A00BDEB94 /* Borkle2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Borkle2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE0B5342EECC49B00BDEB94 /* Borkle2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Borkle2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7D73FF202F2A766500590330 /* Exceptions for "Borkle2" folder in "borkle1conv" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CGUtilities.swift,
+			);
+			target = 7D73FF132F2A755800590330 /* borkle1conv */;
+		};
 		7DE0B5462EECC49B00BDEB94 /* Exceptions for "Borkle2" folder in "Borkle2" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -36,10 +56,16 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		7D73FF152F2A755800590330 /* borkle1conv */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = borkle1conv;
+			sourceTree = "<group>";
+		};
 		7DE0B5212EECC49A00BDEB94 /* Borkle2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				7DE0B5462EECC49B00BDEB94 /* Exceptions for "Borkle2" folder in "Borkle2" target */,
+				7D73FF202F2A766500590330 /* Exceptions for "Borkle2" folder in "borkle1conv" target */,
 			);
 			path = Borkle2;
 			sourceTree = "<group>";
@@ -52,6 +78,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7D73FF112F2A755800590330 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7DE0B51C2EECC49A00BDEB94 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,6 +108,7 @@
 			children = (
 				7DE0B5212EECC49A00BDEB94 /* Borkle2 */,
 				7DE0B5372EECC49B00BDEB94 /* Borkle2Tests */,
+				7D73FF152F2A755800590330 /* borkle1conv */,
 				7DE0B56E2EECFC2E00BDEB94 /* Frameworks */,
 				7DE0B5202EECC49A00BDEB94 /* Products */,
 			);
@@ -85,6 +119,7 @@
 			children = (
 				7DE0B51F2EECC49A00BDEB94 /* Borkle2.app */,
 				7DE0B5342EECC49B00BDEB94 /* Borkle2Tests.xctest */,
+				7D73FF142F2A755800590330 /* borkle1conv */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +134,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7D73FF132F2A755800590330 /* borkle1conv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D73FF182F2A755800590330 /* Build configuration list for PBXNativeTarget "borkle1conv" */;
+			buildPhases = (
+				7D73FF102F2A755800590330 /* Sources */,
+				7D73FF112F2A755800590330 /* Frameworks */,
+				7D73FF122F2A755800590330 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7D73FF152F2A755800590330 /* borkle1conv */,
+			);
+			name = borkle1conv;
+			packageProductDependencies = (
+			);
+			productName = borkle1conv;
+			productReference = 7D73FF142F2A755800590330 /* borkle1conv */;
+			productType = "com.apple.product-type.tool";
+		};
 		7DE0B51E2EECC49A00BDEB94 /* Borkle2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7DE0B5472EECC49B00BDEB94 /* Build configuration list for PBXNativeTarget "Borkle2" */;
@@ -155,6 +212,9 @@
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					7D73FF132F2A755800590330 = {
+						CreatedOnToolsVersion = 16.1;
+					};
 					7DE0B51E2EECC49A00BDEB94 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -183,6 +243,7 @@
 			targets = (
 				7DE0B51E2EECC49A00BDEB94 /* Borkle2 */,
 				7DE0B5332EECC49B00BDEB94 /* Borkle2Tests */,
+				7D73FF132F2A755800590330 /* borkle1conv */,
 			);
 		};
 /* End PBXProject section */
@@ -205,6 +266,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7D73FF102F2A755800590330 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7DE0B51B2EECC49A00BDEB94 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +298,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		7D73FF192F2A755800590330 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HBB3G8HCG;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7D73FF1A2F2A755800590330 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HBB3G8HCG;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		7DE0B5482EECC49B00BDEB94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -443,6 +533,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7D73FF182F2A755800590330 /* Build configuration list for PBXNativeTarget "borkle1conv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D73FF192F2A755800590330 /* Debug */,
+				7D73FF1A2F2A755800590330 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7DE0B51A2EECC49A00BDEB94 /* Build configuration list for PBXProject "Borkle2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

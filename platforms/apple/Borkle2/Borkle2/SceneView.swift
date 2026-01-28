@@ -16,6 +16,14 @@ class SceneView: NSView {
         true
     }
 
+    override var clipsToBounds: Bool {
+        get {
+            true
+        }
+        set {
+        }
+    }
+
     func drawConnections() {
         Colors.bubbleConnection.set()
         for connection in scene.connections {
@@ -31,11 +39,14 @@ class SceneView: NSView {
             geometry.bounds.fill()
 
             let string = soup.bubbles[Int(geometry.bubbleID)].title! as NSString
-            let size = string.size()
-            let stringRect = geometry.bounds.sizeCenteredIn(size)
+//            let size = string.size()
+//            let stringRect = geometry.bounds.sizeCenteredIn(size)
 
-            string.draw(with: stringRect,
-                        options: .usesLineFragmentOrigin)
+            let attributedString = NSAttributedString.init(string: string as String)
+            let stringRect = geometry.bounds.insetBy(dx: 3, dy: 3)
+            attributedString.draw(in: stringRect)
+//            string.draw(with: stringRect,
+//                        options: .usesLineFragmentOrigin)
             
             Colors.bubbleFrame.set()
             geometry.bounds.frame()

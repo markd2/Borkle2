@@ -115,13 +115,14 @@ class Scene: Codable {
     }
 
     private func updateConnectionCentersTo(_ center: CGPoint, for id: Int32) {
-        for var connection in connections {
+        for i in 0 ..< connections.count {
+            let connection = connections[i]
             if connection.bubble1ID == id {
-                connection.bubble1Center = center
+                connections[i].bubble1Center = center
             }
 
             if connection.bubble2ID == id {
-                connection.bubble2Center = center
+                connections[i].bubble2Center = center
             }
         }
     }

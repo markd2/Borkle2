@@ -12,7 +12,6 @@ guard args.count == 3 else {
 }
 
 let inputURL = URL(fileURLWithPath: args[1])
-let outputURL = URL(fileURLWithPath: args[2])
 
 // inputURL is a borkle document, which is a packge that has a
 // pair of yaml files, one for bubbles/soup, one for barriers.
@@ -22,7 +21,41 @@ let data = try! Data(contentsOf: inputYAMLURL, options: [])
 let decoder = YAMLDecoder()
 let oldBubbles = try! decoder.decode([B1Bubble].self, from: data)
 
+// migrate bubbles
 
+var soup = BubbleSoup()
+var scene = Scene()
+
+var IDMap: [Int: Int32] = [:]
+
+// first populate all the bubbles, keeping a list of old IDs to new IDs
+for oldBubble in oldBubbles {
+    let newBubble = Bubble(title: oldBubble.text,
+                           body: nil, tags: nil, asset: nil)
+    let id = soup.addBubble(newBubble)
+    IDMap[oldBubble.ID] = id
+}
+
+// save it
+
+let destinationPath = "\(args[2])-bubbles.yaml"
+print(destinationPath)
+
+let encoder = YAMLEncoder()
+var options = encoder.options
+options.indent = 2
+options.width = -1
+options.explicitStart = true
+options.explicitEnd = true
+options.sortKeys = true
+encoder.options = options
+let encodedYAML = try! encoder.encode(soup)
+let outputData = encodedYAML.data(using: .utf8)!
+let place = URL(fileURLWithPath: destinationPath)
+try! outputData.write(to: place)
+
+
+// now walk the bubbles and create the connections and geometries
 
 
 

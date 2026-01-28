@@ -43,7 +43,10 @@
 		7D73FF202F2A766500590330 /* Exceptions for "Borkle2" folder in "borkle1conv" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Bubble.swift,
+				BubbleSoup.swift,
 				CGUtilities.swift,
+				Scene.swift,
 			);
 			target = 7D73FF132F2A755800590330 /* borkle1conv */;
 		};

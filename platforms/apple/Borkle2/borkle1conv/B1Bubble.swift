@@ -1,6 +1,6 @@
 import AppKit
 
-class Bubble: Codable {
+class B1Bubble: Codable {
     static let defaultFontName = "Helvetica"
     static let defaultFontSize: CGFloat = 12.0
 
@@ -122,13 +122,13 @@ class Bubble: Codable {
     var attributedString: NSAttributedString {
         let string = NSMutableAttributedString(string: text)
 
-        let font = NSFont(name: Bubble.defaultFontName, size: Bubble.defaultFontSize)!
+        let font = NSFont(name: B1Bubble.defaultFontName, size: B1Bubble.defaultFontSize)!
         let boldDescriptor = font.fontDescriptor.withSymbolicTraits(.bold)
-        let boldFont = NSFont(descriptor: boldDescriptor, size: Bubble.defaultFontSize)!
+        let boldFont = NSFont(descriptor: boldDescriptor, size: B1Bubble.defaultFontSize)!
         let italicDescriptor = font.fontDescriptor.withSymbolicTraits(.italic)
-        let italicFont = NSFont(descriptor: italicDescriptor, size: Bubble.defaultFontSize)!
+        let italicFont = NSFont(descriptor: italicDescriptor, size: B1Bubble.defaultFontSize)!
         let boldItalicDescriptor = font.fontDescriptor.withSymbolicTraits([.italic, .bold])
-        let boldItalicFont = NSFont(descriptor: boldItalicDescriptor, size: Bubble.defaultFontSize)!
+        let boldItalicFont = NSFont(descriptor: boldItalicDescriptor, size: B1Bubble.defaultFontSize)!
 
         formattingOptions.forEach { option in
             if option.options.contains(.bold) && option.options.contains(.italic) {
@@ -214,22 +214,22 @@ class Bubble: Codable {
     var rect: CGRect {
         var rect = CGRect(x: position.x, y: position.y,
                           width: width, height: effectiveHeight)
-        rect.size.height += 2 * Bubble.margin
+        rect.size.height += 2 * B1Bubble.margin
         return rect
     }
 
-    func isConnectedTo(_ bubble: Bubble) -> Bool {
+    func isConnectedTo(_ bubble: B1Bubble) -> Bool {
         let connected = connections.contains(bubble.ID)
         return connected
     }
 
-    func connect(to bubble: Bubble) {
+    func connect(to bubble: B1Bubble) {
         connections.insert(bubble.ID)
         bubble.connections.insert(ID)
         print("connections are \(connections)")
     }
 
-    func disconnect(bubble: Bubble) {
+    func disconnect(bubble: B1Bubble) {
         connections.remove(bubble.ID)
         bubble.connections.remove(ID)
     }
@@ -248,29 +248,29 @@ class Bubble: Codable {
     }
 }
 
-extension Bubble: CustomDebugStringConvertible {
+extension B1Bubble: CustomDebugStringConvertible {
     var debugDescription: String {
         return "Bubble(ID: \(ID), text: '\(text)'  at: \(position)  width: \(width))"
     }
 }
 
-extension Bubble: Equatable {
-    static func == (thing1: Bubble, thing2: Bubble) -> Bool {
+extension B1Bubble: Equatable {
+    static func == (thing1: B1Bubble, thing2: B1Bubble) -> Bool {
         return thing1.ID == thing2.ID
     }
 }
 
-extension Bubble: Hashable {
+extension B1Bubble: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(ID)
     }
 }
 
-extension Bubble {
+extension B1Bubble {
 
     func heightForStringDrawing() -> CGFloat {
         let textStorage = NSTextStorage.init(string: text, attributes: nil)
-        let insetWidth = width - (Bubble.margin * 2)
+        let insetWidth = width - (B1Bubble.margin * 2)
         let size = CGSize(width: insetWidth, height: .infinity)
         let textContainer = NSTextContainer.init(containerSize: size)
         let layoutManager = NSLayoutManager()
@@ -288,17 +288,17 @@ extension Bubble {
 }
 
 extension NSColor {
-    static func colorFromRGB(_ rgb: Bubble.RGB) -> NSColor {
+    static func colorFromRGB(_ rgb: B1Bubble.RGB) -> NSColor {
         NSColor.init(deviceRed: rgb.red, green: rgb.green, blue: rgb.blue, alpha: 1.0)
     }
 
-    func rgbColor() -> Bubble.RGB {
+    func rgbColor() -> B1Bubble.RGB {
         var red: CGFloat = 0.0
         var green: CGFloat = 0.0
         var blue: CGFloat = 0.0
 
         getRed(&red, green: &green, blue: &blue, alpha: nil)
-        return Bubble.RGB(red: red, green: green, blue: blue)
+        return B1Bubble.RGB(red: red, green: green, blue: blue)
     }
 
 }

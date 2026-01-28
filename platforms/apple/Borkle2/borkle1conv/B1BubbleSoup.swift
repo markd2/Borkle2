@@ -1,17 +1,17 @@
 import Foundation
 
 
-/// BubbleSoup - a class that matains the storage miasma of Borkle.
+/// B1BubbleSoup - a class that matains the storage miasma of Borkle.
 ///
 /// It holds the bubbles, lines, and provides an API for updating the contents of
 /// the soup (with undo support)
-class BubbleSoup {
+class B1BubbleSoup {
 
     let defaultWidth: CGFloat = 160
     let defaultHeight: CGFloat = 8
 
     /// Hook that's called when a bubble position changes, so it can be invalidated
-    var invalHook: ((Bubble) -> Void)?
+    var invalHook: ((B1Bubble) -> Void)?
 
     /// Something changed in the bubbles - maybe resize the canvas?
     var bubblesChangedHook: (() -> Void)?
@@ -23,11 +23,11 @@ class BubbleSoup {
 
     /// Array storage of bubbles.  Might need to revisit this if array operations turn
     /// out to be annoying
-    var bubbles: [Bubble] = []
+    var bubbles: [B1Bubble] = []
 
     /// Iterate over each of the bubbles in some kind of order
     /// I'm not smart enough to return some kind of sequence/iterator thing
-    public func forEachBubble(_ iterator: (Bubble) -> Void) {
+    public func forEachBubble(_ iterator: (B1Bubble) -> Void) {
         bubbles.forEach { iterator($0) }
     }
 
@@ -69,12 +69,12 @@ class BubbleSoup {
     }
     
     /// Looks up a bubble in the soup by its ID.  Returns nil if not found.
-    public func bubble(byID: Int) -> Bubble? {
+    public func bubble(byID: Int) -> B1Bubble? {
         let bubble = bubbles.first(where: { $0.ID == byID } )
         return bubble
     }
 
-    private func sanityCheckAdd(bubbles: [Bubble]) {
+    private func sanityCheckAdd(bubbles: [B1Bubble]) {
         bubbles.forEach {
             if let _ = bubble(byID: $0.ID) {
                 print("CONFLICT WITH ID \($0.ID)")
@@ -83,14 +83,14 @@ class BubbleSoup {
     }
 
     /// Add the bubble to the soup.
-    public func add(bubble: Bubble) {
+    public func add(bubble: B1Bubble) {
         add(bubblesArray: [bubble])
         bubblesChangedHook?()
     }
 
     /// Add the bubbles to the soup.  There's no intrinsic order to the bubbles in the soup.
     /// (even though internally it is an array)
-    public func add(bubbles: [Bubble]) {
+    public func add(bubbles: [B1Bubble]) {
         sanityCheckAdd(bubbles: bubbles)
 
         add(bubblesArray: bubbles)
@@ -100,7 +100,7 @@ class BubbleSoup {
     }
 
     /// Remove a bunch of bubbles
-    public func remove(bubbles: [Bubble]) {
+    public func remove(bubbles: [B1Bubble]) {
         undoManager.beginUndoGrouping()
         bubbles.forEach { invalHook?($0) }
 
@@ -124,9 +124,9 @@ class BubbleSoup {
     }
 
     // Make a new bubble centered at the given point.  ID is max + 1 of existing bubbles.
-    public func create(newBubbleAt point: CGPoint) -> Bubble {
+    public func create(newBubbleAt point: CGPoint) -> B1Bubble {
         let maxID = maxBubbleID()
-        let bubble = Bubble(ID: maxID + 1)
+        let bubble = B1Bubble(ID: maxID + 1)
         bubble.width = defaultWidth
         bubble.position = CGPoint(x: point.x - defaultWidth / 2.0, y: point.y - defaultHeight / 2.0)
 
@@ -142,7 +142,7 @@ class BubbleSoup {
     }
 
     /// Move the bubble's location to a new place.
-    public func move(bubble: Bubble, to newPosition: CGPoint) {
+    public func move(bubble: B1Bubble, to newPosition: CGPoint) {
         undoManager.beginUndoGrouping()
         let oldPoint = bubble.position
         bubble.position = newPosition
@@ -156,13 +156,13 @@ class BubbleSoup {
 
     /// Given a point, find the first bubble that intersects it.
     /// Drawing happens front->back, so hit testing happens back->front
-    public func hitTestBubble(at point: CGPoint) -> Bubble? {
+    public func hitTestBubble(at point: CGPoint) -> B1Bubble? {
         let bubble = bubbles.last(where: { $0.rect.contains(point) })
         return bubble
     }
 
     /// Given a rectangle, return all bubbles that intersect the rect.
-    public func areaTestBubbles(intersecting rect: CGRect) -> [Bubble]? {
+    public func areaTestBubbles(intersecting rect: CGRect) -> [B1Bubble]? {
         let intersectingBubbles = bubbles.filter { $0.rect.intersects(rect) }
         let result = intersectingBubbles.count > 0 ? intersectingBubbles : nil
         return result
@@ -176,7 +176,7 @@ class BubbleSoup {
         return union
     }
     
-    func connect(bubble: Bubble, to target: Bubble, callChangeHook: Bool = true) {
+    func connect(bubble: B1Bubble, to target: B1Bubble, callChangeHook: Bool = true) {
         bubble.connect(to: target)
         undoManager.registerUndo(withTarget: self) { selfTarget in
             self.disconnect(bubble: bubble, from: target)
@@ -187,7 +187,7 @@ class BubbleSoup {
         }
     }
 
-    func disconnect(bubble: Bubble, from target: Bubble, callChangeHook: Bool = true) {
+    func disconnect(bubble: B1Bubble, from target: B1Bubble, callChangeHook: Bool = true) {
         bubble.disconnect(bubble: target)
         undoManager.registerUndo(withTarget: self) { selfTarget in
             self.connect(bubble: bubble, to: target)
@@ -198,7 +198,7 @@ class BubbleSoup {
         }
     }
     
-    func connect(bubbles: [Bubble], to bubble: Bubble) {
+    func connect(bubbles: [B1Bubble], to bubble: B1Bubble) {
         undoManager.beginUndoGrouping()
         bubbles.forEach { target in
             if !bubble.isConnectedTo(target) {
@@ -209,7 +209,7 @@ class BubbleSoup {
         bubblesChangedHook?()
     }
 
-    func disconnect(bubbles: [Bubble], from bubble: Bubble) {
+    func disconnect(bubbles: [B1Bubble], from bubble: B1Bubble) {
         undoManager.beginUndoGrouping()
         bubbles.forEach { target in
             if bubble.isConnectedTo(target) {
@@ -223,9 +223,9 @@ class BubbleSoup {
 }
 
 /// Helper Methods
-extension BubbleSoup {
+extension B1BubbleSoup {
     /// Helper function for adding bubbles to the soup, has undo support
-    internal func add(bubblesArray bubbles: [Bubble]) {
+    internal func add(bubblesArray bubbles: [B1Bubble]) {
         undoManager.beginUndoGrouping()
         self.bubbles += bubbles
         undoManager.registerUndo(withTarget: self) { selfTarget in

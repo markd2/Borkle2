@@ -24,8 +24,6 @@ let oldBubbles = try! decoder.decode([B1Bubble].self, from: data)
 // migrate bubbles
 
 var soup = BubbleSoup()
-var scene = Scene()
-
 var IDMap: [Int: Int32] = [:]
 
 // first populate all the bubbles, keeping a list of old IDs to new IDs
@@ -57,6 +55,28 @@ try! outputData.write(to: place)
 
 // now walk the bubbles and create the connections and geometries
 
+var scene = Scene()
+
+let oldSoup = B1BubbleSoup()
+oldSoup.add(bubbles: oldBubbles)
+
+for oldBubble in oldBubbles {
+    let newBubbleID = IDMap[oldBubble.ID]!
+
+    // hook up connections
+    oldBubble.forEachConnection { index in
+        if let otherBubble = oldSoup.bubble(byID: index) {
+            let connectingID = IDMap[otherBubble.ID]!
+            _ = scene.addConnection(from: newBubbleID, to: connectingID)
+        }
+    }
+
+    _ = scene.changeGeometry(for: newBubbleID, to: oldBubble.rect)
+}
 
 
-
+let destinationScenePath = "\(args[2])-scene.yaml"
+let encodedScene = try! encoder.encode(scene)
+let outputSceneData = encodedScene.data(using: .utf8)!
+let sceneplace = URL(fileURLWithPath: destinationScenePath)
+try! outputSceneData.write(to: sceneplace)

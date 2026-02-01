@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D73FF222F2A89E500590330 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 7D73FF212F2A89E500590330 /* Yams */; };
+		7D7CF5FB2F2EEB2400119BF9 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 7D7CF5FA2F2EEB2400119BF9 /* Yams */; };
 		7DE0B5702EECFC2E00BDEB94 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 7DE0B56F2EECFC2E00BDEB94 /* Yams */; };
 /* End PBXBuildFile section */
 
@@ -31,10 +32,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		7D7CF5F12F2EE9D300119BF9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7D73FF142F2A755800590330 /* borkle1conv */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = borkle1conv; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D7CF5F32F2EE9D300119BF9 /* borklekrunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = borklekrunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE0B51F2EECC49A00BDEB94 /* Borkle2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Borkle2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE0B5342EECC49B00BDEB94 /* Borkle2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Borkle2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -49,6 +60,16 @@
 				Scene.swift,
 			);
 			target = 7D73FF132F2A755800590330 /* borkle1conv */;
+		};
+		7D7CF5FF2F2EEDF300119BF9 /* Exceptions for "Borkle2" folder in "borklekrunch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Bubble.swift,
+				BubbleSoup.swift,
+				CGUtilities.swift,
+				Scene.swift,
+			);
+			target = 7D7CF5F22F2EE9D300119BF9 /* borklekrunch */;
 		};
 		7DE0B5462EECC49B00BDEB94 /* Exceptions for "Borkle2" folder in "Borkle2" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -65,11 +86,17 @@
 			path = borkle1conv;
 			sourceTree = "<group>";
 		};
+		7D7CF5F42F2EE9D300119BF9 /* borklekrunch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = borklekrunch;
+			sourceTree = "<group>";
+		};
 		7DE0B5212EECC49A00BDEB94 /* Borkle2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				7DE0B5462EECC49B00BDEB94 /* Exceptions for "Borkle2" folder in "Borkle2" target */,
 				7D73FF202F2A766500590330 /* Exceptions for "Borkle2" folder in "borkle1conv" target */,
+				7D7CF5FF2F2EEDF300119BF9 /* Exceptions for "Borkle2" folder in "borklekrunch" target */,
 			);
 			path = Borkle2;
 			sourceTree = "<group>";
@@ -87,6 +114,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D73FF222F2A89E500590330 /* Yams in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D7CF5F02F2EE9D300119BF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D7CF5FB2F2EEB2400119BF9 /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +149,7 @@
 				7DE0B5212EECC49A00BDEB94 /* Borkle2 */,
 				7DE0B5372EECC49B00BDEB94 /* Borkle2Tests */,
 				7D73FF152F2A755800590330 /* borkle1conv */,
+				7D7CF5F42F2EE9D300119BF9 /* borklekrunch */,
 				7DE0B56E2EECFC2E00BDEB94 /* Frameworks */,
 				7DE0B5202EECC49A00BDEB94 /* Products */,
 			);
@@ -125,6 +161,7 @@
 				7DE0B51F2EECC49A00BDEB94 /* Borkle2.app */,
 				7DE0B5342EECC49B00BDEB94 /* Borkle2Tests.xctest */,
 				7D73FF142F2A755800590330 /* borkle1conv */,
+				7D7CF5F32F2EE9D300119BF9 /* borklekrunch */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +197,29 @@
 			);
 			productName = borkle1conv;
 			productReference = 7D73FF142F2A755800590330 /* borkle1conv */;
+			productType = "com.apple.product-type.tool";
+		};
+		7D7CF5F22F2EE9D300119BF9 /* borklekrunch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D7CF5F92F2EE9D300119BF9 /* Build configuration list for PBXNativeTarget "borklekrunch" */;
+			buildPhases = (
+				7D7CF5EF2F2EE9D300119BF9 /* Sources */,
+				7D7CF5F02F2EE9D300119BF9 /* Frameworks */,
+				7D7CF5F12F2EE9D300119BF9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7D7CF5F42F2EE9D300119BF9 /* borklekrunch */,
+			);
+			name = borklekrunch;
+			packageProductDependencies = (
+				7D7CF5FA2F2EEB2400119BF9 /* Yams */,
+			);
+			productName = borklekrunch;
+			productReference = 7D7CF5F32F2EE9D300119BF9 /* borklekrunch */;
 			productType = "com.apple.product-type.tool";
 		};
 		7DE0B51E2EECC49A00BDEB94 /* Borkle2 */ = {
@@ -221,6 +281,9 @@
 					7D73FF132F2A755800590330 = {
 						CreatedOnToolsVersion = 16.1;
 					};
+					7D7CF5F22F2EE9D300119BF9 = {
+						CreatedOnToolsVersion = 16.1;
+					};
 					7DE0B51E2EECC49A00BDEB94 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -250,6 +313,7 @@
 				7DE0B51E2EECC49A00BDEB94 /* Borkle2 */,
 				7DE0B5332EECC49B00BDEB94 /* Borkle2Tests */,
 				7D73FF132F2A755800590330 /* borkle1conv */,
+				7D7CF5F22F2EE9D300119BF9 /* borklekrunch */,
 			);
 		};
 /* End PBXProject section */
@@ -273,6 +337,13 @@
 
 /* Begin PBXSourcesBuildPhase section */
 		7D73FF102F2A755800590330 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D7CF5EF2F2EE9D300119BF9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -316,6 +387,28 @@
 			name = Debug;
 		};
 		7D73FF1A2F2A755800590330 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HBB3G8HCG;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		7D7CF5F72F2EE9D300119BF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HBB3G8HCG;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7D7CF5F82F2EE9D300119BF9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -548,6 +641,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		7D7CF5F92F2EE9D300119BF9 /* Build configuration list for PBXNativeTarget "borklekrunch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D7CF5F72F2EE9D300119BF9 /* Debug */,
+				7D7CF5F82F2EE9D300119BF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7DE0B51A2EECC49A00BDEB94 /* Build configuration list for PBXProject "Borkle2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -590,6 +692,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		7D73FF212F2A89E500590330 /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DE0B56B2EECF58900BDEB94 /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+		7D7CF5FA2F2EEB2400119BF9 /* Yams */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7DE0B56B2EECF58900BDEB94 /* XCRemoteSwiftPackageReference "Yams" */;
 			productName = Yams;

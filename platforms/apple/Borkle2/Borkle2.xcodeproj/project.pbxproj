@@ -61,6 +61,16 @@
 			);
 			target = 7D73FF132F2A755800590330 /* borkle1conv */;
 		};
+		7D7CF5FF2F2EEDF300119BF9 /* Exceptions for "Borkle2" folder in "borklekrunch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Bubble.swift,
+				BubbleSoup.swift,
+				CGUtilities.swift,
+				Scene.swift,
+			);
+			target = 7D7CF5F22F2EE9D300119BF9 /* borklekrunch */;
+		};
 		7DE0B5462EECC49B00BDEB94 /* Exceptions for "Borkle2" folder in "Borkle2" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -86,6 +96,7 @@
 			exceptions = (
 				7DE0B5462EECC49B00BDEB94 /* Exceptions for "Borkle2" folder in "Borkle2" target */,
 				7D73FF202F2A766500590330 /* Exceptions for "Borkle2" folder in "borkle1conv" target */,
+				7D7CF5FF2F2EEDF300119BF9 /* Exceptions for "Borkle2" folder in "borklekrunch" target */,
 			);
 			path = Borkle2;
 			sourceTree = "<group>";

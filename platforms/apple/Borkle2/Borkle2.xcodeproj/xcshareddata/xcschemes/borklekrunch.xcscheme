@@ -56,10 +56,6 @@
             argument = "/Users/markd/downloads/modcompnotes"
             isEnabled = "YES">
          </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/narkd/downloads/modcomp-krunch.txt"
-            isEnabled = "YES">
-         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction

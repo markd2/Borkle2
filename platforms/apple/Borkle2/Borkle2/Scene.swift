@@ -5,6 +5,7 @@
 //    as internal tools
 
 import Foundation
+import AppKit
 
 class Scene: Codable {
 

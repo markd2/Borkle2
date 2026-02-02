@@ -5,6 +5,9 @@ import Yams
 
 let args = CommandLine.arguments
 
+// !!! have a flag for this, especially as stuff gets more fleshed out
+let showWarnings = false
+
 // expecting two arguments
 guard args.count == 2 else {
     print("Usage: \(args[0]) input-basename")
@@ -29,25 +32,60 @@ let scene = try! decoder.decode(Scene.self, from: sceneData)
 // exhale in the exchange format, which is
 // 1
 // bubble-count
-// title (one line - we don't have any bodies or tags yet in the sample docs)
+// title character range
 // connection-count
 // bubble1ID bubble2ID (repeated for each connection)
 // geometry-count
-// bubbleID
-// bounds x y w h
+// bubbleID bounds-x y w h (repeated for each geometry)
+// string-pool length
+// string-pool all the strings laid end to end.
 
+// you can bloop the whole string pool into memory and not have to
+// parse out lines and append to a pool on the destination-side
+
+struct TextSpan {
+    let start: Int
+    let length: Int
+}
+
+var spans: [TextSpan] = []
+var stringPool: String = ""
+
+accumulateStrings()
 emitVersion()
 emitBubbles(soup)
 emitConnections(scene)
 emitGeometry(scene)
-emitTrailer()
+emitStringPool(stringPool)
+
+func accumulateStrings() {
+    // !!! figure out if there's a max on PERQ or something, and then
+    // !!! (optionally) warn if we exceed it.
+    let bubbles = soup.bubbles
+
+    for bubble in bubbles {
+        
+        let title = bubble.title ?? ""
+        let lossyAsciiData = title.data(using: .ascii, allowLossyConversion: true) ?? Data()
+        let lossyTitle = String(decoding: lossyAsciiData,
+                                as: Unicode.ASCII.self)
+        
+        // for the future, the body needs to get poold'
+        let span = TextSpan(start: stringPool.count,
+                            length: lossyTitle.count)
+        spans.append(span)
+        stringPool += lossyTitle
+
+        if showWarnings {
+            if title != lossyTitle {
+                print("WARNING: ascii-downgraded string: |\(title)| -> |\(lossyTitle)")
+            }
+        }
+    }
+}
 
 func emitVersion() {
     print("1")
-}
-
-func flattenNewlines(_ string: String) -> String {
-    string.replacingOccurrences(of: "\n", with: "<NL>")
 }
 
 func emitBubbles(_ soup: BubbleSoup) {
@@ -56,7 +94,8 @@ func emitBubbles(_ soup: BubbleSoup) {
     print(bubbles.count)
 
     for bubble in bubbles {
-        print(flattenNewlines(bubble.title ?? ""))
+        let bubbleID = bubble.ID
+        print("\(spans[Int(bubbleID)].start) \(spans[Int(bubbleID)].length)")
     }
 }
 
@@ -72,11 +111,11 @@ func emitConnections(_ scene: Scene) {
 func emitGeometry(_ scene: Scene) {
     let geometries = scene.geometries
     for geometry in geometries {
-        print(geometry.bubbleID)
-        print("\(Int(geometry.bounds.origin.x)) \(Int(geometry.bounds.origin.y)) \(Int(geometry.bounds.width)) \(Int(geometry.bounds.height))")
+        print("\(geometry.bubbleID) \(Int(geometry.bounds.origin.x)) \(Int(geometry.bounds.origin.y)) \(Int(geometry.bounds.width)) \(Int(geometry.bounds.height))")
     }
 }
 
-func emitTrailer() {
-    print("bork")
+func emitStringPool(_ stringPool: String) {
+    print(stringPool.count)
+    print(stringPool)
 }

@@ -11,6 +11,7 @@ const
     programName = 'player';
     { max width of a line of input, except the string pool }
     MaxLineLength = 128;
+    ExpectedVersion = 1;
 
 type
     LineBuffer = packed array [1..MaxLineLength] of Char;
@@ -22,6 +23,10 @@ var
     buffer: LineBuffer;
     parsePosition: Integer;
     value : Integer;
+
+var
+    version: Integer;
+    connectionCount: Integer;
 
 
 procedure Usage;
@@ -122,21 +127,31 @@ end; { ParseInt }
 
 
 (* -------------------- *)
+
+function SnarfInt(what: String) : Integer;
+begin
+    ReadLine(incoming, buffer, readLength);
+    parsePosition := 1;
+    
+    if ParseInt(buffer, parsePosition, readLength, value) then begin
+        SnarfInt := value;
+    end else begin
+        writeln('could not read ', what);
+        exit(Player);
+    end;
+
+end; { SnarfInt }
+
+
+(* ---- main ---- *)
+
 begin
     (* InputFilename(filename); *) { for now, hardcode during bootstrapping }
     filename := 'modcomp.txt';
     
     reset(incoming, filename);
-
-    ReadLine(incoming, buffer, readLength);    
-    Writeln('and there was much rejoycing');
+    version := SnarfInt('version');
+    connectionCount := SnarfInt('connection count');
     
-    parsePosition := 1;
-    
-    if ParseInt(buffer, parsePosition, readLength, value) then begin
-        writeln('yay!  got', value);
-    end else begin
-        writeln('booooo');
-    end;
-
+    writeln('version ', version, ' connectionCount ', connectionCount);
 end.

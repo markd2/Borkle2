@@ -6,6 +6,7 @@ program Player;
 }
 
 imports CmdParse from CmdParse; { NextId }
+imports Geom from Geom; { GPoint, GRect, etc }
 
 const
     programName = 'player';
@@ -15,6 +16,14 @@ const
 
 type
     LineBuffer = packed array [1..MaxLineLength] of Char;
+    
+    { connection between bubbles }
+    BConnection = record
+        bubble1ID: Integer;
+        bubble1Center: GPoint;
+        bubble2ID: Integer;
+        bubble2Center: GPoint;
+    end;
 
 var
     incoming: Text;
@@ -27,6 +36,7 @@ var
 var
     version: Integer;
     connectionCount: Integer;
+    conn: BConnection;
 
 
 procedure Usage;
@@ -143,6 +153,31 @@ begin
 end; { SnarfInt }
 
 
+procedure SnarfConnection(var conn: BConnection; what: String);
+var
+    thing1, thing2: Integer;
+    
+begin
+    ReadLine(incoming, buffer, readLength);
+    parsePosition := 1;
+    
+    if not ParseInt(buffer, parsePosition, readLength, thing1) then begin
+        writeln('could not read part 1 of ', what);
+        exit(Player);
+    end;
+    
+    if not ParseInt(buffer, parsePosition, readLength, thing2) then begin
+        writeln('could not read part 2 of ', what);
+        exit(Player);
+    end;
+    
+    conn.bubble1ID := thing1;
+    conn.bubble2ID := thing2;
+    
+end; { SnarfConnection }
+
+
+
 (* ---- main ---- *)
 
 begin
@@ -150,8 +185,17 @@ begin
     filename := 'modcomp.txt';
     
     reset(incoming, filename);
+
     version := SnarfInt('version');
+    if version <> ExpectedVersion then begin
+        writeln('unexpeced version: ', version, 
+                ' expecting: ', ExpectedVersion);
+        exit(Player);
+    end;
     connectionCount := SnarfInt('connection count');
-    
     writeln('version ', version, ' connectionCount ', connectionCount);
+    
+    SnarfConnection(conn, 'connection');
+    writeln('connection from ', conn.bubble1ID, ' to ', conn.bubble2ID);
+    
 end.

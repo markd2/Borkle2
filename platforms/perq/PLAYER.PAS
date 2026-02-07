@@ -13,6 +13,7 @@ const
     { max width of a line of input, except the string pool }
     MaxLineLength = 128;
     ExpectedVersion = 1;
+    MaxConnections = 160; { !!! should do something dynamic }
 
 type
     LineBuffer = packed array [1..MaxLineLength] of Char;
@@ -36,7 +37,10 @@ var
 var
     version: Integer;
     connectionCount: Integer;
+    geoCount: Integer;
     conn: BConnection;
+    allConnections: packed array[1..MaxConnections] of BConnection;
+    i: Integer;
 
 
 procedure Usage;
@@ -143,59 +147,4 @@ begin
     ReadLine(incoming, buffer, readLength);
     parsePosition := 1;
     
-    if ParseInt(buffer, parsePosition, readLength, value) then begin
-        SnarfInt := value;
-    end else begin
-        writeln('could not read ', what);
-        exit(Player);
-    end;
-
-end; { SnarfInt }
-
-
-procedure SnarfConnection(var conn: BConnection; what: String);
-var
-    thing1, thing2: Integer;
-    
-begin
-    ReadLine(incoming, buffer, readLength);
-    parsePosition := 1;
-    
-    if not ParseInt(buffer, parsePosition, readLength, thing1) then begin
-        writeln('could not read part 1 of ', what);
-        exit(Player);
-    end;
-    
-    if not ParseInt(buffer, parsePosition, readLength, thing2) then begin
-        writeln('could not read part 2 of ', what);
-        exit(Player);
-    end;
-    
-    conn.bubble1ID := thing1;
-    conn.bubble2ID := thing2;
-    
-end; { SnarfConnection }
-
-
-
-(* ---- main ---- *)
-
-begin
-    (* InputFilename(filename); *) { for now, hardcode during bootstrapping }
-    filename := 'modcomp.txt';
-    
-    reset(incoming, filename);
-
-    version := SnarfInt('version');
-    if version <> ExpectedVersion then begin
-        writeln('unexpeced version: ', version, 
-                ' expecting: ', ExpectedVersion);
-        exit(Player);
-    end;
-    connectionCount := SnarfInt('connection count');
-    writeln('version ', version, ' connectionCount ', connectionCount);
-    
-    SnarfConnection(conn, 'connection');
-    writeln('connection from ', conn.bubble1ID, ' to ', conn.bubble2ID);
-    
-end.
+    if ParseInt(buffer, parsePosition, readLength, value)

@@ -21,6 +21,7 @@ type
 function PointInRect(point: GPoint; rect: GRect): Boolean;
 function RectInset(rect: GRect; widthInset: Integer; heightInset: Integer): GRect;
 function EqualPoints(thing1, thing2: GPoint): Boolean;
+function RectCenter(var rect: GRect): GPoint;
 
 private
 
@@ -37,6 +38,13 @@ begin
     RectInset.origin.y := rect.origin.y + heightInset;
     RectInset.size.height := rect.size.height - 2 * heightInset;
 end;
+
+
+function RectCenter(var rect: GRect): GPoint;
+begin
+    RectCenter.x := rect.origin.x + rect.size.width div 2;
+    RectCenter.y := rect.origin.y + rect.size.height div 2;
+end; { RectCenter }
 
 
 function PointInRect(point: GPoint; rect: GRect): Boolean;

@@ -303,162 +303,162 @@
 151 153
 151 154
 154 155
-0 317 146 70 20
-1 407 180 120 20
-2 94 558 80 20
-3 29 523 70 20
-4 143 503 70 20
-5 216 530 70 20
-6 17 622 160 20
-7 62 485 70 20
-8 206 596 70 20
-9 869 162 110 20
-10 863 46 160 20
-11 808 225 140 20
-12 797 97 160 20
-13 995 113 100 20
-14 1047 35 160 20
-15 1139 122 160 20
-16 1129 67 160 34
-17 808 1087 60 20
-18 886 1109 50 20
-19 735 1150 90 20
-20 738 1060 70 20
-21 177 437 100 48
-22 55 423 100 34
-23 945 1173 90 34
-24 830 1012 70 34
-25 173 208 100 34
-26 307 211 110 34
-27 342 272 160 48
-28 480 222 100 34
-29 38 262 100 48
-30 229 164 60 20
-31 177 86 130 48
-32 72 793 140 34
-33 24 710 160 48
-34 271 857 100 20
-35 378 906 80 34
-36 471 856 160 34
-37 414 799 110 34
-38 514 736 160 48
-39 572 916 160 48
-40 682 840 160 62
-41 261 938 80 20
-42 120 952 110 34
-43 19 1006 130 62
-44 1005 167 100 20
-45 999 226 90 34
-46 1156 212 130 48
-47 45 183 120 48
-48 191 993 120 20
-49 167 1031 160 48
-50 772 1828 160 20
-51 530 2292 160 20
-52 95 149 80 20
-53 196 288 130 62
-54 362 727 110 48
-55 376 78 130 34
-56 534 88 80 20
-57 416 126 100 34
-58 573 118 110 34
-59 113 1111 160 62
-60 342 966 90 34
-61 332 1039 130 62
-62 594 800 180 20
-63 796 762 160 62
-64 477 947 70 48
-65 563 988 160 90
-66 20 330 160 48
-67 430 1413 60 34
-68 408 1343 110 20
-69 534 1386 90 20
-70 537 1321 90 20
-71 356 1479 90 34
-72 302 1417 90 20
-73 310 1369 70 20
-74 146 1281 120 104
-75 277 1295 90 34
-76 394 1288 100 34
-77 245 783 130 34
-78 228 726 110 48
-79 420 1220 140 48
-80 688 1378 100 20
-81 800 1326 160 20
-82 698 1452 80 20
-83 761 1280 100 20
-84 888 1274 160 34
-85 655 1331 120 20
-86 820 1379 80 20
-87 966 1347 90 34
-88 925 1397 180 34
-89 832 1441 70 62
-90 959 1465 160 34
-91 1103 1822 70 20
-92 1846 1787 70 20
-93 967 481 90 20
-94 957 445 100 20
-95 908 396 120 20
-96 1087 459 70 20
-97 1080 406 70 20
-98 1152 374 70 20
-99 1166 407 70 20
-100 1160 439 70 20
-101 1176 476 70 34
-102 1098 504 70 20
-103 1178 527 70 20
-104 1281 482 60 20
-105 797 443 140 48
-106 821 339 130 48
-107 642 450 130 48
-108 656 385 160 34
-109 939 527 110 20
-110 916 571 100 62
-111 1063 564 140 62
-112 1147 633 160 76
-113 1027 660 100 34
-114 335 585 90 20
-115 350 535 50 20
-116 333 474 110 20
-117 423 502 90 34
-118 904 1059 130 20
-119 938 986 160 48
-120 888 900 160 62
-121 1061 1090 130 34
-122 1072 929 160 34
-123 1066 1047 100 20
-124 174 1521 50 20
-125 525 333 50 20
-126 493 372 60 20
-127 552 284 100 34
-128 612 239 110 20
-129 667 308 110 20
-130 202 1475 40 20
-131 24 88 110 48
-132 488 546 410 118
-133 91 1491 80 20
-134 249 1500 90 34
-135 250 1539 160 90
-136 22 1448 170 20
-137 267 1666 160 48
-138 85 1668 160 34
-139 3 1531 130 34
-140 4 1592 160 34
-141 252 37 130 34
-142 296 364 80 20
-143 211 391 160 34
-144 475 1098 160 20
-145 366 1142 160 34
-146 555 1162 110 34
-147 403 21 240 48
-148 672 30 160 34
-149 52 852 130 48
-150 582 179 160 48
-151 668 1607 50 20
-152 547 1420 130 34
-153 598 1495 160 62
-154 782 1569 160 104
-155 797 1521 110 34
+317 146 70 20
+407 180 120 20
+94 558 80 20
+29 523 70 20
+143 503 70 20
+216 530 70 20
+17 622 160 20
+62 485 70 20
+206 596 70 20
+869 162 110 20
+863 46 160 20
+808 225 140 20
+797 97 160 20
+995 113 100 20
+1047 35 160 20
+1139 122 160 20
+1129 67 160 34
+808 1087 60 20
+886 1109 50 20
+735 1150 90 20
+738 1060 70 20
+177 437 100 48
+55 423 100 34
+945 1173 90 34
+830 1012 70 34
+173 208 100 34
+307 211 110 34
+342 272 160 48
+480 222 100 34
+38 262 100 48
+229 164 60 20
+177 86 130 48
+72 793 140 34
+24 710 160 48
+271 857 100 20
+378 906 80 34
+471 856 160 34
+414 799 110 34
+514 736 160 48
+572 916 160 48
+682 840 160 62
+261 938 80 20
+120 952 110 34
+19 1006 130 62
+1005 167 100 20
+999 226 90 34
+1156 212 130 48
+45 183 120 48
+191 993 120 20
+167 1031 160 48
+772 1828 160 20
+530 2292 160 20
+95 149 80 20
+196 288 130 62
+362 727 110 48
+376 78 130 34
+534 88 80 20
+416 126 100 34
+573 118 110 34
+113 1111 160 62
+342 966 90 34
+332 1039 130 62
+594 800 180 20
+796 762 160 62
+477 947 70 48
+563 988 160 90
+20 330 160 48
+430 1413 60 34
+408 1343 110 20
+534 1386 90 20
+537 1321 90 20
+356 1479 90 34
+302 1417 90 20
+310 1369 70 20
+146 1281 120 104
+277 1295 90 34
+394 1288 100 34
+245 783 130 34
+228 726 110 48
+420 1220 140 48
+688 1378 100 20
+800 1326 160 20
+698 1452 80 20
+761 1280 100 20
+888 1274 160 34
+655 1331 120 20
+820 1379 80 20
+966 1347 90 34
+925 1397 180 34
+832 1441 70 62
+959 1465 160 34
+1103 1822 70 20
+1846 1787 70 20
+967 481 90 20
+957 445 100 20
+908 396 120 20
+1087 459 70 20
+1080 406 70 20
+1152 374 70 20
+1166 407 70 20
+1160 439 70 20
+1176 476 70 34
+1098 504 70 20
+1178 527 70 20
+1281 482 60 20
+797 443 140 48
+821 339 130 48
+642 450 130 48
+656 385 160 34
+939 527 110 20
+916 571 100 62
+1063 564 140 62
+1147 633 160 76
+1027 660 100 34
+335 585 90 20
+350 535 50 20
+333 474 110 20
+423 502 90 34
+904 1059 130 20
+938 986 160 48
+888 900 160 62
+1061 1090 130 34
+1072 929 160 34
+1066 1047 100 20
+174 1521 50 20
+525 333 50 20
+493 372 60 20
+552 284 100 34
+612 239 110 20
+667 308 110 20
+202 1475 40 20
+24 88 110 48
+488 546 410 118
+91 1491 80 20
+249 1500 90 34
+250 1539 160 90
+22 1448 170 20
+267 1666 160 48
+85 1668 160 34
+3 1531 130 34
+4 1592 160 34
+252 37 130 34
+296 364 80 20
+211 391 160 34
+475 1098 160 20
+366 1142 160 34
+555 1162 110 34
+403 21 240 48
+672 30 160 34
+52 852 130 48
+582 179 160 48
+668 1607 50 20
+547 1420 130 34
+598 1495 160 62
+782 1569 160 104
+797 1521 110 34
 5589
 MODCOMP"Modular Computer"LanguagesAssemblyFortran 2Fortran IVNASA-extended Fortran 77PascalCORAL 66Cool unique things_very_ deterministic systemOS rudimentary, but fastno file system to speak ofglobal COMMONchunk of shared memoryavailable in FORTRANTAS instruction for cross-task synchronizationConceptsTasksBatch QueuesOverlaysemitted assembly rather than object codeCan have inline assemblynot connected to terminalsconnected to terminals7830 - the traffic light machine7860 - the nuclear machineBranded "Bailey" - from Bailey Control Systems (Cleveland)has hardware floating pointdoes not have hardware floating point"Classic"Founded ~1970 by SEL, Ft. Lauderdale FLHas remained consistent model after modelsometimes adding instructions, like the 32-bit addressing prefixInstruction SetHardware ArchitectureAddress space 16 bits, but of wordsLateradded 32-bit prefix instructionso 128K bytes, can do a lot more than byte-sized 16-bit systemsLater models (Modcomp 4) / OSs added virtualiation, so more available total memoryProcess could have two page tables - one (64K wrods) for code and one for data16 registersgeneral purpose, mostly orthogonalsome addressing modes (?) could only use the first 8 (?) registersLong service lifeNASA still has some in-usetraffic light one was in service from 1981-2019 - 38 yearsRan traffic lights in Evansville IN from 1981-201916 banks of registerseach process / task gets 16 registers, so this allowed for rapid task switching.wire-wrappedModel numbers include I/O Channels.  7860 had one or two, 7870 had three or fourmillion instructions per second, ~200 ns cycle timeDesigned for data acquistion and controlnot for userscheaper than a VAX, but as fastmuch simpler OS (pros and cons) If the task were resident, then it's just switching the PSW and the registers to get it runningI/O Busses do 2 meg/secmodcomp 2 could do four on the same bus � so 4-way DMP (a.k.a. DMA)memory up to 4-way interleavedfour things accessing memory at the same time without interrupting / blocking the othersNo instruction cacheBut is 8-instruction lookahead (optional?), where if you're doing e.g. self-modifying code, you'll need to account for instruction pre-fetchingDan (LSSM volunteer) wrote some microcode for ithisOperating SystemPretty rudimentarytaskstiming servicesmemory managementI/O ServicesSecurityThere is none (outside of assigning some pages rmx permissions) so you can't accidentally scribble on other pagesno real concept of "users"privilege bit for some instructionsprivilege bit for some instructionslike for addressing into OS memory spacecan compile a task so that it can access these instructionsUser InteractionOperator CommunicationsBatch Tasksoperator consolecan steal to run on the terminal in front of youfront-panel switchesTerminals^A is attention keystrokecommands like
 /process-name/command-nameTMP
@@ -467,4 +467,3 @@ Terminal Monitor Programrun batch tasks and steal OpComms to your terminalDisk/D
 � https://en.wikipedia.org/wiki/Modcomp
 � https://www.sun-sentinel.com/1990/06/11/traditional-customers-return-to-modcomp/ - tradition customers return to MODCOMP
 � https://www.techmonitor.ai/technology/modcomp_re_engineers_top_end_classic_for_real_time_boost - modcomp re-engineers top-end classic for real-time boostreal-time unixdesigned to run on ClassicsProvide unix environemnt while maintining the high-performance deterministic capabilities for industrial process control / data acquisitionport of AT&T Unix SysV (SR3)leverage standard unix tools while keeping real-time performancelicensed to other companies, like "Groupe Bull"supported standard unix networkingsome users running Apachine web serversBought by AEG AG of West Germany in 198?Classic 32/87re-engineered version of the 32-bit Classic 32/85Writable Control Storefor making your own instructions / microcodejust 32/87, or other machines?after layoffs and financial problems pivoted to being a systems integrator (early-mid 90s?)purchased by CSPi Technology Solutions (1996)Modcomp IV added unstructions (updated fortran compiler)popular with aerospace (Nasa, SAIL) oil industry (Standard, Shell)"MAX""Modular Applications eXecutiveMAX I - real-time monitor for a fixed set of processes linked into a single memory image (i.e. embedded)MAX II - batch disk operating system with real-time extensions. Used for program development in the background while foreground handled real-time loadsfixed-priority pre-emptive scheduling
-

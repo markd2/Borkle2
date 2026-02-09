@@ -7,6 +7,7 @@ program Player;
 
 imports CmdParse from CmdParse; { NextId }
 imports Geom from Geom; { GPoint, GRect, etc }
+imports Draw from Draw; { ClearScreen, etc }
 
 const
     programName = 'player';
@@ -49,8 +50,8 @@ var
     bubbleCount: Integer;
     connectionCount: Integer;
     conn: BConnection;
-    allBubbles: packed array[1..MaxBubbles] of BBubble;
-    allGeometries: packed array[1..MaxBubbles] of BGeometry;
+    allBubbles: packed array[0..MaxBubbles] of BBubble;
+    allGeometries: packed array[0..MaxBubbles] of BGeometry;
     
     allConnections: packed array[1..MaxConnections] of BConnection;
     i: Integer;
@@ -255,6 +256,7 @@ var
     b1Bounds, b2Bounds: GRect;
 begin
     for i := 1 to connectionCount do begin
+        writeln('looking at connection ', i);
         with allConnections[i] do begin
             b1Bounds := allGeometries[bubble1ID].bounds;
             b2Bounds := allGeometries[bubble2ID].bounds;
@@ -284,7 +286,7 @@ begin
     bubbleCount := SnarfInt('bubble count');
     writeln('version ', version, 
             'bubble count', bubbleCount);
-    for i := 1 to bubbleCount do begin
+    for i := 0 to bubbleCount - 1 do begin
         SnarfBubble(allBubbles[i], 'bubble');
     end;
     
@@ -295,11 +297,13 @@ begin
         SnarfConnection(allConnections[i], 'connection');
     end;
     
-    for i := 1 to bubbleCount do begin
+    for i := 0 to bubbleCount - 1 do begin
         SnarfGeometry(allGeometries[i], 'geometry');
     end;
     
     MopUpConnectionCenters;
+    
+    ClearScreen;
     
     writeln('data sample');
     writeln('bubble ', allBubbles[1].textStart, allBubbles[1].textEnd);

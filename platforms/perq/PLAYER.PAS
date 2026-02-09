@@ -24,6 +24,10 @@ type
         textEnd: Integer;
     end;
     
+    BGeometry = record
+        bounds: GRect
+    end;
+
     { connection between bubbles }
     BConnection = record
         bubble1ID: Integer;
@@ -31,7 +35,7 @@ type
         bubble2ID: Integer;
         bubble2Center: GPoint;
     end;
-
+    
 var
     incoming: Text;
     filename: String;
@@ -44,9 +48,9 @@ var
     version: Integer;
     bubbleCount: Integer;
     connectionCount: Integer;
-    geoCount: Integer;
     conn: BConnection;
     allBubbles: packed array[1..MaxBubbles] of BBubble;
+    allGeometries: packed array[1..MaxBubbles] of BGeometry;
     
     allConnections: packed array[1..MaxConnections] of BConnection;
     i: Integer;
@@ -188,6 +192,40 @@ begin
 end; { SnarfBubble }
 
 
+procedure SnarfGeometry(var geometry: BGeometry; what: String);
+var
+    x, y, width, height: Integer;
+begin
+    ReadLine(incoming, buffer, readLength);
+    parsePosition := 1;
+    
+    if not ParseInt(buffer, parsePosition, readLength, x) then begin
+        writeln('could not read x of ', what);
+        exit(Player);
+    end;
+    if not ParseInt(buffer, parsePosition, readLength, y) then begin
+        writeln('could not read y of ', what);
+        exit(Player);
+    end;
+    if not ParseInt(buffer, parsePosition, readLength, width) then begin
+        writeln('could not read width of ', what);
+        exit(Player);
+    end;
+    if not ParseInt(buffer, parsePosition, readLength, height) then begin
+        writeln('could not read height of ', what);
+        exit(Player);
+    end;
+    
+    with geometry.bounds do begin
+        origin.x := x;
+        origin.y := y;
+        size.width := width;
+        size.height := height;
+    end;
+    
+end; { SnarfGeometry }
+
+
 procedure SnarfConnection(var conn: BConnection; what: String);
 var
     thing1, thing2: Integer;
@@ -198,7 +236,7 @@ begin
     if not ParseInt(buffer, parsePosition, readLength, thing1) then begin
         writeln('could not read part 1 of ', what);
         exit(Player);
-    end;
+  end;
     
     if not ParseInt(buffer, parsePosition, readLength, thing2) then begin
         writeln('could not read part 2 of ', what);
@@ -241,12 +279,15 @@ begin
         SnarfConnection(allConnections[i], 'connection');
     end;
     
-    geoCount := SnarfInt('geometry count');
-    writeln('geometry count', geoCount);
-    
+    for i := 1 to bubbleCount do begin
+        SnarfGeometry(allGeometries[i], 'geometry');
+    end;    
     
     writeln('data sample');
     writeln('bubble ', allBubbles[1].textStart, allBubbles[1].textEnd);
+    with allGeometries[1].bounds do begin
+        writeln('geometry ', origin.x, origin.y, size.width, size.height);
+    end;
     writeln('connection ', allConnections[1].bubble1ID, 
             allConnections[1].bubble2ID);
     

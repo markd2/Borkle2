@@ -14,9 +14,15 @@ const
     MaxLineLength = 128;
     ExpectedVersion = 1;
     MaxConnections = 160; { !!! should do something dynamic }
+    MaxBubbles = 160; { !!! should do something dynamic }
 
 type
     LineBuffer = packed array [1..MaxLineLength] of Char;
+    
+    BBubble = record
+        textStart: Integer;
+        textEnd: Integer;
+    end;
     
     { connection between bubbles }
     BConnection = record
@@ -36,9 +42,12 @@ var
 
 var
     version: Integer;
+    bubbleCount: Integer;
     connectionCount: Integer;
     geoCount: Integer;
     conn: BConnection;
+    allBubbles: packed array[1..MaxBubbles] of BBubble;
+    
     allConnections: packed array[1..MaxConnections] of BConnection;
     i: Integer;
 
@@ -147,4 +156,98 @@ begin
     ReadLine(incoming, buffer, readLength);
     parsePosition := 1;
     
-    if ParseInt(buffer, parsePosition, readLength, value)
+    if ParseInt(buffer, parsePosition, readLength, value) then begin
+        SnarfInt := value;
+    end else begin
+        writeln('could not read ', what);
+        exit(Player);
+    end;
+
+end; { SnarfInt }
+
+
+procedure SnarfBubble(var bubble: BBubble; what: String);
+var
+    textStart, textEnd: Integer;
+begin
+    ReadLine(incoming, buffer, readLength);
+    parsePosition := 1;
+    
+    if not ParseInt(buffer, parsePosition, readLength, textStart) then begin
+        writeln('could not read range start of ', what);
+        exit(Player);
+    end;
+    
+    if not ParseInt(buffer, parsePosition, readLength, textEnd) then begin
+        writeln('could not read range end of ', what);
+        exit(Player);
+    end;
+    
+    bubble.textStart := textStart;
+    bubble.textEnd := textEnd;
+end; { SnarfBubble }
+
+
+procedure SnarfConnection(var conn: BConnection; what: String);
+var
+    thing1, thing2: Integer;
+begin
+    ReadLine(incoming, buffer, readLength);
+    parsePosition := 1;
+    
+    if not ParseInt(buffer, parsePosition, readLength, thing1) then begin
+        writeln('could not read part 1 of ', what);
+        exit(Player);
+    end;
+    
+    if not ParseInt(buffer, parsePosition, readLength, thing2) then begin
+        writeln('could not read part 2 of ', what);
+        exit(Player);
+    end;
+    
+    conn.bubble1ID := thing1;
+    conn.bubble2ID := thing2;
+    
+end; { SnarfConnection }
+
+
+
+(* ---- main ---- *)
+
+begin
+    (* InputFilename(filename); *) { for now, hardcode during bootstrapping }
+    filename := 'modcomp.txt';
+    
+    reset(incoming, filename);
+
+    version := SnarfInt('version');
+    if version <> ExpectedVersion then begin
+        writeln('unexpeced version: ', version, 
+                ' expecting: ', ExpectedVersion);
+        exit(Player);
+    end;
+    
+    bubbleCount := SnarfInt('bubble count');
+    writeln('version ', version, 
+            'bubble count', bubbleCount);
+    for i := 1 to bubbleCount do begin
+        SnarfBubble(allBubbles[i], 'bubble');
+    end;
+    
+    connectionCount := SnarfInt('connection count');
+    writeln('connection count ', connectionCount);
+    
+    for i := 1 to connectionCount do begin
+        SnarfConnection(allConnections[i], 'connection');
+    end;
+    
+    geoCount := SnarfInt('geometry count');
+    writeln('geometry count', geoCount);
+    
+    
+    writeln('data sample');
+    writeln('bubble ', allBubbles[1].textStart, allBubbles[1].textEnd);
+    writeln('connection ', allConnections[1].bubble1ID, 
+            allConnections[1].bubble2ID);
+    
+end.

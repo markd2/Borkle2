@@ -249,6 +249,22 @@ begin
 end; { SnarfConnection }
 
 
+procedure MopUpConnectionCenters;
+var
+    i: Integer;
+    b1Bounds, b2Bounds: GRect;
+begin
+    for i := 1 to connectionCount do begin
+        with allConnections[i] do begin
+            b1Bounds := allGeometries[bubble1ID].bounds;
+            b2Bounds := allGeometries[bubble2ID].bounds;
+            bubble1Center := RectCenter(b1Bounds);
+            bubble2Center := RectCenter(b2Bounds);
+        end;
+    end;
+end;
+
+
 
 (* ---- main ---- *)
 
@@ -281,7 +297,9 @@ begin
     
     for i := 1 to bubbleCount do begin
         SnarfGeometry(allGeometries[i], 'geometry');
-    end;    
+    end;
+    
+    MopUpConnectionCenters;
     
     writeln('data sample');
     writeln('bubble ', allBubbles[1].textStart, allBubbles[1].textEnd);

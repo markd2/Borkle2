@@ -111,7 +111,7 @@ func emitConnections(_ scene: Scene) {
 func emitGeometry(_ scene: Scene) {
     let geometries = scene.geometries
     for geometry in geometries {
-        print("\(geometry.bubbleID) \(Int(geometry.bounds.origin.x)) \(Int(geometry.bounds.origin.y)) \(Int(geometry.bounds.width)) \(Int(geometry.bounds.height))")
+        print("\(Int(geometry.bounds.origin.x)) \(Int(geometry.bounds.origin.y)) \(Int(geometry.bounds.width)) \(Int(geometry.bounds.height))")
     }
 }
 

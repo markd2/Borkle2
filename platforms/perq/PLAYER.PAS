@@ -6,6 +6,8 @@ program Player;
 }
 
 imports CmdParse from CmdParse; { NextId }
+imports Raster from Raster;
+imports Screen from Screen;
 imports Geom from Geom; { GPoint, GRect, etc }
 imports Draw from Draw; { ClearScreen, etc }
 
@@ -44,6 +46,7 @@ var
     buffer: LineBuffer;
     parsePosition: Integer;
     value : Integer;
+    ch: Char;
 
 var
     version: Integer;
@@ -256,7 +259,6 @@ var
     b1Bounds, b2Bounds: GRect;
 begin
     for i := 1 to connectionCount do begin
-        writeln('looking at connection ', i);
         with allConnections[i] do begin
             b1Bounds := allGeometries[bubble1ID].bounds;
             b2Bounds := allGeometries[bubble2ID].bounds;
@@ -266,6 +268,46 @@ begin
     end;
 end;
 
+
+procedure DrawSomeBubbles;
+var
+    i: Integer;
+    x1, x2, y1, y2: Integer;
+const
+    drawCount = 20;
+begin
+    for i := 22 to connectionCount do begin
+        with allConnections[i] do begin
+{            writeln('connection ', i, bubble1Center.x, bubble1Center.y,
+                 bubble2Center.x, bubble2Center.y); }
+            x1 := bubble1Center.x;
+            x2 := bubble2Center.x;
+            y1 := bubble1Center.y;
+            y2 := bubble2Center.y;
+            
+            if x1 > 768 then x1 := 768;
+            if x2 > 768 then x2 := 768;
+            if y1 > 1024 then y1 := 1024;
+            if y2 > 1024 then y2 := 1024;
+ {           writeln('    pinned to ', x1, y1, x2, y2); }
+            Line(DrawLine, x1, y1, x2, y2, SScreenP);
+            
+{           Line(DrawLine, bubble1Center.x, bubble1Center.y,
+                 bubble2Center.x, bubble2Center.y, SScreenP);
+}
+        end;
+    end;
+    writeln('done with lines');
+    for i := 0 to bubbleCount - 1 do begin
+        writeln('framing ', i, 
+        allGeometries[i].bounds.origin.x,
+        allGeometries[i].bounds.origin.y,
+        allGeometries[i].bounds.size.width,
+        allGeometries[i].bounds.size.height);
+{        StrokeRect(allGeometries[i].bounds); }
+    end;
+
+end; { DrawSomeBubbles }
 
 
 (* ---- main ---- *)
@@ -313,4 +355,8 @@ begin
     writeln('connection ', allConnections[1].bubble1ID, 
             allConnections[1].bubble2ID);
     
+    DrawSomeBubbles;
+    
+    writeln('all done');
+    writeln('huh');
 end.

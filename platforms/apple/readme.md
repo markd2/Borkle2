@@ -33,6 +33,11 @@ and ran borkle document (modcomp notes) through it.
 
 ![](assets/converter-output.png)
 
+Made bubbles look a little less bletcherous, and also correctly compute
+their height
+
+![](assets/less-bletch.png)
+
 
 
 # Gripes about Borkle-1

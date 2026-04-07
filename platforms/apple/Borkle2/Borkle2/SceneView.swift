@@ -35,21 +35,25 @@ class SceneView: NSView {
     func drawBubbles() {
         NSColor.brown.set()
         for geometry in scene.geometries {
+            let bezierPath = NSBezierPath()
+            bezierPath.lineWidth = 1.0
+            bezierPath.appendRoundedRect(geometry.bounds,
+                                         xRadius: 4, yRadius: 4)
+
             Colors.bubbleBackground.set()
-            geometry.bounds.fill()
+            bezierPath.fill()
 
             let string = soup.bubbles[Int(geometry.bubbleID)].title! as NSString
-//            let size = string.size()
-//            let stringRect = geometry.bounds.sizeCenteredIn(size)
 
-            let attributedString = NSAttributedString.init(string: string as String)
-            let stringRect = geometry.bounds.insetBy(dx: 3, dy: 3)
-            attributedString.draw(in: stringRect)
-//            string.draw(with: stringRect,
-//                        options: .usesLineFragmentOrigin)
+//            let attributedString = NSAttributedString.init(string: string as String)
+            var stringRect = geometry.bounds.insetBy(dx: 3, dy: 3)
+            let height = string.heightFor(width: stringRect.width)
+            stringRect.size = CGSize(width: stringRect.width, height: height)
+            string.draw(with: stringRect,
+                        options: .usesLineFragmentOrigin)
             
             Colors.bubbleFrame.set()
-            geometry.bounds.frame()
+            bezierPath.stroke()
         }
     }
 

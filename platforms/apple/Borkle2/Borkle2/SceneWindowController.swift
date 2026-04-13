@@ -5,6 +5,8 @@ import Yams
 
 class SceneWindowController: NSWindowController {
     @IBOutlet var sceneView: SceneView!
+    @IBOutlet var scroller: NSScrollView!
+
     @IBOutlet var filenameLabel: NSTextField! {
         didSet {
             if filename != nil {
@@ -23,6 +25,14 @@ class SceneWindowController: NSWindowController {
 
     var soup: BubbleSoup!
     var scene: Scene = Scene()
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        scroller.contentView.backgroundColor = Colors.canvasBackground
+        scroller.hasHorizontalScroller = true
+        scroller.hasVerticalScroller = true
+    }
 
     @IBAction func splunge(_ sender: NSControl) {
         _ = scene.addID(1)
@@ -57,7 +67,7 @@ class SceneWindowController: NSWindowController {
         sceneView.scene = scene
         sceneView.soup = soup
 
-        print("SNUGGLI: \(scene.snugglyRect)")
+        updateScrollJunk()
     }
 
     @IBAction func save(_ sender: NSControl) {
@@ -92,11 +102,17 @@ class SceneWindowController: NSWindowController {
         sceneView.scene = scene
         sceneView.soup = soup
 
-        print("SNUGGLI: \(scene.snugglyRect)")
+        updateScrollJunk()
     }
 
     @IBAction func load(_ sender: NSControl) {
         actuallyLoadYaml()
+    }
+
+    func updateScrollJunk() {
+        let snuggly = scene.snugglyRect
+        Swift.print("SNUGGLI \(snuggly)")
+        sceneView.frame = snuggly
     }
 }
 

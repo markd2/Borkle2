@@ -38,6 +38,9 @@ their height
 
 ![](assets/less-bletch.png)
 
+Scrolling!  Even grab-hand scrolling.
+
+![](assets/scrolling.gif)
 
 
 # Gripes about Borkle-1

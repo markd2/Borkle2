@@ -33,6 +33,12 @@ class Scene: Codable {
     /// The geometry of the bubbles
     var geometries: [BubbleGeometry] = []
 
+    var snugglyRect: CGRect {
+        geometries.reduce(into: CGRect.zero) { (accumulator, geometry) in
+            accumulator = accumulator.union(geometry.bounds)
+        }
+    }
+
     /// connections (if any) between pairs of bubbles
     var connections: [Connection] = []
 

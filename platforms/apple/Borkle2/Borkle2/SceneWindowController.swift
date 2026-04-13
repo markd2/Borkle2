@@ -56,6 +56,8 @@ class SceneWindowController: NSWindowController {
 
         sceneView.scene = scene
         sceneView.soup = soup
+
+        print("SNUGGLI: \(scene.snugglyRect)")
     }
 
     @IBAction func save(_ sender: NSControl) {
@@ -89,6 +91,8 @@ class SceneWindowController: NSWindowController {
         
         sceneView.scene = scene
         sceneView.soup = soup
+
+        print("SNUGGLI: \(scene.snugglyRect)")
     }
 
     @IBAction func load(_ sender: NSControl) {

@@ -41,3 +41,21 @@ How is the xib cornfigured?
 How again is the natural size to scroll communicated back?
   - by setting its frame
 
+That was pretty quick - how hard to add the grab-hand scroll?
+
+----
+
+ARG - the project I made yesterday was pointing to the random learning repo. (and turns
+out projects are not repo-pecuilar, but per-user, but can prefer to point to a repo.
+And also default to prive. So needed to move all the created issues (ten?) so far and
+made the project public.  Also lost the labels, but added an ADR to prefer emergent
+bureaucracy.
+
+----------
+
+Started nabbing Borkle1 stuff - I still kind of really like the MouseSupport and
+mouse handler things.  Pretty much pulled the GrabHand scroll verbatim, and once
+compiler errors were ironed out, worked first time! (every time)
+
+
+

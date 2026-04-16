@@ -42,6 +42,10 @@ Scrolling!  Even grab-hand scrolling.
 
 ![](assets/scrolling.gif)
 
+Zooming!  (via buttons)
+
+![](assets/zooming.png)
+
 
 # Gripes about Borkle-1
 

@@ -12,8 +12,6 @@ class SceneView: NSView {
     }
     var soup: BubbleSoup!
 
-    var zoomLevel: Int = 100
-
     override var isFlipped: Bool {
         true
     }
@@ -28,7 +26,6 @@ class SceneView: NSView {
 
     // Event / user-interaction goodies
     var currentMouseHandler: MouseHandler?
-    var scrollOrigin: CGPoint? // !!! not sure this is actually used by anybody
 
     var spaceDown: Bool = false
     var currentCursor: Cursor = .arrow
@@ -180,7 +177,6 @@ extension SceneView {
         lastPoint = viewLocation
 
         defer {
-            scrollOrigin = nil
             currentMouseHandler = nil
         }
 

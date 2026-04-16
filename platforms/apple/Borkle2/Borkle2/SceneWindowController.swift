@@ -114,6 +114,26 @@ class SceneWindowController: NSWindowController {
         Swift.print("SNUGGLI \(snuggly)")
         sceneView.frame = snuggly
     }
+
+    @IBOutlet var zoomLabel: NSTextField!
+
+    func updateZoomLabel() {
+        zoomLabel.stringValue = "\(sceneView.zoomLevel)%"
+    }
+
+    @IBAction func zoomIn(_ sender: NSControl) {
+        Swift.print("oop")
+        let newZoom = sceneView.zoomLevel + 10
+        sceneView.zoomLevel = newZoom
+        updateZoomLabel()
+    }
+
+    @IBAction func zoomOut(_ sender: NSControl) {
+        Swift.print("ack")
+        let newZoom = max(sceneView.zoomLevel - 10, 50)
+        sceneView.zoomLevel = newZoom
+        updateZoomLabel()
+    }
 }
 
 

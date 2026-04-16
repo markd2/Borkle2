@@ -57,5 +57,19 @@ Started nabbing Borkle1 stuff - I still kind of really like the MouseSupport and
 mouse handler things.  Pretty much pulled the GrabHand scroll verbatim, and once
 compiler errors were ironed out, worked first time! (every time)
 
+==================================================
+# Thursday April 16, 2026
+
+Next up, since we have scrolling, we need zooming, because my eyes are bad.
+  - https://github.com/markd2/Borkle2/issues/17
+
+Hooking up the buttons is easy. Using an integer (e.g. 100, 120) for the zoom level.
+makes it easy to look at and put into the UI, and not worry about floating point
+round-off (or maybe we can go all System Ten and BCD :all-the-things: %-) )
+
+
+
+
+
 
 

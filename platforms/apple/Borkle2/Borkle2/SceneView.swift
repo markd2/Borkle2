@@ -12,6 +12,8 @@ class SceneView: NSView {
     }
     var soup: BubbleSoup!
 
+    var zoomLevel: Int = 100
+
     override var isFlipped: Bool {
         true
     }

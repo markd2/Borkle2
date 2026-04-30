@@ -33,6 +33,21 @@ class SceneView: NSView {
     /// for things like "hey paste at the last place the user clicked.
     var lastPoint: CGPoint?
 
+
+    required init?(coder: NSCoder) {
+        currentCursor = .arrow
+        super.init(coder: coder)
+        addTrackingAreas()
+    }
+    
+    override init(frame: CGRect) {
+        currentCursor = .arrow
+        super.init(frame: frame)
+        addTrackingAreas()
+    }
+    var trackingArea: NSTrackingArea!
+
+
     func drawConnections() {
         Colors.bubbleConnection.set()
         for connection in scene.connections {
@@ -189,6 +204,37 @@ extension SceneView {
             return
         }
     }
+
+    override func updateTrackingAreas() {
+        if spaceDown { return }
+
+        if let trackingArea = trackingArea {
+            removeTrackingArea(trackingArea)
+            self.trackingArea = nil
+        }
+        addTrackingAreas()
+    }
+
+    func addTrackingAreas() {
+        let trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow], owner: self, userInfo: nil)
+        addTrackingArea(trackingArea)
+    }
+
+    override func mouseMoved(with event: NSEvent) {
+        if spaceDown { return }
+
+        let locationInWindow = event.locationInWindow
+        let viewLocation = convert(locationInWindow, from: nil)
+
+        Swift.print("WHEEEE! MOOSE MOVED \(Date())")
+
+        /*
+         let bubble = bubbleSoup.hitTestBubble(at: viewLocation)
+         highlightBubble(bubble)
+         */
+    }
+
+
 }
 
 extension SceneView: MouseSupport {

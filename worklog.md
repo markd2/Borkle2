@@ -67,8 +67,27 @@ Hooking up the buttons is easy. Using an integer (e.g. 100, 120) for the zoom le
 makes it easy to look at and put into the UI, and not worry about floating point
 round-off (or maybe we can go all System Ten and BCD :all-the-things: %-) )
 
+==================================================
+# Thursday April 30, 2026
+
+do mouse-over bubble highlighting.
+
+Borkle 1 has a mouseMoved handler that hitessts the bubbles, and then
+highlights the found one.
 
 
+    func addTrackingAreas() {
+        let trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow], owner: self, userInfo: nil)
+        addTrackingArea(trackingArea)
+    }
+
+but might be nice to have a mouse support thing for this - not click/drag,
+but just motion, rather than a specific canvas view method to do it.
+
+B1 has a highlightedID (optional) of the currently highlighted bubble (which
+implies just one highlighted bubble, which may be fine)
+
+B1 is kind of sluggish, and sometimes doesn't unhighlight
 
 
 

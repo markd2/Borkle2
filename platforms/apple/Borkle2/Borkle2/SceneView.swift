@@ -3,6 +3,8 @@
 import AppKit
 
 class SceneView: NSView {
+    var lastMoved = Date()
+
     // eventually might want a scene stack, if scenes can reference other
     // scenes as bubbles
     var scene: Scene! {
@@ -26,6 +28,7 @@ class SceneView: NSView {
 
     // Event / user-interaction goodies
     var currentMouseHandler: MouseHandler?
+    var defaultMouseHandler: MouseHandler?
 
     var spaceDown: Bool = false
     var currentCursor: Cursor = .arrow
@@ -37,13 +40,17 @@ class SceneView: NSView {
     required init?(coder: NSCoder) {
         currentCursor = .arrow
         super.init(coder: coder)
+        defaultMouseHandler = MouseMoved(withSupport: self)
         addTrackingAreas()
+        currentMouseHandler = defaultMouseHandler
     }
     
     override init(frame: CGRect) {
         currentCursor = .arrow
         super.init(frame: frame)
+        defaultMouseHandler = MouseMoved(withSupport: self)
         addTrackingAreas()
+        currentMouseHandler = defaultMouseHandler
     }
     var trackingArea: NSTrackingArea!
 
@@ -192,7 +199,7 @@ extension SceneView {
         lastPoint = viewLocation
 
         defer {
-            currentMouseHandler = nil
+            currentMouseHandler = defaultMouseHandler
         }
 
         if spaceDown {
@@ -222,16 +229,18 @@ extension SceneView {
 
     override func mouseMoved(with event: NSEvent) {
         if spaceDown { return }
+        guard let handler = currentMouseHandler else { return} 
 
         let locationInWindow = event.locationInWindow
-        let viewLocation = convert(locationInWindow, from: nil)
 
-        Swift.print("WHEEEE! MOOSE MOVED \(Date())")
-
-        /*
-         let bubble = bubbleSoup.hitTestBubble(at: viewLocation)
-         highlightBubble(bubble)
-         */
+        if handler.prefersWindowCoordinates {
+            currentMouseHandler?.move(to: locationInWindow,
+                                      modifierFlags: event.modifierFlags)
+        } else {
+            let viewLocation = convert(locationInWindow, from: nil)
+            handler.move(to: viewLocation,
+                         modifierFlags: event.modifierFlags)
+        }
     }
 
 

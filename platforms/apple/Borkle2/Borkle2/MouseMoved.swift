@@ -14,13 +14,13 @@ class MouseMoved: MouseHandler {
     var moveThrottle: TimeInterval = 0.05
     var lastMoved: Date = Date()
 
-    var prefersWindowCoordinates: Bool { return true }
+    var prefersWindowCoordinates: Bool { return false }
     
     init(withSupport support: MouseSupport) {
         self.support = support
     }
 
-    func move(to: CGPoint, modifierFlags: NSEvent.ModifierFlags) {
+    func move(to point: CGPoint, modifierFlags: NSEvent.ModifierFlags) {
         let now = Date()
         let delta = now.timeIntervalSince(lastMoved)
 
@@ -29,12 +29,13 @@ class MouseMoved: MouseHandler {
         }
         lastMoved = now
 
-        print("move to \(to) flags \(modifierFlags)")
+        let bubble = support.hitTestBubble(at: point)
 
-        /*
-         let bubble = bubbleSoup.hitTestBubble(at: viewLocation)
-         highlightBubble(bubble)
-         */
+        if let bubble = bubble {
+            print("got a bubble \(bubble.title!)")
+        } else {
+            print("no bubble I")
+        }
     }
 }
 

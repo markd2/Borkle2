@@ -7,7 +7,17 @@ protocol MouseHandler {
     func drag(to: CGPoint, modifierFlags: NSEvent.ModifierFlags)
     func finish(at: CGPoint, modifierFlags: NSEvent.ModifierFlags)
 
+    func move(to: CGPoint, modifierFlags: NSEvent.ModifierFlags)
+
     var prefersWindowCoordinates: Bool { get }
+}
+
+extension MouseHandler {
+    func start(at: CGPoint, modifierFlags: NSEvent.ModifierFlags) { }
+    func drag(to: CGPoint, modifierFlags: NSEvent.ModifierFlags) { }
+    func finish(at: CGPoint, modifierFlags: NSEvent.ModifierFlags) { }
+    func move(to: CGPoint, modifierFlags: NSEvent.ModifierFlags) { }
+   
 }
 
 protocol MouseSupport {

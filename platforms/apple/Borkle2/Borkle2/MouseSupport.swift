@@ -24,8 +24,9 @@ protocol MouseSupport {
     var currentScrollOffset: CGPoint { get }
     func scroll(to: CGPoint)
 
-/* FOR THE FUTURE
     func hitTestBubble(at: CGPoint) -> Bubble?
+
+/* FOR THE FUTURE
     func areaTestBubbles(intersecting: CGRect) -> [Bubble]?
     func drawMarquee(around: CGRect)
 

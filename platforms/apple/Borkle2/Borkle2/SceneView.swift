@@ -242,8 +242,6 @@ extension SceneView {
                          modifierFlags: event.modifierFlags)
         }
     }
-
-
 }
 
 extension SceneView: MouseSupport {
@@ -258,5 +256,18 @@ extension SceneView: MouseSupport {
 
     func scroll(to newOrigin: CGPoint) {
         scroll(newOrigin)
+    }
+
+    func hitTestBubble(at point: CGPoint) -> Bubble? {
+        guard let soup else { return nil }
+
+        for geometry in scene.geometries {
+            if geometry.bounds.contains(point) {
+                let bubbleID = geometry.bubbleID
+                let bubble = soup.bubbles[Int(bubbleID)]
+                return bubble
+            }
+        }
+        return nil
     }
 }

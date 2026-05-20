@@ -14,6 +14,9 @@ class MouseMoved: MouseHandler {
     var moveThrottle: TimeInterval = 0.05
     var lastMoved: Date = Date()
 
+    /// Don't retrigger on the same state.
+    var lastBubbleID: BubbleID? = Bubble.illegalID  // nil for no current bubble
+
     var prefersWindowCoordinates: Bool { return false }
     
     init(withSupport support: MouseSupport) {
@@ -32,9 +35,15 @@ class MouseMoved: MouseHandler {
         let bubble = support.hitTestBubble(at: point)
 
         if let bubble = bubble {
-            print("got a bubble \(bubble.title!)")
+            if lastBubbleID == nil || bubble.ID != lastBubbleID! {
+                lastBubbleID = bubble.ID
+                print("got a bubble \(bubble.title!)")
+            }
         } else {
-            print("no bubble I")
+            if lastBubbleID != nil {
+                lastBubbleID = nil
+                print("no bubble I")
+            }
         }
     }
 }

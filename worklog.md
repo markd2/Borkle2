@@ -89,6 +89,22 @@ implies just one highlighted bubble, which may be fine)
 
 B1 is kind of sluggish, and sometimes doesn't unhighlight
 
+==================================================
+# Wednesday May 20, 2026 - WiW
 
+oh yeah, had to reboot due to mac TCP/IP bug.
 
+where were we?  Seeing logs when changing to a bubble.
+That's coming from MouseMoved (So not getting surfaced back to say
+the scene view)
+
+It's doing a time throttle.  It should also do a content throttle,
+so it doesn't say "hey, we're over this bubble. WE'RE STILL OVER IT".
+Just do transitions.
+
+now plumbing it back.  Moose support had a `highlightAsDropTarget`.
+That's too specific. Call it 'hovered Bubble' for exactly what it is,
+the cursor is over a bubble, without any specific meaning
+
+and pass ID around rather than bubbles.
 

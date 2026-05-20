@@ -17,7 +17,6 @@ extension MouseHandler {
     func drag(to: CGPoint, modifierFlags: NSEvent.ModifierFlags) { }
     func finish(at: CGPoint, modifierFlags: NSEvent.ModifierFlags) { }
     func move(to: CGPoint, modifierFlags: NSEvent.ModifierFlags) { }
-   
 }
 
 protocol MouseSupport {
@@ -25,6 +24,8 @@ protocol MouseSupport {
     func scroll(to: CGPoint)
 
     func hitTestBubble(at: CGPoint) -> Bubble?
+
+    func hoveredBubble(bubbleID: BubbleID?) // nil if over empty space
 
 /* FOR THE FUTURE
     func areaTestBubbles(intersecting: CGRect) -> [Bubble]?
@@ -41,6 +42,8 @@ protocol MouseSupport {
 
     func connect(bubbles: [Bubble], to: Bubble)
     func disconnect(bubbles: [Bubble], from: Bubble)
+
+    // renaming to "hoveredBubble"
     func highlightAsDropTarget(bubble: Bubble?) // nil to remove highlight
 
     func bubblesAffectedBy(barrier: Barrier) -> [Bubble]?
@@ -55,4 +58,6 @@ protocol MouseSupport {
 
 extension MouseHandler {
     var prefersWindowCoordinates: Bool { return false }
+
+    func hoveredBubble(bubbleID: BubbleID?) { }
 }

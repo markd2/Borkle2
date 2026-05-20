@@ -1,12 +1,14 @@
 import Foundation
 
+typealias BubbleID = Int32
 
 class Bubble : Codable {
+    static let illegalID: BubbleID = -1
 
     // Technically not needed, but handy for figuring out if we have
     // index issues.  This should match the array index in the bubble
     // soup.
-    var ID: Int32
+    var ID: BubbleID
 
     var title: String?
     var body: String?

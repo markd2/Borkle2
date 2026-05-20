@@ -3,6 +3,8 @@
 import AppKit
 
 class SceneView: NSView {
+    var lastMoved = Date()
+
     // eventually might want a scene stack, if scenes can reference other
     // scenes as bubbles
     var scene: Scene! {
@@ -26,12 +28,34 @@ class SceneView: NSView {
 
     // Event / user-interaction goodies
     var currentMouseHandler: MouseHandler?
+    var defaultMouseHandler: MouseHandler?
 
     var spaceDown: Bool = false
     var currentCursor: Cursor = .arrow
 
+    var highlightedBubbleID: BubbleID? = nil
+
     /// for things like "hey paste at the last place the user clicked.
     var lastPoint: CGPoint?
+
+
+    required init?(coder: NSCoder) {
+        currentCursor = .arrow
+        super.init(coder: coder)
+        defaultMouseHandler = MouseMoved(withSupport: self)
+        addTrackingAreas()
+        currentMouseHandler = defaultMouseHandler
+    }
+    
+    override init(frame: CGRect) {
+        currentCursor = .arrow
+        super.init(frame: frame)
+        defaultMouseHandler = MouseMoved(withSupport: self)
+        addTrackingAreas()
+        currentMouseHandler = defaultMouseHandler
+    }
+    var trackingArea: NSTrackingArea!
+
 
     func drawConnections() {
         Colors.bubbleConnection.set()
@@ -39,6 +63,13 @@ class SceneView: NSView {
             NSBezierPath.strokeLine(from: connection.bubble1Center,
                                     to: connection.bubble2Center)
         }
+    }
+
+    func isBubbleMousedOver(_ id: BubbleID) -> Bool {
+        guard let highlightedBubbleID = highlightedBubbleID else {
+            return false
+        }
+        return id == highlightedBubbleID
     }
 
     func drawBubbles() {
@@ -51,6 +82,13 @@ class SceneView: NSView {
 
             Colors.bubbleBackground.set()
             bezierPath.fill()
+
+            // right now highlighting bubbles by drawing a color wash
+            // over them.  So draw this over the prior background
+            if isBubbleMousedOver(geometry.bubbleID) {
+                Colors.bubbleMouseOver.set()
+                bezierPath.fill()
+            }
 
             let string = soup.bubbles[Int(geometry.bubbleID)].title! as NSString
 
@@ -177,7 +215,7 @@ extension SceneView {
         lastPoint = viewLocation
 
         defer {
-            currentMouseHandler = nil
+            currentMouseHandler = defaultMouseHandler
         }
 
         if spaceDown {
@@ -187,6 +225,37 @@ extension SceneView {
         if let handler = currentMouseHandler {
             handler.finish(at: viewLocation, modifierFlags: event.modifierFlags)
             return
+        }
+    }
+
+    override func updateTrackingAreas() {
+        if spaceDown { return }
+
+        if let trackingArea = trackingArea {
+            removeTrackingArea(trackingArea)
+            self.trackingArea = nil
+        }
+        addTrackingAreas()
+    }
+
+    func addTrackingAreas() {
+        let trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow], owner: self, userInfo: nil)
+        addTrackingArea(trackingArea)
+    }
+
+    override func mouseMoved(with event: NSEvent) {
+        if spaceDown { return }
+        guard let handler = currentMouseHandler else { return} 
+
+        let locationInWindow = event.locationInWindow
+
+        if handler.prefersWindowCoordinates {
+            currentMouseHandler?.move(to: locationInWindow,
+                                      modifierFlags: event.modifierFlags)
+        } else {
+            let viewLocation = convert(locationInWindow, from: nil)
+            handler.move(to: viewLocation,
+                         modifierFlags: event.modifierFlags)
         }
     }
 }
@@ -204,4 +273,27 @@ extension SceneView: MouseSupport {
     func scroll(to newOrigin: CGPoint) {
         scroll(newOrigin)
     }
+
+    func hitTestBubble(at point: CGPoint) -> Bubble? {
+        guard let soup else { return nil }
+
+        for geometry in scene.geometries {
+            if geometry.bounds.contains(point) {
+                let bubbleID = geometry.bubbleID
+                let bubble = soup.bubbles[Int(bubbleID)]
+                return bubble
+            }
+        }
+        return nil
+    }
+
+    func hoveredBubble(bubbleID: BubbleID?) {
+        if let bubbleID = bubbleID {
+            highlightedBubbleID = bubbleID
+            needsDisplay = true
+        } else {
+            highlightedBubbleID = nil
+            needsDisplay = true
+        }
+    } // hoveredBubble
 }

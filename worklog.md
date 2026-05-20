@@ -67,9 +67,44 @@ Hooking up the buttons is easy. Using an integer (e.g. 100, 120) for the zoom le
 makes it easy to look at and put into the UI, and not worry about floating point
 round-off (or maybe we can go all System Ten and BCD :all-the-things: %-) )
 
+==================================================
+# Thursday April 30, 2026
+
+do mouse-over bubble highlighting.
+
+Borkle 1 has a mouseMoved handler that hitessts the bubbles, and then
+highlights the found one.
 
 
+    func addTrackingAreas() {
+        let trackingArea = NSTrackingArea(rect: bounds, options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow], owner: self, userInfo: nil)
+        addTrackingArea(trackingArea)
+    }
 
+but might be nice to have a mouse support thing for this - not click/drag,
+but just motion, rather than a specific canvas view method to do it.
 
+B1 has a highlightedID (optional) of the currently highlighted bubble (which
+implies just one highlighted bubble, which may be fine)
 
+B1 is kind of sluggish, and sometimes doesn't unhighlight
+
+==================================================
+# Wednesday May 20, 2026 - WiW
+
+oh yeah, had to reboot due to mac TCP/IP bug.
+
+where were we?  Seeing logs when changing to a bubble.
+That's coming from MouseMoved (So not getting surfaced back to say
+the scene view)
+
+It's doing a time throttle.  It should also do a content throttle,
+so it doesn't say "hey, we're over this bubble. WE'RE STILL OVER IT".
+Just do transitions.
+
+now plumbing it back.  Moose support had a `highlightAsDropTarget`.
+That's too specific. Call it 'hovered Bubble' for exactly what it is,
+the cursor is over a bubble, without any specific meaning
+
+and pass ID around rather than bubbles.
 

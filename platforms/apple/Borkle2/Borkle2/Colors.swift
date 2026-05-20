@@ -12,4 +12,6 @@ enum Colors {
     static let bubbleBackground = NSColor.white
     static let bubbleFrame = NSColor.black
     static let bubbleConnection = NSColor.purple
+
+    static let bubbleMouseOver = NSColor.orange.withAlphaComponent(0.1)
 }

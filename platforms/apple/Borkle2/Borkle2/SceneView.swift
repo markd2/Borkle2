@@ -33,6 +33,8 @@ class SceneView: NSView {
     var spaceDown: Bool = false
     var currentCursor: Cursor = .arrow
 
+    var highlightedBubbleID: BubbleID? = nil
+
     /// for things like "hey paste at the last place the user clicked.
     var lastPoint: CGPoint?
 
@@ -63,6 +65,13 @@ class SceneView: NSView {
         }
     }
 
+    func isBubbleMousedOver(_ id: BubbleID) -> Bool {
+        guard let highlightedBubbleID = highlightedBubbleID else {
+            return false
+        }
+        return id == highlightedBubbleID
+    }
+
     func drawBubbles() {
         NSColor.brown.set()
         for geometry in scene.geometries {
@@ -73,6 +82,13 @@ class SceneView: NSView {
 
             Colors.bubbleBackground.set()
             bezierPath.fill()
+
+            // right now highlighting bubbles by drawing a color wash
+            // over them.  So draw this over the prior background
+            if isBubbleMousedOver(geometry.bubbleID) {
+                Colors.bubbleMouseOver.set()
+                bezierPath.fill()
+            }
 
             let string = soup.bubbles[Int(geometry.bubbleID)].title! as NSString
 
@@ -273,10 +289,11 @@ extension SceneView: MouseSupport {
 
     func hoveredBubble(bubbleID: BubbleID?) {
         if let bubbleID = bubbleID {
-            let bubble = soup.bubbles[Int(bubbleID)]
-            print("got a bubble \(bubble.title!)")
+            highlightedBubbleID = bubbleID
+            needsDisplay = true
         } else {
-            print("no bubble I")
+            highlightedBubbleID = nil
+            needsDisplay = true
         }
     } // hoveredBubble
 }

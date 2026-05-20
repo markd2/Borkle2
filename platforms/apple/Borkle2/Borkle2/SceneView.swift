@@ -270,4 +270,13 @@ extension SceneView: MouseSupport {
         }
         return nil
     }
+
+    func hoveredBubble(bubbleID: BubbleID?) {
+        if let bubbleID = bubbleID {
+            let bubble = soup.bubbles[Int(bubbleID)]
+            print("got a bubble \(bubble.title!)")
+        } else {
+            print("no bubble I")
+        }
+    } // hoveredBubble
 }

@@ -37,12 +37,12 @@ class MouseMoved: MouseHandler {
         if let bubble = bubble {
             if lastBubbleID == nil || bubble.ID != lastBubbleID! {
                 lastBubbleID = bubble.ID
-                print("got a bubble \(bubble.title!)")
+                support.hoveredBubble(bubbleID: lastBubbleID)
             }
         } else {
             if lastBubbleID != nil {
                 lastBubbleID = nil
-                print("no bubble I")
+                support.hoveredBubble(bubbleID: lastBubbleID)
             }
         }
     }

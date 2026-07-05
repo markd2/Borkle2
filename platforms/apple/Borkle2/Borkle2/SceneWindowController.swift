@@ -6,6 +6,7 @@ import Yams
 class SceneWindowController: NSWindowController {
     @IBOutlet var sceneView: SceneView!
     @IBOutlet var scroller: NSScrollView!
+    @IBOutlet var findSearchField: NSSearchField!
 
     @IBOutlet var filenameLabel: NSTextField! {
         didSet {

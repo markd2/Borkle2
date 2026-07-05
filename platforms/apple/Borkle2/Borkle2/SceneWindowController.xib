@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SceneWindowController" customModule="Borkle2" customModuleProvider="target">
             <connections>
                 <outlet property="filenameLabel" destination="Ulc-6Q-KrI" id="eds-eb-zUi"/>
+                <outlet property="findSearchField" destination="Bdk-di-1gb" id="RJs-MS-Dfv"/>
                 <outlet property="sceneView" destination="iBj-3e-5Y0" id="h7F-RV-OP8"/>
                 <outlet property="scroller" destination="NcJ-fK-7Ts" id="foZ-wK-zet"/>
                 <outlet property="window" destination="t2A-tj-qpP" id="7XQ-pC-WiW"/>
@@ -19,11 +20,11 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="scenewindowcontroller" animationBehavior="default" id="t2A-tj-qpP" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="133" y="235" width="451" height="328"/>
+            <rect key="contentRect" x="133" y="235" width="620" height="328"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1127"/>
             <value key="minSize" type="size" width="94" height="86"/>
             <view key="contentView" id="fxx-y3-KjJ">
-                <rect key="frame" x="0.0" y="0.0" width="451" height="328"/>
+                <rect key="frame" x="0.0" y="0.0" width="620" height="328"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LeI-EM-eTY">
@@ -60,7 +61,7 @@
                         </connections>
                     </button>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yw8-5K-A8j">
-                        <rect key="frame" x="363" y="4" width="70" height="16"/>
+                        <rect key="frame" x="532" y="4" width="70" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="(read only)" id="R47-oc-MGb">
                             <font key="font" metaFont="system"/>
@@ -69,7 +70,7 @@
                         </textFieldCell>
                     </textField>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ulc-6Q-KrI">
-                        <rect key="frame" x="367" y="302" width="66" height="18"/>
+                        <rect key="frame" x="536" y="302" width="66" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="(filename)" id="NUc-jG-tS0">
                             <font key="font" metaFont="system"/>
@@ -78,24 +79,24 @@
                         </textFieldCell>
                     </textField>
                     <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcJ-fK-7Ts">
-                        <rect key="frame" x="19" y="4" width="428" height="294"/>
+                        <rect key="frame" x="19" y="4" width="597" height="294"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="k5b-Tn-T2k">
-                            <rect key="frame" x="1" y="1" width="411" height="277"/>
+                            <rect key="frame" x="1" y="1" width="580" height="277"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBj-3e-5Y0" customClass="SceneView" customModule="Borkle2" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="411" height="277"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="580" height="277"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </customView>
                             </subviews>
                         </clipView>
                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ew8-8R-0lU">
-                            <rect key="frame" x="1" y="278" width="411" height="15"/>
+                            <rect key="frame" x="1" y="278" width="580" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="bgp-Hi-F44">
-                            <rect key="frame" x="412" y="1" width="15" height="277"/>
+                            <rect key="frame" x="581" y="1" width="15" height="277"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -130,9 +131,18 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdk-di-1gb">
+                        <rect key="frame" x="359" y="301" width="109" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="DbM-FX-jgE">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </searchFieldCell>
+                    </searchField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-14.5" y="80"/>
+            <point key="canvasLocation" x="40" y="18"/>
         </window>
     </objects>
 </document>

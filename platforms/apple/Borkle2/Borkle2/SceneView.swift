@@ -178,6 +178,8 @@ extension SceneView {
     }
 
     override func mouseDown(with event: NSEvent) {
+        self.window?.makeFirstResponder(self)
+
         let locationInWindow = event.locationInWindow
         let viewLocation = convert(locationInWindow, from: nil)
         lastPoint = viewLocation

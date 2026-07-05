@@ -11,8 +11,26 @@ enum SearchResult {
 class Searcher {
 
     func ranges(of text: String, in string: String?) -> [NSRange] {
-        guard let string = string else { return [] }
-        return [NSRange(location: 1, length: 2)]
+        guard let string = string as? NSString else { return [] }
+
+        var results: [NSRange] = []
+
+        var searchRange = string.fullRange
+
+        repeat {
+            let range = string.range(of: text,
+                                     options: [.caseInsensitive, .diacriticInsensitive],
+                                     range: searchRange)
+
+            guard range.length > 0 else { break }
+            results.append(range)
+
+            searchRange.location = range.upperBound
+            searchRange.length = string.length - searchRange.location
+
+        } while searchRange.length > 0
+
+        return results
     }
 
     func search(for searchString: String,

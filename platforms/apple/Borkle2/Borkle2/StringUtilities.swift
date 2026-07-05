@@ -4,6 +4,10 @@ import AppKit
 
 extension NSString {
 
+    var fullRange: NSRange {
+        NSRange(location: 0, length: length)
+    }
+
     // given some text, and a width to wrap in to, wrap it.
     // Using default font, etc.
     func heightFor(width: CGFloat) -> CGFloat {

@@ -149,8 +149,9 @@ extension SceneWindowController: NSSearchFieldDelegate {
             self.searchResults = searchResults
         }
 
-        guard searchString.count > 3 else {
-            Swift.print("cowardly not searching til we get four characters")
+        guard searchString.count >= 3 else {
+            // Gotta have three, because VAX
+            Swift.print("cowardly not searching til we get three characters")
             return
         }
 

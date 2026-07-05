@@ -108,3 +108,15 @@ the cursor is over a bubble, without any specific meaning
 
 and pass ID around rather than bubbles.
 
+==================================================
+# Saturday July 4, 2026
+
+Time for doing search in the scene.  Kind of like safari text search, where
+there's a list of hits, and you can move from hit to hit.
+
+When focusing on a hit, scroll the bubble front and center.  maybe highlight
+the text.
+
+All bubbles that have matching text get highlighted. Different hightlighting
+for "current" bubble.
+

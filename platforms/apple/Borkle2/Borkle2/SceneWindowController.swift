@@ -139,3 +139,31 @@ class SceneWindowController: NSWindowController {
 }
 
 
+extension SceneWindowController: NSSearchFieldDelegate {
+    func updateSearch() {
+        let searchString = findSearchField.stringValue
+
+        guard searchString.count > 3 else {
+            Swift.print("cowardly not searching til we get four characters")
+            return
+        }
+    }
+
+    func searchFieldDidStartSearching(_ searchField: NSSearchField) {
+    }
+
+    func searchFieldDidEndSearching(_ searchField: NSSearchField) {
+        updateSearch()
+    }
+
+    // Thought I would use searchFieldDidStart/EndSearching, but
+    // there's a weird timeout, so I can type a bunch of stuff, get a
+    // bunch of these callbacks, and *then* get the
+    // didStartSearching. Given how terrible the iOS SearchField class
+    // is, I'm not too sanguine on how much of the search field's
+    // specific features outside of this I'll use.
+    func controlTextDidChange(_ notification: Notification) {
+        updateSearch()
+    }
+}
+

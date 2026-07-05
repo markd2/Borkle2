@@ -139,6 +139,9 @@
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </searchFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="XQH-5P-Axd"/>
+                        </connections>
                     </searchField>
                 </subviews>
             </view>

@@ -99,6 +99,9 @@ class SceneView: NSView {
             var foundRange: NSRange?
 
             switch result {
+                // !!! once we get body and tag drawing support, 
+                // !!! can sue the .range computed property for all result
+                // !!! enum cases
             case let .titleRange(ID, range):
                 foundRange = (ID == bubbleID) ? range : nil
 

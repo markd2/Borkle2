@@ -46,6 +46,12 @@ Zooming!  (via buttons)
 
 ![](assets/zooming.png)
 
+Searching!  Type something in the search box, and matches highlight.
+Press return to move forward through the list, shift-return to move
+backwards
+
+![](assets/search.gif)
+
 
 # Gripes about Borkle-1
 

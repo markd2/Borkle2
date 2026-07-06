@@ -1,3 +1,6 @@
+// BubbleSoup.swift: contains all the bubbles. But just the bubbles, not the
+//    connections, graphics, etc
+
 import Foundation
 
 class BubbleSoup: Codable {
@@ -36,5 +39,10 @@ class BubbleSoup: Codable {
             }
         }
         print("yay (\(bubbles.count) bubbles)")
+    }
+
+    func search(for searchString: String,
+                limitBy: Set<BubbleID>? = nil) -> [SearchResult] {
+        Searcher().search(for: searchString, in: self, limitBy: limitBy)
     }
 }

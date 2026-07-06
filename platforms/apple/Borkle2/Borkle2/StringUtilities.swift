@@ -4,10 +4,37 @@ import AppKit
 
 extension NSString {
 
+    var fullRange: NSRange {
+        NSRange(location: 0, length: length)
+    }
+
     // given some text, and a width to wrap in to, wrap it.
     // Using default font, etc.
     func heightFor(width: CGFloat) -> CGFloat {
         let textStorage = NSTextStorage.init(string: self as String, attributes: nil)
+        let margin: CGFloat = 5
+        let insetWidth = width - (margin * 2)
+        let size = CGSize(width: insetWidth, height: .infinity)
+        let textContainer = NSTextContainer.init(containerSize: size)
+        let layoutManager = NSLayoutManager()
+
+        layoutManager.addTextContainer(textContainer)
+        textStorage.addLayoutManager(layoutManager)
+        
+        // maybe need to add the font attribute textStorage.add
+        textContainer.lineFragmentPadding = 0.0
+        
+        _ = layoutManager.glyphRange(for: textContainer)
+        let height = layoutManager.usedRect(for: textContainer).height
+        return height
+    }
+}
+
+extension AttributedString {
+    // given some text, and a width to wrap in to, wrap it.
+    func heightFor(width: CGFloat) -> CGFloat {
+        let attrString = NSAttributedString(self)
+        let textStorage = NSTextStorage.init(attributedString: attrString as NSAttributedString)
         let margin: CGFloat = 5
         let insetWidth = width - (margin * 2)
         let size = CGSize(width: insetWidth, height: .infinity)

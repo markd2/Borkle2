@@ -8,11 +8,15 @@ class SceneView: NSView {
     // eventually might want a scene stack, if scenes can reference other
     // scenes as bubbles
     var scene: Scene! {
+        didSet { needsDisplay = true }
+    }
+    var soup: BubbleSoup!
+    var searchResults: [SearchResult]? {
         didSet {
             needsDisplay = true
         }
     }
-    var soup: BubbleSoup!
+    var currentSearchResult = 0
 
     override var isFlipped: Bool {
         true
@@ -24,6 +28,22 @@ class SceneView: NSView {
         }
         set {
         }
+    }
+
+    // TODO: wondering if we can move the knowledge of these outside of
+    // SceneView.
+    var clipview: NSClipView {
+        guard let cv = superview as? NSClipView else {
+            fatalError("no clip view")
+        }
+        return cv
+    }
+
+    var scrollview: NSScrollView {
+        guard let sv = clipview.superview as? NSScrollView else {
+            fatalError("no scroll view")
+        }
+        return sv
     }
 
     // Event / user-interaction goodies
@@ -72,6 +92,48 @@ class SceneView: NSView {
         return id == highlightedBubbleID
     }
 
+    func markupForSearch(bubbleID: BubbleID,
+                         attributedString attr: AttributedString,
+                         searchResults: [SearchResult]?) -> AttributedString {
+        let string = NSMutableAttributedString(attr)
+
+        // !!! too much work being done
+        for (i, result) in (searchResults ?? []).enumerated() {
+            var foundRange: NSRange?
+
+            switch result {
+                // !!! once we get body and tag drawing support, 
+                // !!! can use the .range computed property for all result
+                // !!! enum cases
+            case let .titleRange(ID, range):
+                foundRange = (ID == bubbleID) ? range : nil
+
+            default:
+                continue
+            }
+
+            guard let foundRange else { continue }
+
+            // was going to use AttributedString, but Range and NSRange aren't
+            // that miscible
+
+            let attributes: [NSAttributedString.Key: Any]
+
+            if i == currentSearchResult {
+                attributes = [
+                  .foregroundColor: NSColor.white,
+                  .backgroundColor: NSColor.black
+                ]
+            } else {
+                attributes = [
+                  .foregroundColor: NSColor.orange
+                ]
+            }
+            string.addAttributes(attributes, range: foundRange)
+        }
+        return AttributedString(string)
+    }
+
     func drawBubbles() {
         NSColor.brown.set()
         for geometry in scene.geometries {
@@ -90,13 +152,19 @@ class SceneView: NSView {
                 bezierPath.fill()
             }
 
-            let string = soup.bubbles[Int(geometry.bubbleID)].title! as NSString
+            let bubbleString = soup.bubbles[geometry.bubbleID].title!
 
-//            let attributedString = NSAttributedString.init(string: string as String)
+            let bubbleAttributedString = AttributedString(bubbleString)
+            let string = markupForSearch(bubbleID: geometry.bubbleID,
+                                         attributedString: bubbleAttributedString,
+                                         searchResults: searchResults)
+
             var stringRect = geometry.bounds.insetBy(dx: 3, dy: 3)
             let height = string.heightFor(width: stringRect.width)
             stringRect.size = CGSize(width: stringRect.width, height: height)
-            string.draw(with: stringRect,
+
+            let nsattr = NSAttributedString(string)
+            nsattr.draw(with: stringRect,
                         options: .usesLineFragmentOrigin)
             
             Colors.bubbleFrame.set()
@@ -115,6 +183,36 @@ class SceneView: NSView {
 
         NSColor.black.set()
         bounds.frame()
+    }
+
+    func centerOn(rect: CGRect) {
+        let targetOrigin = NSPoint(
+          x: rect.midX - (clipview.bounds.width / 2.0),
+          y: rect.midY - (clipview.bounds.height / 2.0))
+        
+        let proposedRect = NSRect(origin: targetOrigin,
+                              size: clipview.bounds.size)
+        let constrainedRect = clipview.constrainBoundsRect(proposedRect)
+
+        // scroll
+        clipview.scroll(to: constrainedRect.origin)
+        scrollview.reflectScrolledClipView(clipview) // update scrool bars
+    }
+
+    func scrollToBubble(bubbleID: BubbleID) {
+        guard let geometry = scene.geometryFor(bubbleID) else { return }
+
+        centerOn(rect: geometry.bounds)
+    }
+
+    func moveSearchResultTo(searchIndex: Int) {
+        guard let searchResults else { return }
+        assert(searchIndex >= 0 && searchIndex < searchResults.count)
+
+        scrollToBubble(bubbleID: searchResults[searchIndex].bubbleID)
+        currentSearchResult = searchIndex
+
+        needsDisplay = true
     }
 }
 
@@ -178,6 +276,8 @@ extension SceneView {
     }
 
     override func mouseDown(with event: NSEvent) {
+        self.window?.makeFirstResponder(self)
+
         let locationInWindow = event.locationInWindow
         let viewLocation = convert(locationInWindow, from: nil)
         lastPoint = viewLocation
@@ -262,10 +362,6 @@ extension SceneView {
 
 extension SceneView: MouseSupport {
     var currentScrollOffset: CGPoint {
-        guard let clipview = superview as? NSClipView else {
-            fatalError("no clip vieW?")
-        }
-
         let origin = clipview.bounds.origin
         return origin
     }
@@ -280,7 +376,7 @@ extension SceneView: MouseSupport {
         for geometry in scene.geometries {
             if geometry.bounds.contains(point) {
                 let bubbleID = geometry.bubbleID
-                let bubble = soup.bubbles[Int(bubbleID)]
+                let bubble = soup.bubbles[bubbleID]
                 return bubble
             }
         }

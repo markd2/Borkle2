@@ -6,6 +6,7 @@ import Yams
 class SceneWindowController: NSWindowController {
     @IBOutlet var sceneView: SceneView!
     @IBOutlet var scroller: NSScrollView!
+    @IBOutlet var findSearchField: NSSearchField!
 
     @IBOutlet var filenameLabel: NSTextField! {
         didSet {
@@ -14,6 +15,8 @@ class SceneWindowController: NSWindowController {
             }
         }
     }
+
+    @IBOutlet var searchResultLabel: NSTextField!
 
     var filename: String! {
         didSet {
@@ -25,6 +28,17 @@ class SceneWindowController: NSWindowController {
 
     var soup: BubbleSoup!
     var scene: Scene = Scene()
+    var searchResults: [SearchResult]? {
+        didSet {
+            sceneView.searchResults = searchResults
+            currentSearchIndex = -1
+        }
+    }
+    var currentSearchIndex = -1 {
+        didSet {
+            updateSearchText()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -135,6 +149,82 @@ class SceneWindowController: NSWindowController {
         zoomLevel = max(zoomLevel - 10, 30)
         updateZoom()
     }
+
+    func updateSearchText() {
+        var text = ""
+
+        if searchResults == nil {
+        } else if currentSearchIndex < 0 {
+            text = "\(searchResults?.count ?? 0) found"
+        } else {
+            text = "\(currentSearchIndex + 1) / \(searchResults?.count ?? 0)"
+        }
+        searchResultLabel.stringValue = text
+    }
+
+    func handleSearchMovement(backwards: Bool) {
+        let count = searchResults?.count ?? 0
+        guard count > 0 else { return }
+
+        if backwards {
+            currentSearchIndex -= 1
+            if currentSearchIndex < 0 { currentSearchIndex = 0 }
+        } else {
+            currentSearchIndex += 1
+            if currentSearchIndex > count {
+                currentSearchIndex = count - 1
+            }
+        }
+
+        if currentSearchIndex < count {
+            sceneView.moveSearchResultTo(searchIndex: currentSearchIndex)
+        }
+    }
 }
 
+
+
+extension SceneWindowController: NSSearchFieldDelegate {
+
+    func control(_ control: NSControl, textView: NSTextView,
+                 doCommandBy commandSelector: Selector) -> Bool {
+        if commandSelector == #selector(NSResponder.insertNewline(_:)) {
+            var isShifty = false
+            if let currentEvent = NSApp.currentEvent {
+                isShifty = currentEvent.modifierFlags.contains(.shift)
+            }
+            handleSearchMovement(backwards: isShifty)
+        }
+        return false
+    }
+
+    func updateSearch() {
+        let searchString = findSearchField.stringValue
+        var searchResults: [SearchResult]?
+
+        defer {
+            self.searchResults = searchResults
+        }
+
+        searchResults = soup.search(for: searchString,
+                                    limitBy: scene.bubbleIDs)
+    }
+
+    func searchFieldDidStartSearching(_ searchField: NSSearchField) {
+    }
+
+    func searchFieldDidEndSearching(_ searchField: NSSearchField) {
+        updateSearch()
+    }
+
+    // Thought I would use searchFieldDidStart/EndSearching, but
+    // there's a weird timeout, so I can type a bunch of stuff, get a
+    // bunch of these callbacks, and *then* get the
+    // didStartSearching. Given how terrible the iOS SearchField class
+    // is, I'm not too sanguine on how much of the search field's
+    // specific features outside of this I'll use.
+    func controlTextDidChange(_ notification: Notification) {
+        updateSearch()
+    }
+}
 

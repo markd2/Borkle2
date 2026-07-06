@@ -82,12 +82,22 @@ class Scene: Codable {
         return "addConnection" as NSString
     }
 
-    // find the geometries for both the given things, used when adding a connection
-    // so we can get and cache the center point.
-    // if the connection is added before the geometries are available, then we'll
-    // add them in changeGeometry.
-    func geometriesFor(_ thing1: Int32,
-                       _ thing2: Int32) -> (g1: BubbleGeometry, g2: BubbleGeometry)? {
+    func geometryFor(_ bubbleID: BubbleID) -> BubbleGeometry? {
+        for geometry in geometries {
+            if geometry.bubbleID == bubbleID {
+                return geometry
+            }
+        }
+        return nil
+    }
+
+    // find the geometries for both the given things, used when adding
+    // a connection so we can get and cache the center point.
+
+    // if the connection is added before the geometries are available,
+    // then we'll add them in changeGeometry.
+    func geometriesFor(_ thing1: BubbleID,
+                       _ thing2: BubbleID) -> (g1: BubbleGeometry, g2: BubbleGeometry)? {
         var g1: BubbleGeometry?
         var g2: BubbleGeometry?
 

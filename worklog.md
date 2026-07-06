@@ -108,3 +108,35 @@ the cursor is over a bubble, without any specific meaning
 
 and pass ID around rather than bubbles.
 
+==================================================
+# Saturday July 4, 2026
+
+Time for doing search in the scene.  Kind of like safari text search, where
+there's a list of hits, and you can move from hit to hit.
+
+When focusing on a hit, scroll the bubble front and center.  maybe highlight
+the text.
+
+All bubbles that have matching text get highlighted. Different hightlighting
+for "current" bubble.
+
+==================================================
+# Sunday July 5, 2026
+
+Got the search machinery working. Basically find a flat array of deez nuts:
+
+```
+enum SearchResult {
+    case titleRange(BubbleID, NSRange)
+    case bodyRange(BubbleID, NSRange)
+    case tagRange(BubbleID, String, NSRange)
+}
+```
+
+==================================================
+# Monday July 5, 2026
+
+now for updating text effects.  For now, if there's a result, render the
+text for it differently.  Not doing "current result" yet.
+
+

@@ -12,8 +12,11 @@ class SceneView: NSView {
     }
     var soup: BubbleSoup!
     var searchResults: [SearchResult]? {
-        didSet { needsDisplay = true }
+        didSet {
+            needsDisplay = true
+        }
     }
+    var currentSearchResult = 0
 
     override var isFlipped: Bool {
         true
@@ -92,15 +95,15 @@ class SceneView: NSView {
     func markupForSearch(bubbleID: BubbleID,
                          attributedString attr: AttributedString,
                          searchResults: [SearchResult]?) -> AttributedString {
-        var string = NSMutableAttributedString(attr)
+        let string = NSMutableAttributedString(attr)
 
         // !!! too much work being done
-        for result in searchResults ?? [] {
+        for (i, result) in (searchResults ?? []).enumerated() {
             var foundRange: NSRange?
 
             switch result {
                 // !!! once we get body and tag drawing support, 
-                // !!! can sue the .range computed property for all result
+                // !!! can use the .range computed property for all result
                 // !!! enum cases
             case let .titleRange(ID, range):
                 foundRange = (ID == bubbleID) ? range : nil
@@ -114,9 +117,18 @@ class SceneView: NSView {
             // was going to use AttributedString, but Range and NSRange aren't
             // that miscible
 
-            let attributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: NSColor.orange
-            ]
+            let attributes: [NSAttributedString.Key: Any]
+
+            if i == currentSearchResult {
+                attributes = [
+                  .foregroundColor: NSColor.white,
+                  .backgroundColor: NSColor.black
+                ]
+            } else {
+                attributes = [
+                  .foregroundColor: NSColor.orange
+                ]
+            }
             string.addAttributes(attributes, range: foundRange)
         }
         return AttributedString(string)
@@ -196,8 +208,11 @@ class SceneView: NSView {
     func moveSearchResultTo(searchIndex: Int) {
         guard let searchResults else { return }
         assert(searchIndex >= 0 && searchIndex < searchResults.count)
-        
+
         scrollToBubble(bubbleID: searchResults[searchIndex].bubbleID)
+        currentSearchResult = searchIndex
+
+        needsDisplay = true
     }
 }
 

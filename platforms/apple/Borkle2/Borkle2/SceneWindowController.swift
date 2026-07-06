@@ -206,7 +206,8 @@ extension SceneWindowController: NSSearchFieldDelegate {
             self.searchResults = searchResults
         }
 
-        searchResults = soup.search(for: searchString)
+        searchResults = soup.search(for: searchString,
+                                    limitBy: scene.bubbleIDs)
     }
 
     func searchFieldDidStartSearching(_ searchField: NSSearchField) {

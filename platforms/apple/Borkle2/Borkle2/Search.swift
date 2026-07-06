@@ -51,12 +51,20 @@ class Searcher {
     }
 
     func search(for searchString: String,
-                in soup: BubbleSoup) -> [SearchResult] {
+                in soup: BubbleSoup,
+                limitBy: Set<BubbleID>? = nil) -> [SearchResult] {
         var results: [SearchResult] = []
 
         for i in 0 ..< soup.bubbles.count {
-            let bubble = soup.bubbles[i]
             let bubbleID = BubbleID(i)
+
+            if let limitBy {
+                if !limitBy.contains(bubbleID) {
+                    continue
+                }
+            }
+
+            let bubble = soup.bubbles[bubbleID]
             
             let titleRanges = ranges(of: searchString, in: bubble.title)
             results += titleRanges.map { .titleRange(bubbleID, $0) }

@@ -41,7 +41,8 @@ class BubbleSoup: Codable {
         print("yay (\(bubbles.count) bubbles)")
     }
 
-    func search(for searchString: String) -> [SearchResult] {
-        Searcher().search(for: searchString, in: self)
+    func search(for searchString: String,
+                limitBy: Set<BubbleID>? = nil) -> [SearchResult] {
+        Searcher().search(for: searchString, in: self, limitBy: limitBy)
     }
 }

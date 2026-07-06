@@ -156,7 +156,6 @@ extension SceneWindowController: NSSearchFieldDelegate {
         }
 
         searchResults = soup.search(for: searchString)
-        Swift.print(searchResults)
     }
 
     func searchFieldDidStartSearching(_ searchField: NSSearchField) {

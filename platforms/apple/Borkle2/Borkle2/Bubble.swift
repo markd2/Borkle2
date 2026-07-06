@@ -2,6 +2,14 @@ import Foundation
 
 typealias BubbleID = Int32
 
+extension Array {
+    subscript(bubbleID: BubbleID) -> Element {
+        get { return self[Int(bubbleID)] }
+        set { self[Int(bubbleID)] = newValue }
+    }
+}
+
+
 class Bubble : Codable {
     static let illegalID: BubbleID = -1
 

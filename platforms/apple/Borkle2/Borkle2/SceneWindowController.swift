@@ -154,7 +154,7 @@ class SceneWindowController: NSWindowController {
         } else {
             currentSearchIndex += 1
             if currentSearchIndex > count {
-                currentSearchIndex = count
+                currentSearchIndex = count - 1
             }
         }
 

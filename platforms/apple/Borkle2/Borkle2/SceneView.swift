@@ -27,6 +27,22 @@ class SceneView: NSView {
         }
     }
 
+    // TODO: wondering if we can move the knowledge of these outside of
+    // SceneView.
+    var clipview: NSClipView {
+        guard let cv = superview as? NSClipView else {
+            fatalError("no clip view")
+        }
+        return cv
+    }
+
+    var scrollview: NSScrollView {
+        guard let sv = clipview.superview as? NSScrollView else {
+            fatalError("no scroll view")
+        }
+        return sv
+    }
+
     // Event / user-interaction goodies
     var currentMouseHandler: MouseHandler?
     var defaultMouseHandler: MouseHandler?
@@ -301,10 +317,6 @@ extension SceneView {
 
 extension SceneView: MouseSupport {
     var currentScrollOffset: CGPoint {
-        guard let clipview = superview as? NSClipView else {
-            fatalError("no clip vieW?")
-        }
-
         let origin = clipview.bounds.origin
         return origin
     }

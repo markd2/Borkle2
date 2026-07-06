@@ -172,6 +172,27 @@ class SceneView: NSView {
         NSColor.black.set()
         bounds.frame()
     }
+
+    func centerOn(rect: CGRect) {
+        let targetOrigin = NSPoint(
+          x: rect.midX - (clipview.bounds.width / 2.0),
+          y: rect.midY - (clipview.bounds.height / 2.0))
+        
+        let proposedRect = NSRect(origin: targetOrigin,
+                              size: clipview.bounds.size)
+        let constrainedRect = clipview.constrainBoundsRect(proposedRect)
+
+        // scroll
+        clipview.scroll(to: constrainedRect.origin)
+        scrollview.reflectScrolledClipView(clipview) // update scrool bars
+    }
+
+    func scrollToBubble(bubbleID: BubbleID) {
+        guard let geometry = scene.geometryFor(bubbleID) else { return }
+
+        centerOn(rect: geometry.bounds)
+    }
+
 }
 
 /// Event handling

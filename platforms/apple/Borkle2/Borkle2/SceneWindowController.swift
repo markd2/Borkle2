@@ -26,7 +26,11 @@ class SceneWindowController: NSWindowController {
 
     var soup: BubbleSoup!
     var scene: Scene = Scene()
-    var searchResults: [SearchResult]?
+    var searchResults: [SearchResult]? {
+        didSet {
+            sceneView.searchResults = searchResults
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -147,12 +151,6 @@ extension SceneWindowController: NSSearchFieldDelegate {
 
         defer {
             self.searchResults = searchResults
-        }
-
-        guard searchString.count >= 3 else {
-            // Gotta have three, because VAX
-            Swift.print("cowardly not searching til we get three characters")
-            return
         }
 
         searchResults = soup.search(for: searchString)

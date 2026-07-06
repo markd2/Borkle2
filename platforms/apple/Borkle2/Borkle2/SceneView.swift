@@ -90,13 +90,15 @@ class SceneView: NSView {
                 bezierPath.fill()
             }
 
-            let string = soup.bubbles[Int(geometry.bubbleID)].title! as NSString
+            let bubbleString = soup.bubbles[geometry.bubbleID].title!
 
-//            let attributedString = NSAttributedString.init(string: string as String)
+            let string = AttributedString(bubbleString)
             var stringRect = geometry.bounds.insetBy(dx: 3, dy: 3)
             let height = string.heightFor(width: stringRect.width)
             stringRect.size = CGSize(width: stringRect.width, height: height)
-            string.draw(with: stringRect,
+
+            let nsattr = NSAttributedString(string)
+            nsattr.draw(with: stringRect,
                         options: .usesLineFragmentOrigin)
             
             Colors.bubbleFrame.set()
@@ -282,7 +284,7 @@ extension SceneView: MouseSupport {
         for geometry in scene.geometries {
             if geometry.bounds.contains(point) {
                 let bubbleID = geometry.bubbleID
-                let bubble = soup.bubbles[Int(bubbleID)]
+                let bubble = soup.bubbles[bubbleID]
                 return bubble
             }
         }

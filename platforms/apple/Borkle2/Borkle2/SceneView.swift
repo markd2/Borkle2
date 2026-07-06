@@ -193,6 +193,12 @@ class SceneView: NSView {
         centerOn(rect: geometry.bounds)
     }
 
+    func moveSearchResultTo(searchIndex: Int) {
+        guard let searchResults else { return }
+        assert(searchIndex >= 0 && searchIndex < searchResults.count)
+        
+        scrollToBubble(bubbleID: searchResults[searchIndex].bubbleID)
+    }
 }
 
 /// Event handling

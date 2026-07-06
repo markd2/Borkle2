@@ -29,8 +29,10 @@ class SceneWindowController: NSWindowController {
     var searchResults: [SearchResult]? {
         didSet {
             sceneView.searchResults = searchResults
+            currentSearchIndex = -1
         }
     }
+    var currentSearchIndex = -1
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -141,10 +143,43 @@ class SceneWindowController: NSWindowController {
         zoomLevel = max(zoomLevel - 10, 30)
         updateZoom()
     }
+
+    func handleSearchMovement(backwards: Bool) {
+        let count = searchResults?.count ?? 0
+        guard count > 0 else { return }
+
+        if backwards {
+            currentSearchIndex -= 1
+            if currentSearchIndex < 0 { currentSearchIndex = 0 }
+        } else {
+            currentSearchIndex += 1
+            if currentSearchIndex > count {
+                currentSearchIndex = count
+            }
+        }
+
+        if currentSearchIndex < count {
+            sceneView.moveSearchResultTo(searchIndex: currentSearchIndex)
+        }
+    }
 }
 
 
+
 extension SceneWindowController: NSSearchFieldDelegate {
+
+    func control(_ control: NSControl, textView: NSTextView,
+                 doCommandBy commandSelector: Selector) -> Bool {
+        if commandSelector == #selector(NSResponder.insertNewline(_:)) {
+            var isShifty = false
+            if let currentEvent = NSApp.currentEvent {
+                isShifty = currentEvent.modifierFlags.contains(.shift)
+            }
+            handleSearchMovement(backwards: isShifty)
+        }
+        return false
+    }
+
     func updateSearch() {
         let searchString = findSearchField.stringValue
         var searchResults: [SearchResult]?

@@ -6,6 +6,23 @@ enum SearchResult {
     case titleRange(BubbleID, NSRange)
     case bodyRange(BubbleID, NSRange)
     case tagRange(BubbleID, String, NSRange)
+
+    var bubbleID: BubbleID {
+        switch self {
+        case .titleRange(let bubbleID, _): return bubbleID
+        case .bodyRange(let bubbleID, _): return bubbleID
+        case .tagRange(let bubbleID, _, _): return bubbleID
+        }
+    }
+
+    var range: NSRange {
+        switch self {
+        case .titleRange(_, let range): return range
+        case .bodyRange(_, let range): return range
+        case .tagRange(_, _, let range): return range
+        }
+    }
+
 }
 
 class Searcher {

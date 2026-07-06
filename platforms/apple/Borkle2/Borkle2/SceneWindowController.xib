@@ -11,6 +11,7 @@
                 <outlet property="findSearchField" destination="Bdk-di-1gb" id="RJs-MS-Dfv"/>
                 <outlet property="sceneView" destination="iBj-3e-5Y0" id="h7F-RV-OP8"/>
                 <outlet property="scroller" destination="NcJ-fK-7Ts" id="foZ-wK-zet"/>
+                <outlet property="searchResultLabel" destination="Hs7-0N-q3e" id="zlh-Qs-QU3"/>
                 <outlet property="window" destination="t2A-tj-qpP" id="7XQ-pC-WiW"/>
                 <outlet property="zoomLabel" destination="lwX-VC-yiT" id="B7K-sg-hP9"/>
             </connections>
@@ -143,6 +144,15 @@
                             <outlet property="delegate" destination="-2" id="XQH-5P-Axd"/>
                         </connections>
                     </searchField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hs7-0N-q3e">
+                        <rect key="frame" x="470" y="303" width="66" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" id="gKu-Ds-0Zj">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>

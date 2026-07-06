@@ -16,6 +16,8 @@ class SceneWindowController: NSWindowController {
         }
     }
 
+    @IBOutlet var searchResultLabel: NSTextField!
+
     var filename: String! {
         didSet {
             if filenameLabel != nil {
@@ -32,7 +34,11 @@ class SceneWindowController: NSWindowController {
             currentSearchIndex = -1
         }
     }
-    var currentSearchIndex = -1
+    var currentSearchIndex = -1 {
+        didSet {
+            updateSearchText()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -142,6 +148,18 @@ class SceneWindowController: NSWindowController {
         Swift.print("ack")
         zoomLevel = max(zoomLevel - 10, 30)
         updateZoom()
+    }
+
+    func updateSearchText() {
+        var text = ""
+
+        if searchResults == nil {
+        } else if currentSearchIndex < 0 {
+            text = "\(searchResults?.count ?? 0) found"
+        } else {
+            text = "\(currentSearchIndex + 1) / \(searchResults?.count ?? 0)"
+        }
+        searchResultLabel.stringValue = text
     }
 
     func handleSearchMovement(backwards: Bool) {

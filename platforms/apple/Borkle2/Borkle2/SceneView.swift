@@ -8,11 +8,12 @@ class SceneView: NSView {
     // eventually might want a scene stack, if scenes can reference other
     // scenes as bubbles
     var scene: Scene! {
-        didSet {
-            needsDisplay = true
-        }
+        didSet { needsDisplay = true }
     }
     var soup: BubbleSoup!
+    var searchResults: [SearchResult]? {
+        didSet { needsDisplay = true }
+    }
 
     override var isFlipped: Bool {
         true
@@ -72,6 +73,36 @@ class SceneView: NSView {
         return id == highlightedBubbleID
     }
 
+    func markupForSearch(bubbleID: BubbleID,
+                         attributedString attr: AttributedString,
+                         searchResults: [SearchResult]?) -> AttributedString {
+        var string = NSMutableAttributedString(attr)
+
+        // !!! too much work being done
+        for result in searchResults ?? [] {
+            var foundRange: NSRange?
+
+            switch result {
+            case let .titleRange(ID, range):
+                foundRange = (ID == bubbleID) ? range : nil
+
+            default:
+                continue
+            }
+
+            guard let foundRange else { continue }
+
+            // was going to use AttributedString, but Range and NSRange aren't
+            // that miscible
+
+            let attributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: NSColor.orange
+            ]
+            string.addAttributes(attributes, range: foundRange)
+        }
+        return AttributedString(string)
+    }
+
     func drawBubbles() {
         NSColor.brown.set()
         for geometry in scene.geometries {
@@ -92,7 +123,11 @@ class SceneView: NSView {
 
             let bubbleString = soup.bubbles[geometry.bubbleID].title!
 
-            let string = AttributedString(bubbleString)
+            let bubbleAttributedString = AttributedString(bubbleString)
+            let string = markupForSearch(bubbleID: geometry.bubbleID,
+                                         attributedString: bubbleAttributedString,
+                                         searchResults: searchResults)
+
             var stringRect = geometry.bounds.insetBy(dx: 3, dy: 3)
             let height = string.heightFor(width: stringRect.width)
             stringRect.size = CGSize(width: stringRect.width, height: height)

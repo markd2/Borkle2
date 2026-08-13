@@ -2,18 +2,31 @@
 bubbles:
 - ID: 0
   body: MODCOMP
+  title: MODCOMP TITLE
+  tags:
+    - "modcomp"
+    - "splunge"
+    - "greeble"
 - ID: 1
   body: '"Modular Computer"'
+  tags:
+    - "modcomp"
+    - "title"
 - ID: 2
   body: Languages
+  title: Greeble bork
 - ID: 3
   body: Assembly
 - ID: 4
   body: Fortran 2
+  tags:
+    - classic language
 - ID: 5
   body: Fortran IV
+  title: Language Splunge
 - ID: 6
   body: NASA-extended Fortran 77
+  title: No Compile I
 - ID: 7
   body: Pascal
 - ID: 8
@@ -64,6 +77,7 @@ bubbles:
   body: '"Classic"'
 - ID: 31
   body: Founded ~1970 by SEL, Ft. Lauderdale FL
+  title: Founding
 - ID: 32
   body: Has remained consistent model after model
 - ID: 33
@@ -268,8 +282,10 @@ bubbles:
   body: '1989'
 - ID: 131
   body: in 1990, 12,500 computers in 41 countries
+  title: when and how much
 - ID: 132
   body: "References:\n\u2022 Interview with Jim Simpson, LSSM\n\u2022 https://en.wikipedia.org/wiki/Modcomp\n\u2022 https://www.sun-sentinel.com/1990/06/11/traditional-customers-return-to-modcomp/ - tradition customers return to MODCOMP\n\u2022 https://www.techmonitor.ai/technology/modcomp_re_engineers_top_end_classic_for_real_time_boost - modcomp re-engineers top-end classic for real-time boost"
+  title: origin story
 - ID: 133
   body: real-time unix
 - ID: 134

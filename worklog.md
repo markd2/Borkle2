@@ -166,3 +166,18 @@ And update some titles and tags.
 
 Right now everything is a title.  So rename existing titles to be bodies.
 
+And then add some titles and tags.
+
+Total syntax:
+
+```
+bubbles:
+- ID: 0
+  body: MODCOMP
+  title: MODCOMP TITLE
+  tags:
+    - "modcomp"
+    - "splunge"
+    - "greeble"
+```
+

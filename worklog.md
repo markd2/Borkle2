@@ -162,3 +162,7 @@ Step 1 - titles and tags.  Update the MODCOMP one to have some titles and taggag
 need to get the modcomp borkle files into the bundle rather than ~/Downloads
 for personal sanity.  Actual document model will come later.
 
+And update some titles and tags.
+
+Right now everything is a title.  So rename existing titles to be bodies.
+

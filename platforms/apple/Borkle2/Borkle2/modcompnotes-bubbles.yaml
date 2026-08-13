@@ -1,359 +1,359 @@
 ---
 bubbles:
 - ID: 0
-  title: MODCOMP
+  body: MODCOMP
 - ID: 1
-  title: '"Modular Computer"'
+  body: '"Modular Computer"'
 - ID: 2
-  title: Languages
+  body: Languages
 - ID: 3
-  title: Assembly
+  body: Assembly
 - ID: 4
-  title: Fortran 2
+  body: Fortran 2
 - ID: 5
-  title: Fortran IV
+  body: Fortran IV
 - ID: 6
-  title: NASA-extended Fortran 77
+  body: NASA-extended Fortran 77
 - ID: 7
-  title: Pascal
+  body: Pascal
 - ID: 8
-  title: CORAL 66
+  body: CORAL 66
 - ID: 9
-  title: Cool unique things
+  body: Cool unique things
 - ID: 10
-  title: _very_ deterministic system
+  body: _very_ deterministic system
 - ID: 11
-  title: OS rudimentary, but fast
+  body: OS rudimentary, but fast
 - ID: 12
-  title: no file system to speak of
+  body: no file system to speak of
 - ID: 13
-  title: global COMMON
+  body: global COMMON
 - ID: 14
-  title: chunk of shared memory
+  body: chunk of shared memory
 - ID: 15
-  title: available in FORTRAN
+  body: available in FORTRAN
 - ID: 16
-  title: TAS instruction for cross-task synchronization
+  body: TAS instruction for cross-task synchronization
 - ID: 17
-  title: Concepts
+  body: Concepts
 - ID: 18
-  title: Tasks
+  body: Tasks
 - ID: 19
-  title: Batch Queues
+  body: Batch Queues
 - ID: 20
-  title: Overlays
+  body: Overlays
 - ID: 21
-  title: emitted assembly rather than object code
+  body: emitted assembly rather than object code
 - ID: 22
-  title: Can have inline assembly
+  body: Can have inline assembly
 - ID: 23
-  title: not connected to terminals
+  body: not connected to terminals
 - ID: 24
-  title: connected to terminals
+  body: connected to terminals
 - ID: 25
-  title: 7830 - the traffic light machine
+  body: 7830 - the traffic light machine
 - ID: 26
-  title: 7860 - the nuclear machine
+  body: 7860 - the nuclear machine
 - ID: 27
-  title: Branded "Bailey" - from Bailey Control Systems (Cleveland)
+  body: Branded "Bailey" - from Bailey Control Systems (Cleveland)
 - ID: 28
-  title: has hardware floating point
+  body: has hardware floating point
 - ID: 29
-  title: does not have hardware floating point
+  body: does not have hardware floating point
 - ID: 30
-  title: '"Classic"'
+  body: '"Classic"'
 - ID: 31
-  title: Founded ~1970 by SEL, Ft. Lauderdale FL
+  body: Founded ~1970 by SEL, Ft. Lauderdale FL
 - ID: 32
-  title: Has remained consistent model after model
+  body: Has remained consistent model after model
 - ID: 33
-  title: sometimes adding instructions, like the 32-bit addressing prefix
+  body: sometimes adding instructions, like the 32-bit addressing prefix
 - ID: 34
-  title: Instruction Set
+  body: Instruction Set
 - ID: 35
-  title: Hardware Architecture
+  body: Hardware Architecture
 - ID: 36
-  title: Address space 16 bits, but of words
+  body: Address space 16 bits, but of words
 - ID: 37
-  title: Lateradded 32-bit prefix instruction
+  body: Lateradded 32-bit prefix instruction
 - ID: 38
-  title: so 128K bytes, can do a lot more than byte-sized 16-bit systems
+  body: so 128K bytes, can do a lot more than byte-sized 16-bit systems
 - ID: 39
-  title: Later models (Modcomp 4) / OSs added virtualiation, so more available total memory
+  body: Later models (Modcomp 4) / OSs added virtualiation, so more available total memory
 - ID: 40
-  title: Process could have two page tables - one (64K wrods) for code and one for data
+  body: Process could have two page tables - one (64K wrods) for code and one for data
 - ID: 41
-  title: 16 (?) registers
+  body: 16 (?) registers
 - ID: 42
-  title: general purpose, mostly orthogonal
+  body: general purpose, mostly orthogonal
 - ID: 43
-  title: some addressing modes (?) could only use the first 8 (?) registers
+  body: some addressing modes (?) could only use the first 8 (?) registers
 - ID: 44
-  title: Long service life
+  body: Long service life
 - ID: 45
-  title: NASA still has some in-use
+  body: NASA still has some in-use
 - ID: 46
-  title: traffic light one was in service from 1981-2019 - 38 years
+  body: traffic light one was in service from 1981-2019 - 38 years
 - ID: 47
-  title: Ran traffic lights in Evansville IN from 1981-2019
+  body: Ran traffic lights in Evansville IN from 1981-2019
 - ID: 48
-  title: 16 banks of registers
+  body: 16 banks of registers
 - ID: 49
-  title: each process / task gets 16 registers, so this allowed for rapid task switching.
+  body: each process / task gets 16 registers, so this allowed for rapid task switching.
 - ID: 50
-  title: ''
+  body: ''
 - ID: 51
-  title: ''
+  body: ''
 - ID: 52
-  title: wire-wrapped
+  body: wire-wrapped
 - ID: 53
-  title: Model numbers include I/O Channels.  7860 had one or two, 7870 had three or four
+  body: Model numbers include I/O Channels.  7860 had one or two, 7870 had three or four
 - ID: 54
-  title: million instructions per second, ~200 ns cycle time
+  body: million instructions per second, ~200 ns cycle time
 - ID: 55
-  title: Designed for data acquistion and control
+  body: Designed for data acquistion and control
 - ID: 56
-  title: not for users
+  body: not for users
 - ID: 57
-  title: cheaper than a VAX, but as fast
+  body: cheaper than a VAX, but as fast
 - ID: 58
-  title: much simpler OS (pros and cons)
+  body: much simpler OS (pros and cons)
 - ID: 59
-  title: ' If the task were resident, then it''s just switching the PSW and the registers to get it running'
+  body: ' If the task were resident, then it''s just switching the PSW and the registers to get it running'
 - ID: 60
-  title: I/O Busses do 2 meg/sec
+  body: I/O Busses do 2 meg/sec
 - ID: 61
-  title: "modcomp 2 could do four on the same bus \u2013 so 4-way DMP (a.k.a. DMA)"
+  body: "modcomp 2 could do four on the same bus \u2013 so 4-way DMP (a.k.a. DMA)"
 - ID: 62
-  title: memory up to 4-way interleaved
+  body: memory up to 4-way interleaved
 - ID: 63
-  title: four things accessing memory at the same time without interrupting / blocking the others
+  body: four things accessing memory at the same time without interrupting / blocking the others
 - ID: 64
-  title: No instruction cache
+  body: No instruction cache
 - ID: 65
-  title: But is 8-instruction lookahead (optional?), where if you're doing e.g. self-modifying code, you'll need to account for instruction pre-fetching
+  body: But is 8-instruction lookahead (optional?), where if you're doing e.g. self-modifying code, you'll need to account for instruction pre-fetching
 - ID: 66
-  title: Dan Weaver (LSSM volunteer) wrote some microcode for ithis
+  body: Dan Weaver (LSSM volunteer) wrote some microcode for ithis
 - ID: 67
-  title: Operating System
+  body: Operating System
 - ID: 68
-  title: Pretty rudimentary
+  body: Pretty rudimentary
 - ID: 69
-  title: tasks
+  body: tasks
 - ID: 70
-  title: timing services
+  body: timing services
 - ID: 71
-  title: memory management
+  body: memory management
 - ID: 72
-  title: I/O Services
+  body: I/O Services
 - ID: 73
-  title: Security
+  body: Security
 - ID: 74
-  title: There is none (outside of assigning some pages rmx permissions) so you can't accidentally scribble on other pages
+  body: There is none (outside of assigning some pages rmx permissions) so you can't accidentally scribble on other pages
 - ID: 75
-  title: no real concept of "users"
+  body: no real concept of "users"
 - ID: 76
-  title: privilege bit for some instructions
+  body: privilege bit for some instructions
 - ID: 77
-  title: privilege bit for some instructions
+  body: privilege bit for some instructions
 - ID: 78
-  title: like for addressing into OS memory space
+  body: like for addressing into OS memory space
 - ID: 79
-  title: can compile a task so that it can access these instructions
+  body: can compile a task so that it can access these instructions
 - ID: 80
-  title: User Interaction
+  body: User Interaction
 - ID: 81
-  title: Operator Communications
+  body: Operator Communications
 - ID: 82
-  title: Batch Tasks
+  body: Batch Tasks
 - ID: 83
-  title: operator console
+  body: operator console
 - ID: 84
-  title: can steal to run on the terminal in front of you
+  body: can steal to run on the terminal in front of you
 - ID: 85
-  title: front-panel switches
+  body: front-panel switches
 - ID: 86
-  title: Terminals
+  body: Terminals
 - ID: 87
-  title: ^A is attention keystroke
+  body: ^A is attention keystroke
 - ID: 88
-  title: 'commands like
+  body: 'commands like
 
     /process-name/command-name'
 - ID: 89
-  title: 'TMP
+  body: 'TMP
 
     Terminal Monitor Program'
 - ID: 90
-  title: run batch tasks and steal OpComms to your terminal
+  body: run batch tasks and steal OpComms to your terminal
 - ID: 91
-  title: ''
+  body: ''
 - ID: 92
-  title: ''
+  body: ''
 - ID: 93
-  title: Disk/Devices
+  body: Disk/Devices
 - ID: 94
-  title: very generic I/O
+  body: very generic I/O
 - ID: 95
-  title: a device is a device
+  body: a device is a device
 - ID: 96
-  title: operations
+  body: operations
 - ID: 97
-  title: reset
+  body: reset
 - ID: 98
-  title: read
+  body: read
 - ID: 99
-  title: write
+  body: write
 - ID: 100
-  title: write EOF
+  body: write EOF
 - ID: 101
-  title: rewind back
+  body: rewind back
 - ID: 102
-  title: add record
+  body: add record
 - ID: 103
-  title: back/eo (?)
+  body: back/eo (?)
 - ID: 104
-  title: tape only
+  body: tape only
 - ID: 105
-  title: didn't have what we'd consider today to be a robust file system
+  body: didn't have what we'd consider today to be a robust file system
 - ID: 106
-  title: they tried adding one in a later OS version, but nobody liked it
+  body: they tried adding one in a later OS version, but nobody liked it
 - ID: 107
-  title: disk is SysGEn'd as a number of fixed-space files
+  body: disk is SysGEn'd as a number of fixed-space files
 - ID: 108
-  title: contiguous containers with a specific geometry
+  body: contiguous containers with a specific geometry
 - ID: 109
-  title: File Store Service
+  body: File Store Service
 - ID: 110
-  title: Where you'd save your code or compiled programs.
+  body: Where you'd save your code or compiled programs.
 - ID: 111
-  title: utilities (like the editor) would manage things like a "directory structure"
+  body: utilities (like the editor) would manage things like a "directory structure"
 - ID: 112
-  title: source code would have one structure, other things (library or object code files) would have a different structure)
+  body: source code would have one structure, other things (library or object code files) would have a different structure)
 - ID: 113
-  title: no universal DIR command
+  body: no universal DIR command
 - ID: 114
-  title: Programming
+  body: Programming
 - ID: 115
-  title: editors
+  body: editors
 - ID: 116
-  title: sed-like line editor
+  body: sed-like line editor
 - ID: 117
-  title: vi-esque screen editor
+  body: vi-esque screen editor
 - ID: 118
-  title: job control procedures
+  body: job control procedures
 - ID: 119
-  title: you had to be _very_ careful with commands, like compiler commands
+  body: you had to be _very_ careful with commands, like compiler commands
 - ID: 120
-  title: mess up an output, you could direct the listing file on top of your source code, or on top of your disk partition
+  body: mess up an output, you could direct the listing file on top of your source code, or on top of your disk partition
 - ID: 121
-  title: is there where overlays com into play? (?)
+  body: is there where overlays com into play? (?)
 - ID: 122
-  title: ended up making job control procedures bulletproof
+  body: ended up making job control procedures bulletproof
 - ID: 123
-  title: like bash scripts
+  body: like bash scripts
 - ID: 124
-  title: Realix
+  body: Realix
 - ID: 125
-  title: '"Tri-D"'
+  body: '"Tri-D"'
 - ID: 126
-  title: late 1988
+  body: late 1988
 - ID: 127
-  title: processors from other vendors
+  body: processors from other vendors
 - ID: 128
-  title: Moto 68K, 1989
+  body: Moto 68K, 1989
 - ID: 129
-  title: Moto 88K, 1990?
+  body: Moto 88K, 1990?
 - ID: 130
-  title: '1989'
+  body: '1989'
 - ID: 131
-  title: in 1990, 12,500 computers in 41 countries
+  body: in 1990, 12,500 computers in 41 countries
 - ID: 132
-  title: "References:\n\u2022 Interview with Jim Simpson, LSSM\n\u2022 https://en.wikipedia.org/wiki/Modcomp\n\u2022 https://www.sun-sentinel.com/1990/06/11/traditional-customers-return-to-modcomp/ - tradition customers return to MODCOMP\n\u2022 https://www.techmonitor.ai/technology/modcomp_re_engineers_top_end_classic_for_real_time_boost - modcomp re-engineers top-end classic for real-time boost"
+  body: "References:\n\u2022 Interview with Jim Simpson, LSSM\n\u2022 https://en.wikipedia.org/wiki/Modcomp\n\u2022 https://www.sun-sentinel.com/1990/06/11/traditional-customers-return-to-modcomp/ - tradition customers return to MODCOMP\n\u2022 https://www.techmonitor.ai/technology/modcomp_re_engineers_top_end_classic_for_real_time_boost - modcomp re-engineers top-end classic for real-time boost"
 - ID: 133
-  title: real-time unix
+  body: real-time unix
 - ID: 134
-  title: designed to run on Classics
+  body: designed to run on Classics
 - ID: 135
-  title: Provide unix environemnt while maintining the high-performance deterministic capabilities for industrial process control / data acquisition
+  body: Provide unix environemnt while maintining the high-performance deterministic capabilities for industrial process control / data acquisition
 - ID: 136
-  title: port of AT&T Unix SysV (SR3)
+  body: port of AT&T Unix SysV (SR3)
 - ID: 137
-  title: leverage standard unix tools while keeping real-time performance
+  body: leverage standard unix tools while keeping real-time performance
 - ID: 138
-  title: licensed to other companies, like "Groupe Bull"
+  body: licensed to other companies, like "Groupe Bull"
 - ID: 139
-  title: supported standard unix networking
+  body: supported standard unix networking
 - ID: 140
-  title: some users running Apachine web servers
+  body: some users running Apachine web servers
 - ID: 141
-  title: Bought by AEG AG of West Germany in 198?
+  body: Bought by AEG AG of West Germany in 198?
 - ID: 142
-  title: Classic 32/87
+  body: Classic 32/87
 - ID: 143
-  title: re-engineered version of the 32-bit Classic 32/85
+  body: re-engineered version of the 32-bit Classic 32/85
 - ID: 144
-  title: Writable Control Store
+  body: Writable Control Store
 - ID: 145
-  title: for making your own instructions / microcode
+  body: for making your own instructions / microcode
 - ID: 146
-  title: just 32/87, or other machines?
+  body: just 32/87, or other machines?
 - ID: 147
-  title: after layoffs and financial problems pivoted to being a systems integrator (early-mid 90s?)
+  body: after layoffs and financial problems pivoted to being a systems integrator (early-mid 90s?)
 - ID: 148
-  title: purchased by CSPi Technology Solutions (1996)
+  body: purchased by CSPi Technology Solutions (1996)
 - ID: 149
-  title: Modcomp IV added unstructions (updated fortran compiler)
+  body: Modcomp IV added unstructions (updated fortran compiler)
 - ID: 150
-  title: popular with aerospace (Nasa, SAIL) oil industry (Standard, Shell)
+  body: popular with aerospace (Nasa, SAIL) oil industry (Standard, Shell)
 - ID: 151
-  title: '"MAX"'
+  body: '"MAX"'
 - ID: 152
-  title: '"Modular Applications eXecutive'
+  body: '"Modular Applications eXecutive'
 - ID: 153
-  title: MAX I - real-time monitor for a fixed set of processes linked into a single memory image (i.e. embedded)
+  body: MAX I - real-time monitor for a fixed set of processes linked into a single memory image (i.e. embedded)
 - ID: 154
-  title: MAX II - batch disk operating system with real-time extensions. Used for program development in the background while foreground handled real-time loads
+  body: MAX II - batch disk operating system with real-time extensions. Used for program development in the background while foreground handled real-time loads
 - ID: 155
-  title: fixed-priority pre-emptive scheduling
+  body: fixed-priority pre-emptive scheduling
 - ID: 156
-  title: MAX III - for 16 bit machines
+  body: MAX III - for 16 bit machines
 - ID: 157
-  title: MAX IV - for Modcomp IV
+  body: MAX IV - for Modcomp IV
 - ID: 158
-  title: allowed for multiple interactive users
+  body: allowed for multiple interactive users
 - ID: 159
-  title: all processes shared the one address space, with swapping used to support multiple background processes (one per interactive user)
+  body: all processes shared the one address space, with swapping used to support multiple background processes (one per interactive user)
 - ID: 160
-  title: "largely compatible with MAX III. \nTook advantage of new Modcomp IV features to allocate one address space for each process"
+  body: "largely compatible with MAX III. \nTook advantage of new Modcomp IV features to allocate one address space for each process"
 - ID: 161
-  title: demand-paging not supported
+  body: demand-paging not supported
 - ID: 162
-  title: swapping used when total memory demand for all processes exceeded available physical memory
+  body: swapping used when total memory demand for all processes exceeded available physical memory
 - ID: 163
-  title: Max 32
+  body: Max 32
 - ID: 164
-  title: developed to fully exploit the modcomp classic system
+  body: developed to fully exploit the modcomp classic system
 - ID: 165
-  title: prior compilations could be modified to take advantage of newer instructions for the modcomp IV / Classic
+  body: prior compilations could be modified to take advantage of newer instructions for the modcomp IV / Classic
 - ID: 166
-  title: designed to take advantage of the plethora of registers for temp values - variables and indexes
+  body: designed to take advantage of the plethora of registers for temp values - variables and indexes
 - ID: 167
-  title: 'had optimiations reducing the # of ops to do array indexing math'
+  body: 'had optimiations reducing the # of ops to do array indexing math'
 - ID: 168
-  title: ??? what are these optimizations / instructions?
+  body: ??? what are these optimizations / instructions?
 - ID: 169
-  title: replace modcomp IV in 1978
+  body: replace modcomp IV in 1978
 - ID: 170
-  title: MODCOMP IV
+  body: MODCOMP IV
 - ID: 171
-  title: potential as VAX competitor
+  body: potential as VAX competitor
 - ID: 172
-  title: '1974'
+  body: '1974'
 - ID: 173
-  title: wikipedia says 16 banks of _15_ registers
+  body: wikipedia says 16 banks of _15_ registers
 - ID: 174
-  title: '!!! c.f. wikipedia page for machine deets'
+  body: '!!! c.f. wikipedia page for machine deets'
 - ID: 175
-  title: IV / Classic has MMU
+  body: IV / Classic has MMU
 ...

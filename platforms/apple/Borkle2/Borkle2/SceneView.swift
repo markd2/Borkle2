@@ -107,6 +107,8 @@ class SceneView: NSView {
                 // !!! enum cases
             case let .titleRange(ID, range):
                 foundRange = (ID == bubbleID) ? range : nil
+            case let .bodyRange(ID, range):
+                foundRange = (ID == bubbleID) ? range : nil
 
             default:
                 continue
@@ -152,7 +154,7 @@ class SceneView: NSView {
                 bezierPath.fill()
             }
 
-            let bubbleString = soup.bubbles[geometry.bubbleID].title!
+            let bubbleString = soup.bubbles[geometry.bubbleID].body!
 
             let bubbleAttributedString = AttributedString(bubbleString)
             let string = markupForSearch(bubbleID: geometry.bubbleID,

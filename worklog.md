@@ -140,3 +140,25 @@ now for updating text effects.  For now, if there's a result, render the
 text for it differently.  Not doing "current result" yet.
 
 
+==================================================
+# Wednesday August 12, 2026
+
+In Seattle with Kitties!  SO CUTE
+
+Now is the time for titles and tags.
+
+The highly detailed and specific ticket is:
+
+```
+Need to support in sample documents having titles and tags
+
+Also need to support for that in bubble drawing, actually drawing the titles and tags
+
+Then update the search result highlighting to show search results in the titles and tags.
+```
+
+Step 1 - titles and tags.  Update the MODCOMP one to have some titles and taggage
+
+need to get the modcomp borkle files into the bundle rather than ~/Downloads
+for personal sanity.  Actual document model will come later.
+

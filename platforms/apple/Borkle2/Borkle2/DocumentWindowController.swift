@@ -91,13 +91,18 @@ class DocumentWindowController: NSWindowController {
         let encodedYAML = try! encoder.encode(soup)
         let data = encodedYAML.data(using: .utf8)!
 //        let place = URL(fileURLWithPath: "/Users/markd/Downloads/blargh.yaml")
-        let place = URL(fileURLWithPath: "/Users/markd/downloads/modcompnotes-bubbles.yaml")
+//        let place = URL(fileURLWithPath: "/Users/markd/downloads/modcompnotes-bubbles.yaml")
+        let place = Bundle.main.url(forResource: "modcompnotes-bubbles",
+                                    withExtension: "yaml")!
+
         try! data.write(to: place)
     }
 
     func actuallyLoadYaml() {
 //        let place = URL(fileURLWithPath: "/Users/markd/Downloads/blargh.yaml")
-        let place = URL(fileURLWithPath: "/Users/markd/downloads/modcompnotes-bubbles.yaml")
+//        let place = URL(fileURLWithPath: "/Users/markd/downloads/modcompnotes-bubbles.yaml")
+        let place = Bundle.main.url(forResource: "modcompnotes-bubbles", withExtension: "yaml")!
+
         let data = try! Data(contentsOf: place, options: [])
         let decoder = YAMLDecoder()
         let decoded = try! decoder.decode(BubbleSoup.self, from: data)

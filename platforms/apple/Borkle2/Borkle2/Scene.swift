@@ -13,7 +13,26 @@ struct BubbleGeometry: Codable {
     // height is advisory, generally it'll be determined by word-wrapping the
     // bubble contents. maybe have some knobs to control it (and maybe have
     // scrolling bubble contents?)
-    let totalBounds: CGRect
+    var totalBounds: CGRect {
+        let union = [titleRect, bodyRect, keywordsRect]
+        .compactMap { $0 }
+        .reduce(into: CGRect?.none) { result, next in
+            result = result?.union(next) ?? next
+        }
+        return union ?? CGRect.null
+    }
+
+    let titleRect: CGRect?
+    let bodyRect: CGRect?
+    let keywordsRect: CGRect?
+    
+    init(bubbleID: Int32, bodyRect: CGRect) {
+        self.bubbleID = bubbleID
+        self.bodyRect = bodyRect
+        
+        self.titleRect = nil
+        self.keywordsRect = nil
+    }
 }
 
 class Scene: Codable {
@@ -146,7 +165,7 @@ class Scene: Codable {
 
     func changeGeometry(for id: Int32, to rect: CGRect) -> UndoPayload {
         _ = addID(id)
-        let bg = BubbleGeometry(bubbleID: id, totalBounds: rect)
+        let bg = BubbleGeometry(bubbleID: id, bodyRect: rect)
         geometries.append(bg)
 
         updateConnectionCentersTo(rect.center, for: id)

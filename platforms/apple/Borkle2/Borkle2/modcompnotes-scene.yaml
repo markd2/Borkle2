@@ -1514,1057 +1514,1057 @@ connections:
   - 4.85294034090383e+2
   bubble2ID: 174
 geometries:
-- bounds:
+- totalBounds:
   - - 3.17411435569639e+2
     - 1.46079240421037e+2
   - - 7e+1
     - 2e+1
   bubbleID: 0
-- bounds:
+- totalBounds:
   - - 4.07536544835373e+2
     - 1.80629065595863e+2
   - - 1.2e+2
     - 2e+1
   bubbleID: 1
-- bounds:
+- totalBounds:
   - - 1.04481292795746e+2
     - 6.1067498452069e+2
   - - 8e+1
     - 2e+1
   bubbleID: 2
-- bounds:
+- totalBounds:
   - - 3.95053312572848e+1
     - 5.75500186662299e+2
   - - 7e+1
     - 2e+1
   bubbleID: 3
-- bounds:
+- totalBounds:
   - - 2.01745825138404e+2
     - 7.13011932728732e+2
   - - 7e+1
     - 2e+1
   bubbleID: 4
-- bounds:
+- totalBounds:
   - - 1.02869982881702e+2
     - 7.20456015989222e+2
   - - 7e+1
     - 2e+1
   bubbleID: 5
-- bounds:
+- totalBounds:
   - - 8.79402134324017e+1
     - 6.71814994900935e+2
   - - 1.6e+2
     - 2e+1
   bubbleID: 6
-- bounds:
+- totalBounds:
   - - 7.27024466418998e+1
     - 5.36975547239222e+2
   - - 7e+1
     - 2e+1
   bubbleID: 7
-- bounds:
+- totalBounds:
   - - 2.20822097173661e+2
     - 6.2522836083188e+2
   - - 7e+1
     - 2e+1
   bubbleID: 8
-- bounds:
+- totalBounds:
   - - 8.6958538661859e+2
     - 1.62500400641028e+2
   - - 1.1e+2
     - 2e+1
   bubbleID: 9
-- bounds:
+- totalBounds:
   - - 8.63860326522436e+2
     - 4.6230218349362e+1
   - - 1.6e+2
     - 2e+1
   bubbleID: 10
-- bounds:
+- totalBounds:
   - - 8.08873848157052e+2
     - 2.25410657051285e+2
   - - 1.4e+2
     - 2e+1
   bubbleID: 11
-- bounds:
+- totalBounds:
   - - 7.97604820016026e+2
     - 9.7167968749994e+1
   - - 1.6e+2
     - 2e+1
   bubbleID: 12
-- bounds:
+- totalBounds:
   - - 9.95081530448718e+2
     - 1.13266225961532e+2
   - - 1e+2
     - 2e+1
   bubbleID: 13
-- bounds:
+- totalBounds:
   - - 1.04729832655449e+3
     - 3.5318509615378e+1
   - - 1.6e+2
     - 2e+1
   bubbleID: 14
-- bounds:
+- totalBounds:
   - - 1.13910872165064e+3
     - 1.22945462740378e+2
   - - 1.6e+2
     - 2e+1
   bubbleID: 15
-- bounds:
+- totalBounds:
   - - 1.129645580625e+3
     - 6.7727113381404e+1
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 16
-- bounds:
+- totalBounds:
   - - 8.17391118940851e+2
     - 1.27336658198571e+3
   - - 6e+1
     - 2e+1
   bubbleID: 17
-- bounds:
+- totalBounds:
   - - 8.94765167418416e+2
     - 1.29529657907196e+3
   - - 5e+1
     - 2e+1
   bubbleID: 18
-- bounds:
+- totalBounds:
   - - 7.43629350110724e+2
     - 1.33636353620337e+3
   - - 9e+1
     - 2e+1
   bubbleID: 19
-- bounds:
+- totalBounds:
   - - 7.47360183079837e+2
     - 1.24571497577942e+3
   - - 7e+1
     - 2e+1
   bubbleID: 20
-- bounds:
+- totalBounds:
   - - 2.36111375897437e+2
     - 7.47507370884317e+2
   - - 1e+2
     - 4.8e+1
   bubbleID: 21
-- bounds:
+- totalBounds:
   - - 2.83192064089453e+2
     - 6.63803071277673e+2
   - - 1e+2
     - 3.4e+1
   bubbleID: 22
-- bounds:
+- totalBounds:
   - - 9.53953118139569e+2
     - 1.3589491732226e+3
   - - 9e+1
     - 3.4e+1
   bubbleID: 23
-- bounds:
+- totalBounds:
   - - 8.39235069261365e+2
     - 1.19813036312644e+3
   - - 7e+1
     - 3.4e+1
   bubbleID: 24
-- bounds:
+- totalBounds:
   - - 1.59811127317892e+2
     - 2.42715790719691e+2
   - - 1e+2
     - 3.4e+1
   bubbleID: 25
-- bounds:
+- totalBounds:
   - - 3.21105470995046e+2
     - 2.29485872851102e+2
   - - 1.1e+2
     - 3.4e+1
   bubbleID: 26
-- bounds:
+- totalBounds:
   - - 3.56407795623544e+2
     - 2.91199865238921e+2
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 27
-- bounds:
+- totalBounds:
   - - 3.88188897690852e+2
     - 3.53431731679778e+2
   - - 1e+2
     - 3.4e+1
   bubbleID: 28
-- bounds:
+- totalBounds:
   - - 2.43180907634043e+1
     - 2.96810842803027e+2
   - - 1e+2
     - 4.8e+1
   bubbleID: 29
-- bounds:
+- totalBounds:
   - - 2.40180812026516e+2
     - 1.8981121157488e+2
   - - 6e+1
     - 2e+1
   bubbleID: 30
-- bounds:
+- totalBounds:
   - - 1.77577851835665e+2
     - 8.63953826121758e+1
   - - 1.3e+2
     - 4.8e+1
   bubbleID: 31
-- bounds:
+- totalBounds:
   - - 8.10655457823433e+1
     - 9.79383641098477e+2
   - - 1.4e+2
     - 3.4e+1
   bubbleID: 32
-- bounds:
+- totalBounds:
   - - 3.33928603948142e+1
     - 8.95883791338862e+2
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 33
-- bounds:
+- totalBounds:
   - - 2.80164809149186e+2
     - 1.04283272781906e+3
   - - 1e+2
     - 2e+1
   bubbleID: 34
-- bounds:
+- totalBounds:
   - - 3.87229271379662e+2
     - 1.09265093695366e+3
   - - 8e+1
     - 3.4e+1
   bubbleID: 35
-- bounds:
+- totalBounds:
   - - 4.80156545928031e+2
     - 1.04219170217803e+3
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 36
-- bounds:
+- totalBounds:
   - - 4.22594696969697e+2
     - 9.84727506136368e+2
   - - 1.1e+2
     - 3.4e+1
   bubbleID: 37
-- bounds:
+- totalBounds:
   - - 5.22812795928031e+2
     - 9.21989879261346e+2
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 38
-- bounds:
+- totalBounds:
   - - 5.80729462594697e+2
     - 1.10187920217801e+3
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 39
-- bounds:
+- totalBounds:
   - - 6.91116832386364e+2
     - 1.02615980113635e+3
   - - 1.6e+2
     - 6.2e+1
   bubbleID: 40
-- bounds:
+- totalBounds:
   - - 2.69567945075758e+2
     - 1.12404302793559e+3
   - - 8e+1
     - 3.4e+1
   bubbleID: 41
-- bounds:
+- totalBounds:
   - - 1.29066051136364e+2
     - 1.13779066051135e+3
   - - 1.1e+2
     - 3.4e+1
   bubbleID: 42
-- bounds:
+- totalBounds:
   - - 2.84002130681819e+1
     - 1.19221951941286e+3
   - - 1.3e+2
     - 6.2e+1
   bubbleID: 43
-- bounds:
+- totalBounds:
   - - 1.00595442708333e+3
     - 1.67558593749978e+2
   - - 1e+2
     - 2e+1
   bubbleID: 44
-- bounds:
+- totalBounds:
   - - 9.99899739583333e+2
     - 2.26373697916645e+2
   - - 9e+1
     - 3.4e+1
   bubbleID: 45
-- bounds:
+- totalBounds:
   - - 1.15682356770833e+3
     - 2.12307942708311e+2
   - - 1.3e+2
     - 4.8e+1
   bubbleID: 46
-- bounds:
+- totalBounds:
   - - 1.29968631628787e+1
     - 2.33713955965888e+2
   - - 1.2e+2
     - 4.8e+1
   bubbleID: 47
-- bounds:
+- totalBounds:
   - - 2.00475556344697e+2
     - 1.17904391905304e+3
   - - 1.2e+2
     - 2e+1
   bubbleID: 48
-- bounds:
+- totalBounds:
   - - 1.76084280303031e+2
     - 1.21696058571972e+3
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 49
-- bounds:
+- totalBounds:
   - - 8.15341796875e+2
     - 1.93683304073867e+3
   - - 1.6e+2
     - 2e+1
   bubbleID: 50
-- bounds:
+- totalBounds:
   - - 5.30826822916667e+2
     - 2.29284245125003e+3
   - - 1.6e+2
     - 2e+1
   bubbleID: 51
-- bounds:
+- totalBounds:
   - - 6.91216856060603e+1
     - 1.50348958333398e+2
   - - 8e+1
     - 2e+1
   bubbleID: 52
-- bounds:
+- totalBounds:
   - - 1.96860203598484e+2
     - 2.88096354166731e+2
   - - 1.3e+2
     - 6.2e+1
   bubbleID: 53
-- bounds:
+- totalBounds:
   - - 3.70901988636364e+2
     - 9.13256155303083e+2
   - - 1.1e+2
     - 4.8e+1
   bubbleID: 54
-- bounds:
+- totalBounds:
   - - 3.76781486742424e+2
     - 7.87207623106535e+1
   - - 1.3e+2
     - 3.4e+1
   bubbleID: 55
-- bounds:
+- totalBounds:
   - - 5.34388908617424e+2
     - 8.88997987689868e+1
   - - 8e+1
     - 2e+1
   bubbleID: 56
-- bounds:
+- totalBounds:
   - - 4.16940991950756e+2
     - 1.2687180397733e+2
   - - 1e+2
     - 3.4e+1
   bubbleID: 57
-- bounds:
+- totalBounds:
   - - 5.73509706439392e+2
     - 1.18805989583391e+2
   - - 1.1e+2
     - 3.4e+1
   bubbleID: 58
-- bounds:
+- totalBounds:
   - - 1.65278468276513e+2
     - 1.31590027225383e+3
   - - 1.6e+2
     - 6.2e+1
   bubbleID: 59
-- bounds:
+- totalBounds:
   - - 3.50882457386362e+2
     - 1.15201592092808e+3
   - - 9e+1
     - 3.4e+1
   bubbleID: 60
-- bounds:
+- totalBounds:
   - - 3.41157675078419e+2
     - 1.2256440540661e+3
   - - 1.3e+2
     - 6.2e+1
   bubbleID: 61
-- bounds:
+- totalBounds:
   - - 6.03056936553028e+2
     - 9.86403941761415e+2
   - - 1.8e+2
     - 2e+1
   bubbleID: 62
-- bounds:
+- totalBounds:
   - - 8.05250059185604e+2
     - 9.4815731534096e+2
   - - 1.6e+2
     - 6.2e+1
   bubbleID: 63
-- bounds:
+- totalBounds:
   - - 4.85699869791664e+2
     - 1.13314133522732e+3
   - - 7e+1
     - 4.8e+1
   bubbleID: 64
-- bounds:
+- totalBounds:
   - - 5.720146780303e+2
     - 1.17391429924248e+3
   - - 1.6e+2
     - 9e+1
   bubbleID: 65
-- bounds:
+- totalBounds:
   - - 6.25118371211883e+0
     - 3.64601148200798e+2
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 66
-- bounds:
+- totalBounds:
   - - 4.39088837594695e+2
     - 1.59904717092807e+3
   - - 6e+1
     - 3.4e+1
   bubbleID: 67
-- bounds:
+- totalBounds:
   - - 4.16722301136361e+2
     - 1.52912026515156e+3
   - - 1.1e+2
     - 2e+1
   bubbleID: 68
-- bounds:
+- totalBounds:
   - - 5.43486624053028e+2
     - 1.57205172821972e+3
   - - 9e+1
     - 2e+1
   bubbleID: 69
-- bounds:
+- totalBounds:
   - - 5.45972123579542e+2
     - 1.50738435132579e+3
   - - 9e+1
     - 2e+1
   bubbleID: 70
-- bounds:
+- totalBounds:
   - - 3.64564098011361e+2
     - 1.66528415009472e+3
   - - 9e+1
     - 3.4e+1
   bubbleID: 71
-- bounds:
+- totalBounds:
   - - 3.11351207386361e+2
     - 1.60318454071972e+3
   - - 9e+1
     - 2e+1
   bubbleID: 72
-- bounds:
+- totalBounds:
   - - 3.18994436553028e+2
     - 1.55492282196972e+3
   - - 7e+1
     - 2e+1
   bubbleID: 73
-- bounds:
+- totalBounds:
   - - 1.54850556344695e+2
     - 1.46674573863639e+3
   - - 1.2e+2
     - 1.04e+2
   bubbleID: 74
-- bounds:
+- totalBounds:
   - - 2.86139618844695e+2
     - 1.48117282196972e+3
   - - 9e+1
     - 3.4e+1
   bubbleID: 75
-- bounds:
+- totalBounds:
   - - 4.02871389678028e+2
     - 1.47404066051139e+3
   - - 1e+2
     - 3.4e+1
   bubbleID: 76
-- bounds:
+- totalBounds:
   - - 2.53983487215906e+2
     - 9.69649088541714e+2
   - - 1.3e+2
     - 3.4e+1
   bubbleID: 77
-- bounds:
+- totalBounds:
   - - 2.36673473011361e+2
     - 9.12126598011426e+2
   - - 1.1e+2
     - 4.8e+1
   bubbleID: 78
-- bounds:
+- totalBounds:
   - - 4.29238577178028e+2
     - 1.40587985655308e+3
   - - 1.4e+2
     - 4.8e+1
   bubbleID: 79
-- bounds:
+- totalBounds:
   - - 6.96588837594694e+2
     - 1.56398798532212e+3
   - - 1e+2
     - 2e+1
   bubbleID: 80
-- bounds:
+- totalBounds:
   - - 8.0865589488636e+2
     - 1.51170933948879e+3
   - - 1.6e+2
     - 2e+1
   bubbleID: 81
-- bounds:
+- totalBounds:
   - - 7.07272431344694e+2
     - 1.63793980823879e+3
   - - 8e+1
     - 2e+1
   bubbleID: 82
-- bounds:
+- totalBounds:
   - - 7.69528290719694e+2
     - 1.46632848011379e+3
   - - 1e+2
     - 2e+1
   bubbleID: 83
-- bounds:
+- totalBounds:
   - - 8.9694691051136e+2
     - 1.46028030303045e+3
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 84
-- bounds:
+- totalBounds:
   - - 6.63639618844694e+2
     - 1.51680699573879e+3
   - - 1.2e+2
     - 2e+1
   bubbleID: 85
-- bounds:
+- totalBounds:
   - - 8.2867542613636e+2
     - 1.56526402698879e+3
   - - 8e+1
     - 2e+1
   bubbleID: 86
-- bounds:
+- totalBounds:
   - - 9.75062144886361e+2
     - 1.53290725615545e+3
   - - 9e+1
     - 3.4e+1
   bubbleID: 87
-- bounds:
+- totalBounds:
   - - 9.33720999053028e+2
     - 1.58345738636378e+3
   - - 1.8e+2
     - 3.4e+1
   bubbleID: 88
-- bounds:
+- totalBounds:
   - - 8.41334931344694e+2
     - 1.62707067094719e+3
   - - 7e+1
     - 6.2e+1
   bubbleID: 89
-- bounds:
+- totalBounds:
   - - 9.68219696969694e+2
     - 1.65137405303053e+3
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 90
-- bounds:
+- totalBounds:
   - - 1.10302408854166e+3
     - 1.82222395833346e+3
   - - 7e+1
     - 2e+1
   bubbleID: 91
-- bounds:
+- totalBounds:
   - - 1.84660091145833e+3
     - 1.78767448250013e+3
   - - 7e+1
     - 2e+1
   bubbleID: 92
-- bounds:
+- totalBounds:
   - - 9.671455078125e+2
     - 4.81668900923295e+2
   - - 9e+1
     - 2e+1
   bubbleID: 93
-- bounds:
+- totalBounds:
   - - 9.57127130681811e+2
     - 4.45634235681818e+2
   - - 1e+2
     - 2e+1
   bubbleID: 94
-- bounds:
+- totalBounds:
   - - 9.08025568181811e+2
     - 3.96529119318181e+2
   - - 1.2e+2
     - 2e+1
   bubbleID: 95
-- bounds:
+- totalBounds:
   - - 1.08774857954545e+3
     - 4.59508522727272e+2
   - - 7e+1
     - 2e+1
   bubbleID: 96
-- bounds:
+- totalBounds:
   - - 1.08060369318181e+3
     - 4.06742187499999e+2
   - - 7e+1
     - 2e+1
   bubbleID: 97
-- bounds:
+- totalBounds:
   - - 1.15229758522727e+3
     - 3.74405539772727e+2
   - - 7e+1
     - 2e+1
   bubbleID: 98
-- bounds:
+- totalBounds:
   - - 1.16689985795454e+3
     - 4.07303267045454e+2
   - - 7e+1
     - 2e+1
   bubbleID: 99
-- bounds:
+- totalBounds:
   - - 1.16098366477272e+3
     - 4.39117897727272e+2
   - - 7e+1
     - 2e+1
   bubbleID: 100
-- bounds:
+- totalBounds:
   - - 1.17687144886363e+3
     - 4.76706676136363e+2
   - - 7e+1
     - 3.4e+1
   bubbleID: 101
-- bounds:
+- totalBounds:
   - - 1.09883167613636e+3
     - 5.04728693181818e+2
   - - 7e+1
     - 2e+1
   bubbleID: 102
-- bounds:
+- totalBounds:
   - - 1.17891335227272e+3
     - 5.27938920454545e+2
   - - 7e+1
     - 2e+1
   bubbleID: 103
-- bounds:
+- totalBounds:
   - - 1.28147017045454e+3
     - 4.82420454545454e+2
   - - 6e+1
     - 2e+1
   bubbleID: 104
-- bounds:
+- totalBounds:
   - - 7.97972301136353e+2
     - 4.43027698863636e+2
   - - 1.4e+2
     - 4.8e+1
   bubbleID: 105
-- bounds:
+- totalBounds:
   - - 8.21548295454535e+2
     - 3.39238636363636e+2
   - - 1.3e+2
     - 4.8e+1
   bubbleID: 106
-- bounds:
+- totalBounds:
   - - 6.42290482954537e+2
     - 4.50911221590908e+2
   - - 1.3e+2
     - 4.8e+1
   bubbleID: 107
-- bounds:
+- totalBounds:
   - - 6.5630681818181e+2
     - 3.85250710227272e+2
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 108
-- bounds:
+- totalBounds:
   - - 9.39080255681801e+2
     - 5.27044034090908e+2
   - - 1.1e+2
     - 2e+1
   bubbleID: 109
-- bounds:
+- totalBounds:
   - - 9.16303267045437e+2
     - 5.71415482954545e+2
   - - 1e+2
     - 6.2e+1
   bubbleID: 110
-- bounds:
+- totalBounds:
   - - 1.06368607954544e+3
     - 5.64515624999999e+2
   - - 1.4e+2
     - 6.2e+1
   bubbleID: 111
-- bounds:
+- totalBounds:
   - - 1.14792968749998e+3
     - 6.33187499999999e+2
   - - 1.6e+2
     - 7.6e+1
   bubbleID: 112
-- bounds:
+- totalBounds:
   - - 1.02778764204544e+3
     - 6.60204545454544e+2
   - - 1e+2
     - 3.4e+1
   bubbleID: 113
-- bounds:
+- totalBounds:
   - - 2.25752840909071e+2
     - 5.95307528409106e+2
   - - 9e+1
     - 2e+1
   bubbleID: 114
-- bounds:
+- totalBounds:
   - - 2.40852272727252e+2
     - 5.45591619318197e+2
   - - 5e+1
     - 2e+1
   bubbleID: 115
-- bounds:
+- totalBounds:
   - - 1.3593749999998e+2
     - 4.64906250000016e+2
   - - 1.1e+2
     - 2e+1
   bubbleID: 116
-- bounds:
+- totalBounds:
   - - 3.14204545454525e+2
     - 5.12555397727288e+2
   - - 9e+1
     - 3.4e+1
   bubbleID: 117
-- bounds:
+- totalBounds:
   - - 9.12848011363607e+2
     - 1.24542826704549e+3
   - - 1.3e+2
     - 2e+1
   bubbleID: 118
-- bounds:
+- totalBounds:
   - - 9.46619318181788e+2
     - 1.1718629261364e+3
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 119
-- bounds:
+- totalBounds:
   - - 8.97009943181789e+2
     - 1.08654687500003e+3
   - - 1.6e+2
     - 6.2e+1
   bubbleID: 120
-- bounds:
+- totalBounds:
   - - 1.07010653409088e+3
     - 1.2765681818182e+3
   - - 1.3e+2
     - 3.4e+1
   bubbleID: 121
-- bounds:
+- totalBounds:
   - - 1.08061434659087e+3
     - 1.11495951704545e+3
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 122
-- bounds:
+- totalBounds:
   - - 1.07522017045451e+3
     - 1.23337571022726e+3
   - - 1e+2
     - 2e+1
   bubbleID: 123
-- bounds:
+- totalBounds:
   - - 1.82563920454412e+2
     - 1.7069872159088e+3
   - - 5e+1
     - 2e+1
   bubbleID: 124
-- bounds:
+- totalBounds:
   - - 5.47986505681685e+2
     - 3.35161931817892e+2
   - - 5e+1
     - 2e+1
   bubbleID: 125
-- bounds:
+- totalBounds:
   - - 5.12308238636231e+2
     - 3.73986505681528e+2
   - - 6e+1
     - 2e+1
   bubbleID: 126
-- bounds:
+- totalBounds:
   - - 5.52354403408958e+2
     - 2.84341619317892e+2
   - - 1e+2
     - 3.4e+1
   bubbleID: 127
-- bounds:
+- totalBounds:
   - - 6.1225852272714e+2
     - 2.39082386363346e+2
   - - 1.1e+2
     - 2e+1
   bubbleID: 128
-- bounds:
+- totalBounds:
   - - 6.67418323863503e+2
     - 3.08745028408801e+2
   - - 1.1e+2
     - 2e+1
   bubbleID: 129
-- bounds:
+- totalBounds:
   - - 2.11001420454412e+2
     - 1.66106747159064e+3
   - - 4e+1
     - 2e+1
   bubbleID: 130
-- bounds:
+- totalBounds:
   - - 2.46910511362304e+1
     - 8.88835227269521e+1
   - - 1.1e+2
     - 4.8e+1
   bubbleID: 131
-- bounds:
+- totalBounds:
   - - 4.56516335227128e+2
     - 5.46497159090498e+2
   - - 4.1e+2
     - 1.18e+2
   bubbleID: 132
-- bounds:
+- totalBounds:
   - - 1.00422585227128e+2
     - 1.67676704545415e+3
   - - 8e+1
     - 2e+1
   bubbleID: 133
-- bounds:
+- totalBounds:
   - - 2.58235085227128e+2
     - 1.68606747159051e+3
   - - 9e+1
     - 3.4e+1
   bubbleID: 134
-- bounds:
+- totalBounds:
   - - 2.59392755681673e+2
     - 1.72511221590869e+3
   - - 1.6e+2
     - 9e+1
   bubbleID: 135
-- bounds:
+- totalBounds:
   - - 3.1345880681673e+1
     - 1.63416051136324e+3
   - - 1.7e+2
     - 2e+1
   bubbleID: 136
-- bounds:
+- totalBounds:
   - - 2.75955255681673e+2
     - 1.85169247159051e+3
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 137
-- bounds:
+- totalBounds:
   - - 9.43963068180366e+1
     - 1.85388352272687e+3
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 138
-- bounds:
+- totalBounds:
   - - 1.21768465907639e+1
     - 1.71690553977233e+3
   - - 1.3e+2
     - 3.4e+1
   bubbleID: 139
-- bounds:
+- totalBounds:
   - - 1.34232954544002e+1
     - 1.77850355113597e+3
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 140
-- bounds:
+- totalBounds:
   - - 2.52073863636218e+2
     - 3.75056818178425e+1
   - - 1.3e+2
     - 3.4e+1
   bubbleID: 141
-- bounds:
+- totalBounds:
   - - 2.96399147727127e+2
     - 3.6415340909057e+2
   - - 8e+1
     - 2e+1
   bubbleID: 142
-- bounds:
+- totalBounds:
   - - 2.11946022727127e+2
     - 4.0376278409057e+2
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 143
-- bounds:
+- totalBounds:
   - - 4.83895596590762e+2
     - 1.28416406249958e+3
   - - 1.6e+2
     - 2e+1
   bubbleID: 144
-- bounds:
+- totalBounds:
   - - 3.74637784090762e+2
     - 1.32841477272685e+3
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 145
-- bounds:
+- totalBounds:
   - - 5.64090909090762e+2
     - 1.34803835227231e+3
   - - 1.1e+2
     - 3.4e+1
   bubbleID: 146
-- bounds:
+- totalBounds:
   - - 4.03473011363489e+2
     - 2.12592329541203e+1
   - - 2.4e+2
     - 4.8e+1
   bubbleID: 147
-- bounds:
+- totalBounds:
   - - 6.72723721590763e+2
     - 3.05703124995748e+1
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 148
-- bounds:
+- totalBounds:
   - - 6.10901988634899e+1
     - 1.03775426136321e+3
   - - 1.3e+2
     - 4.8e+1
   bubbleID: 149
-- bounds:
+- totalBounds:
   - - 5.82453835227126e+2
     - 1.79980826590493e+2
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 150
-- bounds:
+- totalBounds:
   - - 6.76541193181672e+2
     - 1.79308096590864e+3
   - - 5e+1
     - 2e+1
   bubbleID: 151
-- bounds:
+- totalBounds:
   - - 5.56420454545308e+2
     - 1.60615624999955e+3
   - - 1.3e+2
     - 3.4e+1
   bubbleID: 152
-- bounds:
+- totalBounds:
   - - 6.06803977272581e+2
     - 1.68105326704501e+3
   - - 1.6e+2
     - 6.2e+1
   bubbleID: 153
-- bounds:
+- totalBounds:
   - - 7.90575284090763e+2
     - 1.75478906249955e+3
   - - 1.6e+2
     - 1.04e+2
   bubbleID: 154
-- bounds:
+- totalBounds:
   - - 8.0632457386349e+2
     - 1.70679545454501e+3
   - - 1.1e+2
     - 3.4e+1
   bubbleID: 155
-- bounds:
+- totalBounds:
   - - 4.60838068181672e+2
     - 1.88045667613593e+3
   - - 1.6e+2
     - 2e+1
   bubbleID: 156
-- bounds:
+- totalBounds:
   - - 6.47240767045309e+2
     - 1.88119886363593e+3
   - - 1.6e+2
     - 2e+1
   bubbleID: 157
-- bounds:
+- totalBounds:
   - - 5.73771306818036e+2
     - 1.93836860795411e+3
   - - 1.2e+2
     - 3.4e+1
   bubbleID: 158
-- bounds:
+- totalBounds:
   - - 3.74857954545309e+2
     - 1.93443749999956e+3
   - - 1.6e+2
     - 9e+1
   bubbleID: 159
-- bounds:
+- totalBounds:
   - - 8.15845170454398e+2
     - 1.9351761363632e+3
   - - 1.6e+2
     - 9e+1
   bubbleID: 160
-- bounds:
+- totalBounds:
   - - 8.79406960227126e+2
     - 1.88492755681774e+3
   - - 1e+2
     - 3.4e+1
   bubbleID: 161
-- bounds:
+- totalBounds:
   - - 6.46001420454399e+2
     - 1.99364914772684e+3
   - - 1.5e+2
     - 6.2e+1
   bubbleID: 162
-- bounds:
+- totalBounds:
   - - 6.31803977272581e+2
     - 2.08905752840866e+3
   - - 6e+1
     - 2e+1
   bubbleID: 163
-- bounds:
+- totalBounds:
   - - 7.08774857954399e+2
     - 2.0775589488632e+3
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 164
-- bounds:
+- totalBounds:
   - - 3.53682528408942e+2
     - 7.07321022726751e+2
   - - 1.6e+2
     - 6.2e+1
   bubbleID: 165
-- bounds:
+- totalBounds:
   - - 5.64985795453058e+1
     - 7.81017755681297e+2
   - - 1.6e+2
     - 6.2e+1
   bubbleID: 166
-- bounds:
+- totalBounds:
   - - 2.37851562499851e+2
     - 8.18627840908569e+2
   - - 1.6e+2
     - 4.8e+1
   bubbleID: 167
-- bounds:
+- totalBounds:
   - - 4.39815340908942e+2
     - 8.11443892044933e+2
   - - 1.6e+2
     - 3.4e+1
   bubbleID: 168
-- bounds:
+- totalBounds:
   - - 3.18643465907602e+1
     - 1.88549715908581e+2
   - - 1.6e+2
     - 2e+1
   bubbleID: 169
-- bounds:
+- totalBounds:
   - - 4.49705255681669e+2
     - 4.32715198863126e+2
   - - 9e+1
     - 2e+1
   bubbleID: 170
-- bounds:
+- totalBounds:
   - - 3.28384232954397e+2
     - 4.69661221590398e+2
   - - 1.6e+2
     - 2e+1
   bubbleID: 171
-- bounds:
+- totalBounds:
   - - 5.55529119318033e+2
     - 4.05644886363125e+2
   - - 4e+1
     - 2e+1
   bubbleID: 172
-- bounds:
+- totalBounds:
   - - 4.43146306816694e+1
     - 1.27470738636311e+3
   - - 1.1e+2
     - 4.8e+1
   bubbleID: 173
-- bounds:
+- totalBounds:
   - - 5.03409090908944e+2
     - 4.68294034090383e+2
   - - 1.2e+2
     - 3.4e+1
   bubbleID: 174
-- bounds:
+- totalBounds:
   - - 6.81249999999853e+2
     - 8.98830255681268e+2
   - - 1.6e+2

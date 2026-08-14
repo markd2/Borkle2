@@ -7,6 +7,15 @@
 import Foundation
 import AppKit
 
+struct BubbleGeometry: Codable {
+    let bubbleID: Int32
+
+    // height is advisory, generally it'll be determined by word-wrapping the
+    // bubble contents. maybe have some knobs to control it (and maybe have
+    // scrolling bubble contents?)
+    let totalBounds: CGRect
+}
+
 class Scene: Codable {
 
     typealias UndoPayload = AnyObject
@@ -18,15 +27,6 @@ class Scene: Codable {
         var bubble2Center: CGPoint
     }
 
-    struct BubbleGeometry: Codable {
-        let bubbleID: Int32
-
-        // height is advisory, generally it'll be determined by word-wrapping the
-        // bubble contents. maybe have some knobs to control it (and maybe have
-        // scrolling bubble contents?)
-        let bounds: CGRect
-    }
-
     /// all the bubbles in this scene
     var bubbleIDs: Set<Int32> = []
 
@@ -35,7 +35,7 @@ class Scene: Codable {
 
     var snugglyRect: CGRect {
         geometries.reduce(into: CGRect.zero) { (accumulator, geometry) in
-            accumulator = accumulator.union(geometry.bounds)
+            accumulator = accumulator.union(geometry.totalBounds)
         }
     }
 
@@ -73,8 +73,8 @@ class Scene: Codable {
                                     bubble2Center: .zero)
 
         if let (g1, g2) = geometriesFor(thing1, thing2) {
-            connection.bubble1Center = g1.bounds.center
-            connection.bubble2Center = g2.bounds.center
+            connection.bubble1Center = g1.totalBounds.center
+            connection.bubble2Center = g2.totalBounds.center
         }
 
         connections.append(connection)
@@ -146,7 +146,7 @@ class Scene: Codable {
 
     func changeGeometry(for id: Int32, to rect: CGRect) -> UndoPayload {
         _ = addID(id)
-        let bg = BubbleGeometry(bubbleID: id, bounds: rect)
+        let bg = BubbleGeometry(bubbleID: id, totalBounds: rect)
         geometries.append(bg)
 
         updateConnectionCentersTo(rect.center, for: id)

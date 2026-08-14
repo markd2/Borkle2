@@ -141,7 +141,7 @@ class SceneView: NSView {
         for geometry in scene.geometries {
             let bezierPath = NSBezierPath()
             bezierPath.lineWidth = 1.0
-            bezierPath.appendRoundedRect(geometry.bounds,
+            bezierPath.appendRoundedRect(geometry.totalBounds,
                                          xRadius: 4, yRadius: 4)
 
             Colors.bubbleBackground.set()
@@ -161,7 +161,7 @@ class SceneView: NSView {
                                          attributedString: bubbleAttributedString,
                                          searchResults: searchResults)
 
-            var stringRect = geometry.bounds.insetBy(dx: 3, dy: 3)
+            var stringRect = geometry.totalBounds.insetBy(dx: 3, dy: 3)
             let height = string.heightFor(width: stringRect.width)
             stringRect.size = CGSize(width: stringRect.width, height: height)
 
@@ -204,7 +204,7 @@ class SceneView: NSView {
     func scrollToBubble(bubbleID: BubbleID) {
         guard let geometry = scene.geometryFor(bubbleID) else { return }
 
-        centerOn(rect: geometry.bounds)
+        centerOn(rect: geometry.totalBounds)
     }
 
     func moveSearchResultTo(searchIndex: Int) {
@@ -376,7 +376,7 @@ extension SceneView: MouseSupport {
         guard let soup else { return nil }
 
         for geometry in scene.geometries {
-            if geometry.bounds.contains(point) {
+            if geometry.totalBounds.contains(point) {
                 let bubbleID = geometry.bubbleID
                 let bubble = soup.bubbles[bubbleID]
                 return bubble

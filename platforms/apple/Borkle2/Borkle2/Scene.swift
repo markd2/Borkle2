@@ -26,12 +26,13 @@ struct BubbleGeometry: Codable {
     let bodyRect: CGRect?
     let keywordsRect: CGRect?
     
-    init(bubbleID: Int32, bodyRect: CGRect) {
+    init(bubbleID: Int32, bodyRect: CGRect? = nil,
+         titleRect: CGRect? = nil,
+         keywordsRect: CGRect? = nil) {
         self.bubbleID = bubbleID
         self.bodyRect = bodyRect
-        
-        self.titleRect = nil
-        self.keywordsRect = nil
+        self.titleRect = titleRect
+        self.keywordsRect = keywordsRect
     }
 }
 
@@ -110,6 +111,15 @@ class Scene: Codable {
         return nil
     }
 
+    func geometryIndexFor(_ bubbleID: BubbleID) -> Int? {
+        for (i, geometry) in geometries.enumerated() {
+            if geometry.bubbleID == bubbleID {
+                return i
+            }
+        }
+        return nil
+    }
+
     // find the geometries for both the given things, used when adding
     // a connection so we can get and cache the center point.
 
@@ -163,6 +173,22 @@ class Scene: Codable {
         }
     }
 
+    func changeTitleRect(for id: Int32, to rect: CGRect) -> UndoPayload {
+        _ = addID(id)
+        let bg = BubbleGeometry(bubbleID: id, bodyRect: rect)
+        geometries.append(bg)
+
+        updateConnectionCentersTo(rect.center, for: id)
+
+        return "change title rect \(id) -> \(rect)" as NSString
+    }
+
+    func changeGeometry(for id: Int32, to geometry: BubbleGeometry) {
+
+    }
+
+    // Just for the splugne button? Looks like it's _adding_, not
+    // _changing_
     func changeGeometry(for id: Int32, to rect: CGRect) -> UndoPayload {
         _ = addID(id)
         let bg = BubbleGeometry(bubbleID: id, bodyRect: rect)
@@ -170,7 +196,7 @@ class Scene: Codable {
 
         updateConnectionCentersTo(rect.center, for: id)
 
-        return "change geometry" as NSString
+        return "change geometry \(id) -> \(rect)" as NSString
     }
 
     func undo(_ payload: UndoPayload) -> UndoPayload {

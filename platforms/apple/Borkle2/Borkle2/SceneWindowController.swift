@@ -48,7 +48,34 @@ class SceneWindowController: NSWindowController {
         scroller.hasVerticalScroller = true
     }
 
+    // Add title rects to the thingies that have titles
     @IBAction func splunge(_ sender: NSControl) {
+        let titleHeight = 12.0
+
+        for (i, geometry) in scene.geometries.enumerated() {
+            let bubble = soup.bubbles[geometry.bubbleID]
+            guard bubble.title != nil else { continue }
+
+            // if we have a title. make a title rect at the top
+            guard var titleRect = geometry.bodyRect else { continue }
+            titleRect.size.height = titleHeight
+            
+            // scoot the body down
+            guard var bodyRect = geometry.bodyRect else { continue }
+            bodyRect.origin.y = bodyRect.origin.y + titleHeight
+            
+            let replacementGeometry = BubbleGeometry(
+              bubbleID: geometry.bubbleID,
+              bodyRect: bodyRect,
+              titleRect: titleRect)
+            
+            scene.geometries[i] = replacementGeometry
+        }
+        sceneView.needsDisplay = true
+        updateScrollJunk()
+    }
+
+    @IBAction func splungeXXX(_ sender: NSControl) {
         _ = scene.addID(1)
         _ = scene.addID(2)
         _ = scene.addID(3)

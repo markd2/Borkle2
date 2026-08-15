@@ -109,6 +109,10 @@ class SceneView: NSView {
                 foundRange = (ID == bubbleID) ? range : nil
             case let .bodyRange(ID, range):
                 foundRange = (ID == bubbleID) ? range : nil
+            case let .tagRange(ID, string, range):
+                if String(attr.characters) == string {
+                    foundRange = (ID == bubbleID) ? range : nil
+                }
 
             default:
                 continue
@@ -215,24 +219,29 @@ class SceneView: NSView {
                 return
             }
 
-            let bubbleString = tags.joined(separator: ", ")
-
-            let bubbleAttributedString = AttributedString(bubbleString)
-            let titleResults = searchResults?.filter { result in
+            let tagsResults = searchResults?.filter { result in
                 switch result {
                     case .tagRange: return true
                     default: return false
                 }
             }
-            let string = markupForSearch(bubbleID: geometry.bubbleID,
-                                         attributedString: bubbleAttributedString,
-                                         searchResults: titleResults)
 
+            let nsattr = NSMutableAttributedString()
+            for tag in tags {
+                let tagString = AttributedString(tag)
+                let string = markupForSearch(bubbleID: geometry.bubbleID,
+                                             attributedString: tagString,
+                                             searchResults: tagsResults)
+                nsattr.append(NSAttributedString("#"))
+                nsattr.append(NSAttributedString(string))
+                nsattr.append(NSAttributedString(" "))
+            }
+            
+            let string = nsattr.string
+                
             var stringRect = tagsRect.insetBy(dx: 3, dy: 1)
             let height = string.heightFor(width: stringRect.width)
             stringRect.size = CGSize(width: stringRect.width, height: height)
-
-            let nsattr = NSMutableAttributedString(string)
 
             let baseFont = NSFont.systemFont(ofSize: 12)
             let italicFont = NSFontManager.shared.convert(
@@ -243,7 +252,6 @@ class SceneView: NSView {
             nsattr.addAttribute(.font, value: italicFont, range: range)
             nsattr.addAttribute(.foregroundColor, value: NSColor.darkGray,
                                 range: range)
-            
 
             nsattr.draw(with: stringRect,
                         options: .usesLineFragmentOrigin)

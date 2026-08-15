@@ -7,6 +7,35 @@
 import Foundation
 import AppKit
 
+struct BubbleGeometry: Codable {
+    let bubbleID: Int32
+
+    // height is advisory, generally it'll be determined by word-wrapping the
+    // bubble contents. maybe have some knobs to control it (and maybe have
+    // scrolling bubble contents?)
+    var totalBounds: CGRect {
+        let union = [titleRect, bodyRect, tagsRect]
+        .compactMap { $0 }
+        .reduce(into: CGRect?.none) { result, next in
+            result = result?.union(next) ?? next
+        }
+        return union ?? CGRect.null
+    }
+
+    let titleRect: CGRect?
+    let bodyRect: CGRect?
+    let tagsRect: CGRect?
+    
+    init(bubbleID: Int32, bodyRect: CGRect? = nil,
+         titleRect: CGRect? = nil,
+         tagsRect: CGRect? = nil) {
+        self.bubbleID = bubbleID
+        self.bodyRect = bodyRect
+        self.titleRect = titleRect
+        self.tagsRect = tagsRect
+    }
+}
+
 class Scene: Codable {
 
     typealias UndoPayload = AnyObject
@@ -18,15 +47,6 @@ class Scene: Codable {
         var bubble2Center: CGPoint
     }
 
-    struct BubbleGeometry: Codable {
-        let bubbleID: Int32
-
-        // height is advisory, generally it'll be determined by word-wrapping the
-        // bubble contents. maybe have some knobs to control it (and maybe have
-        // scrolling bubble contents?)
-        let bounds: CGRect
-    }
-
     /// all the bubbles in this scene
     var bubbleIDs: Set<Int32> = []
 
@@ -35,7 +55,7 @@ class Scene: Codable {
 
     var snugglyRect: CGRect {
         geometries.reduce(into: CGRect.zero) { (accumulator, geometry) in
-            accumulator = accumulator.union(geometry.bounds)
+            accumulator = accumulator.union(geometry.totalBounds)
         }
     }
 
@@ -73,8 +93,8 @@ class Scene: Codable {
                                     bubble2Center: .zero)
 
         if let (g1, g2) = geometriesFor(thing1, thing2) {
-            connection.bubble1Center = g1.bounds.center
-            connection.bubble2Center = g2.bounds.center
+            connection.bubble1Center = g1.totalBounds.center
+            connection.bubble2Center = g2.totalBounds.center
         }
 
         connections.append(connection)
@@ -86,6 +106,15 @@ class Scene: Codable {
         for geometry in geometries {
             if geometry.bubbleID == bubbleID {
                 return geometry
+            }
+        }
+        return nil
+    }
+
+    func geometryIndexFor(_ bubbleID: BubbleID) -> Int? {
+        for (i, geometry) in geometries.enumerated() {
+            if geometry.bubbleID == bubbleID {
+                return i
             }
         }
         return nil
@@ -144,14 +173,30 @@ class Scene: Codable {
         }
     }
 
-    func changeGeometry(for id: Int32, to rect: CGRect) -> UndoPayload {
+    func changeTitleRect(for id: Int32, to rect: CGRect) -> UndoPayload {
         _ = addID(id)
-        let bg = BubbleGeometry(bubbleID: id, bounds: rect)
+        let bg = BubbleGeometry(bubbleID: id, bodyRect: rect)
         geometries.append(bg)
 
         updateConnectionCentersTo(rect.center, for: id)
 
-        return "change geometry" as NSString
+        return "change title rect \(id) -> \(rect)" as NSString
+    }
+
+    func changeGeometry(for id: Int32, to geometry: BubbleGeometry) {
+
+    }
+
+    // Just for the splugne button? Looks like it's _adding_, not
+    // _changing_
+    func changeGeometry(for id: Int32, to rect: CGRect) -> UndoPayload {
+        _ = addID(id)
+        let bg = BubbleGeometry(bubbleID: id, bodyRect: rect)
+        geometries.append(bg)
+
+        updateConnectionCentersTo(rect.center, for: id)
+
+        return "change geometry \(id) -> \(rect)" as NSString
     }
 
     func undo(_ payload: UndoPayload) -> UndoPayload {

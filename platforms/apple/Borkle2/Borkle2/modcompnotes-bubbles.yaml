@@ -1,0 +1,383 @@
+---
+bubbles:
+- ID: 0
+  body: MODCOMP
+  title: who?
+- ID: 1
+  body: '"Modular Computer"'
+  tags:
+    - "modcomp"
+    - "title"
+- ID: 2
+  body: Languages
+  title: Greeble
+- ID: 3
+  body: Assembly
+- ID: 4
+  body: Fortran 2
+  tags:
+    - classic language
+- ID: 5
+  body: Fortran IV
+  title: Language
+- ID: 6
+  body: NASA-extended Fortran 77
+  title: No Compile I
+- ID: 7
+  body: Pascal
+- ID: 8
+  body: CORAL 66
+- ID: 9
+  body: Cool unique things
+- ID: 10
+  body: _very_ deterministic system
+- ID: 11
+  body: OS rudimentary, but fast
+- ID: 12
+  body: no file system to speak of
+- ID: 13
+  body: global COMMON
+- ID: 14
+  body: chunk of shared memory
+- ID: 15
+  body: available in FORTRAN
+- ID: 16
+  body: TAS instruction for cross-task synchronization
+  tags:
+    - "modcomp"
+    - "greeble"
+- ID: 17
+  body: Concepts
+- ID: 18
+  body: Tasks
+- ID: 19
+  body: Batch Queues
+- ID: 20
+  body: Overlays
+- ID: 21
+  body: emitted assembly rather than object code
+- ID: 22
+  body: Can have inline assembly
+- ID: 23
+  body: not connected to terminals
+- ID: 24
+  body: connected to terminals
+- ID: 25
+  body: 7830 - the traffic light machine
+- ID: 26
+  body: 7860 - the nuclear machine
+- ID: 27
+  body: Branded "Bailey" - from Bailey Control Systems (Cleveland)
+- ID: 28
+  body: has hardware floating point
+- ID: 29
+  body: does not have hardware floating point
+- ID: 30
+  body: '"Classic"'
+- ID: 31
+  body: Founded ~1970 by SEL, Ft. Lauderdale FL
+  title: Founding
+  tags:
+    - "splunge"
+- ID: 32
+  body: Has remained consistent model after model
+- ID: 33
+  body: sometimes adding instructions, like the 32-bit addressing prefix
+- ID: 34
+  body: Instruction Set
+- ID: 35
+  body: Hardware Architecture
+- ID: 36
+  body: Address space 16 bits, but of words
+- ID: 37
+  body: Lateradded 32-bit prefix instruction
+- ID: 38
+  body: so 128K bytes, can do a lot more than byte-sized 16-bit systems
+- ID: 39
+  body: Later models (Modcomp 4) / OSs added virtualiation, so more available total memory
+- ID: 40
+  body: Process could have two page tables - one (64K wrods) for code and one for data
+- ID: 41
+  body: 16 (?) registers
+- ID: 42
+  body: general purpose, mostly orthogonal
+- ID: 43
+  body: some addressing modes (?) could only use the first 8 (?) registers
+- ID: 44
+  body: Long service life
+- ID: 45
+  body: NASA still has some in-use
+- ID: 46
+  body: traffic light one was in service from 1981-2019 - 38 years
+- ID: 47
+  body: Ran traffic lights in Evansville IN from 1981-2019
+- ID: 48
+  body: 16 banks of registers
+- ID: 49
+  body: each process / task gets 16 registers, so this allowed for rapid task switching.
+- ID: 50
+  body: ''
+- ID: 51
+  body: ''
+- ID: 52
+  body: wire-wrapped
+- ID: 53
+  body: Model numbers include I/O Channels.  7860 had one or two, 7870 had three or four
+- ID: 54
+  body: million instructions per second, ~200 ns cycle time
+- ID: 55
+  body: Designed for data acquistion and control
+- ID: 56
+  body: not for users
+- ID: 57
+  body: cheaper than a VAX, but as fast
+- ID: 58
+  body: much simpler OS (pros and cons)
+- ID: 59
+  body: ' If the task were resident, then it''s just switching the PSW and the registers to get it running'
+- ID: 60
+  body: I/O Busses do 2 meg/sec
+- ID: 61
+  body: "modcomp 2 could do four on the same bus \u2013 so 4-way DMP (a.k.a. DMA)"
+- ID: 62
+  body: memory up to 4-way interleaved
+- ID: 63
+  body: four things accessing memory at the same time without interrupting / blocking the others
+- ID: 64
+  body: No instruction cache
+- ID: 65
+  body: But is 8-instruction lookahead (optional?), where if you're doing e.g. self-modifying code, you'll need to account for instruction pre-fetching
+- ID: 66
+  body: Dan Weaver (LSSM volunteer) wrote some microcode for ithis
+  tags:
+    - "modcomp"
+    - "lssm"
+- ID: 67
+  body: Operating System
+- ID: 68
+  body: Pretty rudimentary
+- ID: 69
+  body: tasks
+- ID: 70
+  body: timing services
+- ID: 71
+  body: memory management
+- ID: 72
+  body: I/O Services
+- ID: 73
+  body: Security
+- ID: 74
+  body: There is none (outside of assigning some pages rmx permissions) so you can't accidentally scribble on other pages
+- ID: 75
+  body: no real concept of "users"
+- ID: 76
+  body: privilege bit for some instructions
+- ID: 77
+  body: privilege bit for some instructions
+- ID: 78
+  body: like for addressing into OS memory space
+- ID: 79
+  body: can compile a task so that it can access these instructions
+- ID: 80
+  body: User Interaction
+- ID: 81
+  body: Operator Communications
+- ID: 82
+  body: Batch Tasks
+- ID: 83
+  body: operator console
+- ID: 84
+  body: can steal to run on the terminal in front of you
+- ID: 85
+  body: front-panel switches
+- ID: 86
+  body: Terminals
+- ID: 87
+  body: ^A is attention keystroke
+- ID: 88
+  body: 'commands like
+
+    /process-name/command-name'
+- ID: 89
+  body: 'TMP
+
+    Terminal Monitor Program'
+- ID: 90
+  body: run batch tasks and steal OpComms to your terminal
+- ID: 91
+  body: ''
+- ID: 92
+  body: ''
+- ID: 93
+  body: Disk/Devices
+- ID: 94
+  body: very generic I/O
+- ID: 95
+  body: a device is a device
+- ID: 96
+  body: operations
+- ID: 97
+  body: reset
+- ID: 98
+  body: read
+- ID: 99
+  body: write
+- ID: 100
+  body: write EOF
+- ID: 101
+  body: rewind back
+- ID: 102
+  body: add record
+- ID: 103
+  body: back/eo (?)
+- ID: 104
+  body: tape only
+- ID: 105
+  body: didn't have what we'd consider today to be a robust file system
+- ID: 106
+  body: they tried adding one in a later OS version, but nobody liked it
+- ID: 107
+  body: disk is SysGEn'd as a number of fixed-space files
+- ID: 108
+  body: contiguous containers with a specific geometry
+- ID: 109
+  body: File Store Service
+- ID: 110
+  body: Where you'd save your code or compiled programs.
+- ID: 111
+  body: utilities (like the editor) would manage things like a "directory structure"
+- ID: 112
+  body: source code would have one structure, other things (library or object code files) would have a different structure)
+- ID: 113
+  body: no universal DIR command
+- ID: 114
+  body: Programming
+- ID: 115
+  body: editors
+- ID: 116
+  body: sed-like line editor
+- ID: 117
+  body: vi-esque screen editor
+- ID: 118
+  body: job control procedures
+- ID: 119
+  body: you had to be _very_ careful with commands, like compiler commands
+- ID: 120
+  body: mess up an output, you could direct the listing file on top of your source code, or on top of your disk partition
+- ID: 121
+  body: is there where overlays com into play? (?)
+- ID: 122
+  body: ended up making job control procedures bulletproof
+- ID: 123
+  body: like bash scripts
+- ID: 124
+  body: Realix
+- ID: 125
+  body: '"Tri-D"'
+- ID: 126
+  body: late 1988
+- ID: 127
+  body: processors from other vendors
+- ID: 128
+  body: Moto 68K, 1989
+- ID: 129
+  body: Moto 88K, 1990?
+- ID: 130
+  body: '1989'
+- ID: 131
+  body: in 1990, 12,500 computers in 41 countries
+  title: when / how
+- ID: 132
+  body: "References:\n\u2022 Interview with Jim Simpson, LSSM\n\u2022 https://en.wikipedia.org/wiki/Modcomp\n\u2022 https://www.sun-sentinel.com/1990/06/11/traditional-customers-return-to-modcomp/ - tradition customers return to MODCOMP\n\u2022 https://www.techmonitor.ai/technology/modcomp_re_engineers_top_end_classic_for_real_time_boost - modcomp re-engineers top-end classic for real-time boost"
+  title: origin story
+  tags:
+    - "modcomp"
+    - "splunge"
+    - "greeble"
+- ID: 133
+  body: real-time unix
+- ID: 134
+  body: designed to run on Classics
+- ID: 135
+  body: Provide unix environemnt while maintining the high-performance deterministic capabilities for industrial process control / data acquisition
+- ID: 136
+  body: port of AT&T Unix SysV (SR3)
+- ID: 137
+  body: leverage standard unix tools while keeping real-time performance
+- ID: 138
+  body: licensed to other companies, like "Groupe Bull"
+- ID: 139
+  body: supported standard unix networking
+- ID: 140
+  body: some users running Apachine web servers
+- ID: 141
+  body: Bought by AEG AG of West Germany in 198?
+- ID: 142
+  body: Classic 32/87
+- ID: 143
+  body: re-engineered version of the 32-bit Classic 32/85
+- ID: 144
+  body: Writable Control Store
+- ID: 145
+  body: for making your own instructions / microcode
+- ID: 146
+  body: just 32/87, or other machines?
+- ID: 147
+  body: after layoffs and financial problems pivoted to being a systems integrator (early-mid 90s?)
+- ID: 148
+  body: purchased by CSPi Technology Solutions (1996)
+- ID: 149
+  body: Modcomp IV added unstructions (updated fortran compiler)
+- ID: 150
+  body: popular with aerospace (Nasa, SAIL) oil industry (Standard, Shell)
+- ID: 151
+  body: '"MAX"'
+- ID: 152
+  body: '"Modular Applications eXecutive'
+- ID: 153
+  body: MAX I - real-time monitor for a fixed set of processes linked into a single memory image (i.e. embedded)
+- ID: 154
+  body: MAX II - batch disk operating system with real-time extensions. Used for program development in the background while foreground handled real-time loads
+- ID: 155
+  body: fixed-priority pre-emptive scheduling
+- ID: 156
+  body: MAX III - for 16 bit machines
+- ID: 157
+  body: MAX IV - for Modcomp IV
+- ID: 158
+  body: allowed for multiple interactive users
+- ID: 159
+  body: all processes shared the one address space, with swapping used to support multiple background processes (one per interactive user)
+- ID: 160
+  body: "largely compatible with MAX III. \nTook advantage of new Modcomp IV features to allocate one address space for each process"
+- ID: 161
+  body: demand-paging not supported
+- ID: 162
+  body: swapping used when total memory demand for all processes exceeded available physical memory
+- ID: 163
+  body: Max 32
+- ID: 164
+  body: developed to fully exploit the modcomp classic system
+- ID: 165
+  body: prior compilations could be modified to take advantage of newer instructions for the modcomp IV / Classic
+- ID: 166
+  body: designed to take advantage of the plethora of registers for temp values - variables and indexes
+- ID: 167
+  body: 'had optimiations reducing the # of ops to do array indexing math'
+- ID: 168
+  body: ??? what are these optimizations / instructions?
+- ID: 169
+  body: replace modcomp IV in 1978
+- ID: 170
+  body: MODCOMP IV
+- ID: 171
+  body: potential as VAX competitor
+- ID: 172
+  body: '1974'
+- ID: 173
+  body: wikipedia says 16 banks of _15_ registers
+- ID: 174
+  body: '!!! c.f. wikipedia page for machine deets'
+- ID: 175
+  body: IV / Classic has MMU
+...

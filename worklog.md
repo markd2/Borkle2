@@ -140,3 +140,55 @@ now for updating text effects.  For now, if there's a result, render the
 text for it differently.  Not doing "current result" yet.
 
 
+==================================================
+# Wednesday August 12, 2026
+
+In Seattle with Kitties!  SO CUTE
+
+Now is the time for titles and tags.
+
+The highly detailed and specific ticket is:
+
+```
+X Need to support in sample documents having titles and tags
+
+Also need to support for that in bubble drawing, actually drawing the titles and tags
+
+(new) need to do editing of title. Punting editing tags. Actualy,punt that too,
+let's just do drawing for now.
+
+Then update the search result highlighting to show search results in the titles and tags.
+```
+
+
+
+Step 1 - titles and tags.  Update the MODCOMP one to have some titles and taggage
+
+need to get the modcomp borkle files into the bundle rather than ~/Downloads
+for personal sanity.  Actual document model will come later.
+
+And update some titles and tags.
+
+Right now everything is a title.  So rename existing titles to be bodies.
+
+And then add some titles and tags.
+
+Total syntax:
+
+```
+bubbles:
+- ID: 0
+  body: MODCOMP
+  title: MODCOMP TITLE
+  tags:
+    - "modcomp"
+    - "splunge"
+    - "greeble"
+```
+
+Now for bubble drawing.  We don't have any styling. It'd make sense to 
+not do styling for title and tags when we eventually get to that.
+
+==================================================
+# Friday August 14, 2026
+

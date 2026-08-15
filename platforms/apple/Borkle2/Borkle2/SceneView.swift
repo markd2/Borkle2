@@ -187,11 +187,16 @@ class SceneView: NSView {
                                          attributedString: bubbleAttributedString,
                                          searchResults: titleResults)
 
-            var stringRect = titleRect.insetBy(dx: 3, dy: 3)
+            var stringRect = titleRect.insetBy(dx: 3, dy: 1)
             let height = string.heightFor(width: stringRect.width)
             stringRect.size = CGSize(width: stringRect.width, height: height)
 
-            let nsattr = NSAttributedString(string)
+            let nsattr = NSMutableAttributedString(string)
+
+            let boldFont = NSFont.boldSystemFont(ofSize: 12)
+            let range = NSRange(location: 0, length: nsattr.length)
+            nsattr.addAttribute(.font, value: boldFont, range: range)
+
             nsattr.draw(with: stringRect,
                         options: .usesLineFragmentOrigin)
             let y = titleRect.maxY

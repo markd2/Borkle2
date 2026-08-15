@@ -3,10 +3,6 @@ bubbles:
 - ID: 0
   body: MODCOMP
   title: who?
-  tags:
-    - "modcomp"
-    - "splunge"
-    - "greeble"
 - ID: 1
   body: '"Modular Computer"'
   tags:
@@ -47,6 +43,9 @@ bubbles:
   body: available in FORTRAN
 - ID: 16
   body: TAS instruction for cross-task synchronization
+  tags:
+    - "modcomp"
+    - "greeble"
 - ID: 17
   body: Concepts
 - ID: 18
@@ -78,6 +77,8 @@ bubbles:
 - ID: 31
   body: Founded ~1970 by SEL, Ft. Lauderdale FL
   title: Founding
+  tags:
+    - "splunge"
 - ID: 32
   body: Has remained consistent model after model
 - ID: 33
@@ -148,6 +149,9 @@ bubbles:
   body: But is 8-instruction lookahead (optional?), where if you're doing e.g. self-modifying code, you'll need to account for instruction pre-fetching
 - ID: 66
   body: Dan Weaver (LSSM volunteer) wrote some microcode for ithis
+  tags:
+    - "modcomp"
+    - "lssm"
 - ID: 67
   body: Operating System
 - ID: 68
@@ -286,6 +290,10 @@ bubbles:
 - ID: 132
   body: "References:\n\u2022 Interview with Jim Simpson, LSSM\n\u2022 https://en.wikipedia.org/wiki/Modcomp\n\u2022 https://www.sun-sentinel.com/1990/06/11/traditional-customers-return-to-modcomp/ - tradition customers return to MODCOMP\n\u2022 https://www.techmonitor.ai/technology/modcomp_re_engineers_top_end_classic_for_real_time_boost - modcomp re-engineers top-end classic for real-time boost"
   title: origin story
+  tags:
+    - "modcomp"
+    - "splunge"
+    - "greeble"
 - ID: 133
   body: real-time unix
 - ID: 134

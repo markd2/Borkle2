@@ -207,6 +207,54 @@ class SceneView: NSView {
                                                 y: y))
         }
 
+        func drawTags() {
+            guard let tagsRect = geometry.tagsRect else { return }
+            let bubble = soup.bubbles[geometry.bubbleID]
+            guard let tags = bubble.tags else {
+                print("huh, we have tags but no where to draw them")
+                return
+            }
+
+            let bubbleString = tags.joined(separator: ", ")
+
+            let bubbleAttributedString = AttributedString(bubbleString)
+            let titleResults = searchResults?.filter { result in
+                switch result {
+                    case .tagRange: return true
+                    default: return false
+                }
+            }
+            let string = markupForSearch(bubbleID: geometry.bubbleID,
+                                         attributedString: bubbleAttributedString,
+                                         searchResults: titleResults)
+
+            var stringRect = tagsRect.insetBy(dx: 3, dy: 1)
+            let height = string.heightFor(width: stringRect.width)
+            stringRect.size = CGSize(width: stringRect.width, height: height)
+
+            let nsattr = NSMutableAttributedString(string)
+
+            let baseFont = NSFont.systemFont(ofSize: 12)
+            let italicFont = NSFontManager.shared.convert(
+              baseFont,
+              toHaveTrait: .italicFontMask)
+
+            let range = NSRange(location: 0, length: nsattr.length)
+            nsattr.addAttribute(.font, value: italicFont, range: range)
+            nsattr.addAttribute(.foregroundColor, value: NSColor.darkGray,
+                                range: range)
+            
+
+            nsattr.draw(with: stringRect,
+                        options: .usesLineFragmentOrigin)
+            let y = tagsRect.minY
+            let x = tagsRect.minX
+            NSColor.darkGray.set()
+            NSBezierPath.strokeLine(from: CGPoint(x: x, y: y),
+                                    to: CGPoint(x: x + tagsRect.width,
+                                                y: y))
+        }
+
         func drawBody() {
             guard let bodyRect = geometry.bodyRect else { return }
             let bubble = soup.bubbles[geometry.bubbleID]
@@ -242,6 +290,7 @@ class SceneView: NSView {
         drawBackground()
         drawTitle()
         drawBody()
+        drawTags()
         drawOutline()
 
     }

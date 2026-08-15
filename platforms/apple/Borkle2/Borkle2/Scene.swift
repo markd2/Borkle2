@@ -14,7 +14,7 @@ struct BubbleGeometry: Codable {
     // bubble contents. maybe have some knobs to control it (and maybe have
     // scrolling bubble contents?)
     var totalBounds: CGRect {
-        let union = [titleRect, bodyRect, keywordsRect]
+        let union = [titleRect, bodyRect, tagsRect]
         .compactMap { $0 }
         .reduce(into: CGRect?.none) { result, next in
             result = result?.union(next) ?? next
@@ -24,15 +24,15 @@ struct BubbleGeometry: Codable {
 
     let titleRect: CGRect?
     let bodyRect: CGRect?
-    let keywordsRect: CGRect?
+    let tagsRect: CGRect?
     
     init(bubbleID: Int32, bodyRect: CGRect? = nil,
          titleRect: CGRect? = nil,
-         keywordsRect: CGRect? = nil) {
+         tagsRect: CGRect? = nil) {
         self.bubbleID = bubbleID
         self.bodyRect = bodyRect
         self.titleRect = titleRect
-        self.keywordsRect = keywordsRect
+        self.tagsRect = tagsRect
     }
 }
 

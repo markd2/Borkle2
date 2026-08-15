@@ -48,8 +48,33 @@ class SceneWindowController: NSWindowController {
         scroller.hasVerticalScroller = true
     }
 
-    // Add title rects to the thingies that have titles
+    // add tag rects
     @IBAction func splunge(_ sender: NSControl) {
+        let tagHeight = 18.0
+
+        for (i, geometry) in scene.geometries.enumerated() {
+            let bubble = soup.bubbles[geometry.bubbleID]
+            guard let tags = bubble.tags, !tags.isEmpty else { continue }
+
+            // if we have tags, add a tag rect at the bottom
+            var tagsRect = geometry.totalBounds
+            tagsRect.origin.y = tagsRect.minY + tagsRect.height
+            tagsRect.size.height = tagHeight
+            
+            let replacementGeometry = BubbleGeometry(
+              bubbleID: geometry.bubbleID,
+              bodyRect: geometry.bodyRect,
+              titleRect: geometry.titleRect,
+              tagsRect: tagsRect)
+            
+            scene.geometries[i] = replacementGeometry
+        }
+        sceneView.needsDisplay = true
+        updateScrollJunk()
+    }
+
+    // Add title rects to the thingies that have titles
+    @IBAction func splungeEmbigginTitle(_ sender: NSControl) {
         let additionalTitleHeight = 6.0
 
         for (i, geometry) in scene.geometries.enumerated() {

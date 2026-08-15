@@ -50,19 +50,19 @@ class SceneWindowController: NSWindowController {
 
     // Add title rects to the thingies that have titles
     @IBAction func splunge(_ sender: NSControl) {
-        let titleHeight = 12.0
+        let additionalTitleHeight = 6.0
 
         for (i, geometry) in scene.geometries.enumerated() {
             let bubble = soup.bubbles[geometry.bubbleID]
             guard bubble.title != nil else { continue }
 
-            // if we have a title. make a title rect at the top
-            guard var titleRect = geometry.bodyRect else { continue }
-            titleRect.size.height = titleHeight
+            // if we have a title, embiggen the title rect at the top
+            guard var titleRect = geometry.titleRect else { continue }
+            titleRect.size.height = titleRect.size.height + additionalTitleHeight
             
             // scoot the body down
             guard var bodyRect = geometry.bodyRect else { continue }
-            bodyRect.origin.y = bodyRect.origin.y + titleHeight
+            bodyRect.origin.y = bodyRect.origin.y + additionalTitleHeight
             
             let replacementGeometry = BubbleGeometry(
               bubbleID: geometry.bubbleID,

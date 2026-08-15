@@ -136,41 +136,118 @@ class SceneView: NSView {
         return AttributedString(string)
     }
 
-    func drawBubbles() {
-        NSColor.brown.set()
-        for geometry in scene.geometries {
-            let bezierPath = NSBezierPath()
-            bezierPath.lineWidth = 1.0
+    func draw(_ bubble: Bubble,
+              with geometry: BubbleGeometry,
+              drawHighlighted: Bool) {
+        func drawBackground() {
+            let bezierPath = NSBezierPath()            
+            
             bezierPath.appendRoundedRect(geometry.totalBounds,
                                          xRadius: 4, yRadius: 4)
-
+            
             Colors.bubbleBackground.set()
             bezierPath.fill()
-
-            // right now highlighting bubbles by drawing a color wash
-            // over them.  So draw this over the prior background
-            if isBubbleMousedOver(geometry.bubbleID) {
+            
+            if drawHighlighted {
                 Colors.bubbleMouseOver.set()
                 bezierPath.fill()
             }
+        }
 
-            let bubbleString = soup.bubbles[geometry.bubbleID].body!
+        func drawOutline() {
+            let bezierPath = NSBezierPath()
+            bezierPath.lineWidth = 1.0
+
+            bezierPath.appendRoundedRect(geometry.totalBounds,
+                                         xRadius: 4, yRadius: 4)
+            
+            Colors.bubbleFrame.set()
+            bezierPath.stroke()
+        }
+
+        func drawTitle() {
+            guard let titleRect = geometry.titleRect else { return }
+            let bubble = soup.bubbles[geometry.bubbleID]
+            guard let title = bubble.title else {
+                print("huh, we have a title but no where to draw it")
+                return
+            }
+
+            // !!! duped from below and tweaked
+            let bubbleString = title
 
             let bubbleAttributedString = AttributedString(bubbleString)
+            let titleResults = searchResults?.filter { result in
+                switch result {
+                    case .titleRange: return true
+                    default: return false
+                }
+            }
             let string = markupForSearch(bubbleID: geometry.bubbleID,
                                          attributedString: bubbleAttributedString,
-                                         searchResults: searchResults)
+                                         searchResults: titleResults)
 
-            var stringRect = geometry.totalBounds.insetBy(dx: 3, dy: 3)
+            var stringRect = titleRect.insetBy(dx: 3, dy: 3)
             let height = string.heightFor(width: stringRect.width)
             stringRect.size = CGSize(width: stringRect.width, height: height)
 
             let nsattr = NSAttributedString(string)
             nsattr.draw(with: stringRect,
                         options: .usesLineFragmentOrigin)
-            
-            Colors.bubbleFrame.set()
-            bezierPath.stroke()
+            let y = titleRect.maxY
+            let x = titleRect.minX
+            NSColor.darkGray.set()
+            NSBezierPath.strokeLine(from: CGPoint(x: x, y: y),
+                                    to: CGPoint(x: x + titleRect.width,
+                                                y: y))
+        }
+
+        func drawBody() {
+            guard let bodyRect = geometry.bodyRect else { return }
+            let bubble = soup.bubbles[geometry.bubbleID]
+            guard let body = bubble.body else {
+                print("huh, we have a body but no where to draw it")
+                return
+            }
+
+            let bubbleString = body
+
+            let bubbleAttributedString = AttributedString(bubbleString)
+            let bodyResults = searchResults?.filter { result in
+                switch result {
+                    case .bodyRange: return true
+                    default: return false
+                }
+            }
+            let string = markupForSearch(bubbleID: geometry.bubbleID,
+                                         attributedString: bubbleAttributedString,
+                                         searchResults: bodyResults)
+
+            var stringRect = bodyRect.insetBy(dx: 3, dy: 3)
+            let height = string.heightFor(width: stringRect.width)
+            stringRect.size = CGSize(width: stringRect.width, height: height)
+
+            let nsattr = NSAttributedString(string)
+            nsattr.draw(with: stringRect,
+                        options: .usesLineFragmentOrigin)
+        }
+
+        let bubble = soup.bubbles[geometry.bubbleID]
+
+        drawBackground()
+        drawTitle()
+        drawBody()
+        drawOutline()
+
+    }
+
+    func drawBubbles() {
+        NSColor.brown.set()
+        for geometry in scene.geometries {
+            let bubble = soup.bubbles[geometry.bubbleID]
+            draw(bubble,
+                 with: geometry,
+                 drawHighlighted: isBubbleMousedOver(geometry.bubbleID))
         }
     }
 

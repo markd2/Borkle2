@@ -52,6 +52,11 @@ backwards
 
 ![](assets/search.gif)
 
+Titles and Tags!  Draws a title (if it exists) at the top, and tags (if they
+exist) at the bottom.
+
+![](assets/tags-n-titles.png)
+
 
 # Gripes about Borkle-1
 

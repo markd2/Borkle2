@@ -109,13 +109,8 @@ class SceneView: NSView {
                 foundRange = (ID == bubbleID) ? range : nil
             case let .bodyRange(ID, range):
                 foundRange = (ID == bubbleID) ? range : nil
-            case let .tagRange(ID, string, range):
-                if String(attr.characters) == string {
-                    foundRange = (ID == bubbleID) ? range : nil
-                }
-
-            default:
-                continue
+            case let .tagRange(ID, range):
+                foundRange = (ID == bubbleID) ? range : nil
             }
 
             guard let foundRange else { continue }
@@ -214,7 +209,7 @@ class SceneView: NSView {
         func drawTags() {
             guard let tagsRect = geometry.tagsRect else { return }
             let bubble = soup.bubbles[geometry.bubbleID]
-            guard let tags = bubble.tags else {
+            guard let tags = bubble.tags, !tags.isEmpty else {
                 print("huh, we have tags but no where to draw them")
                 return
             }
@@ -226,19 +221,11 @@ class SceneView: NSView {
                 }
             }
 
-            let nsattr = NSMutableAttributedString()
-            for tag in tags {
-                let tagString = AttributedString(tag)
-                let string = markupForSearch(bubbleID: geometry.bubbleID,
-                                             attributedString: tagString,
-                                             searchResults: tagsResults)
-                nsattr.append(NSAttributedString("#"))
-                nsattr.append(NSAttributedString(string))
-                nsattr.append(NSAttributedString(" "))
-            }
+            let tagsString = AttributedString(bubble.projectedTags)
+            let string = markupForSearch(bubbleID: geometry.bubbleID,
+                                         attributedString: tagsString,
+                                         searchResults: tagsResults)
             
-            let string = nsattr.string
-                
             var stringRect = tagsRect.insetBy(dx: 3, dy: 1)
             let height = string.heightFor(width: stringRect.width)
             stringRect.size = CGSize(width: stringRect.width, height: height)
@@ -248,10 +235,9 @@ class SceneView: NSView {
               baseFont,
               toHaveTrait: .italicFontMask)
 
+            let nsattr = NSMutableAttributedString(string)
             let range = NSRange(location: 0, length: nsattr.length)
             nsattr.addAttribute(.font, value: italicFont, range: range)
-            nsattr.addAttribute(.foregroundColor, value: NSColor.darkGray,
-                                range: range)
 
             nsattr.draw(with: stringRect,
                         options: .usesLineFragmentOrigin)
@@ -292,8 +278,6 @@ class SceneView: NSView {
             nsattr.draw(with: stringRect,
                         options: .usesLineFragmentOrigin)
         }
-
-        let bubble = soup.bubbles[geometry.bubbleID]
 
         drawBackground()
         drawTitle()

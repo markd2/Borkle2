@@ -150,12 +150,17 @@ Now is the time for titles and tags.
 The highly detailed and specific ticket is:
 
 ```
-Need to support in sample documents having titles and tags
+X Need to support in sample documents having titles and tags
 
 Also need to support for that in bubble drawing, actually drawing the titles and tags
 
+(new) need to do editing of title. Punting editing tags. Actualy,punt that too,
+let's just do drawing for now.
+
 Then update the search result highlighting to show search results in the titles and tags.
 ```
+
+
 
 Step 1 - titles and tags.  Update the MODCOMP one to have some titles and taggage
 
@@ -180,4 +185,10 @@ bubbles:
     - "splunge"
     - "greeble"
 ```
+
+Now for bubble drawing.  We don't have any styling. It'd make sense to 
+not do styling for title and tags when we eventually get to that.
+
+==================================================
+# Friday August 14, 2026
 

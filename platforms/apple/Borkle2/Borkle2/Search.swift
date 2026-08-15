@@ -5,13 +5,13 @@ import AppKit
 enum SearchResult {
     case titleRange(BubbleID, NSRange)
     case bodyRange(BubbleID, NSRange)
-    case tagRange(BubbleID, String, NSRange)
+    case tagRange(BubbleID, NSRange)
 
     var bubbleID: BubbleID {
         switch self {
         case .titleRange(let bubbleID, _): return bubbleID
         case .bodyRange(let bubbleID, _): return bubbleID
-        case .tagRange(let bubbleID, _, _): return bubbleID
+        case .tagRange(let bubbleID, _): return bubbleID
         }
     }
 
@@ -19,7 +19,7 @@ enum SearchResult {
         switch self {
         case .titleRange(_, let range): return range
         case .bodyRange(_, let range): return range
-        case .tagRange(_, _, let range): return range
+        case .tagRange(_, let range): return range
         }
     }
 
@@ -72,10 +72,8 @@ class Searcher {
             let bodyRanges = ranges(of: searchString, in: bubble.body)
             results += bodyRanges.map { .bodyRange(bubbleID, $0) }
 
-            for tag in bubble.tags ?? [] {
-                let tagRanges = ranges(of: searchString, in: tag)
-                results += tagRanges.map { SearchResult.tagRange(bubbleID, tag, $0) }
-            }
+            let tagRanges = ranges(of: searchString, in: bubble.projectedTags)
+            results += tagRanges.map { .tagRange(bubbleID, $0) }
         }
         return results
     }

@@ -23,6 +23,11 @@ class Bubble : Codable {
     var tags: [String]?
     var asset: String?   // path into bundle
 
+    var projectedTags: String {
+        guard let tags else { return "" }
+        return tags.joined(separator: ", ")
+    }
+
     init(title: String?, body: String?,
          tags: [String]?, asset: String?) {
         self.ID = -1
